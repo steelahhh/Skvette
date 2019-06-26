@@ -1,0 +1,26 @@
+<!--
+  ~ Copyright (C) 2019. Alexander Efimenko
+  ~
+  ~ This Source Code Form is subject to the terms of the Mozilla Public
+  ~ License, v. 2.0. If a copy of the MPL was not distributed with this
+  ~ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+  -->
+
+<resources>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorSecondary">@color/colorAccent</item>
+        <item name="colorSurface">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="colorOnBackground">#FFF</item>
+        <item name="android:colorBackground">@color/gray</item>
+        <item name="android:statusBarColor">?colorSurface</item>
+    </style>
+
+    <style name="AppText">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body1</item>
+    </style>
+</resources>
