@@ -8,7 +8,7 @@ object Config {
 }
 
 object Versions {
-    const val kotlin = "1.3.31"
+    const val kotlin = "1.3.40"
     const val androidPlugin = "3.5.0-beta05"
 
     const val androidx = "1.0.2"
@@ -52,7 +52,6 @@ object Dependencies {
         const val viewPager = "com.jakewharton.rxbinding3:rxbinding-viewpager:${Versions.rxBinding}"
         const val material = "com.jakewharton.rxbinding3:rxbinding-material:${Versions.rxBinding}"
     }
-
 
     object Rx {
         const val kotlin = "io.reactivex.rxjava2:rxkotlin:${Versions.rxKotlin}"
