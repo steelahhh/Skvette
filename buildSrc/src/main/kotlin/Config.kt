@@ -1,11 +1,3 @@
-/*
- * Copyright (C) 2019. Alexander Efimenko
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- */
-
 object Config {
     const val minSdk = 21
     const val targetSdk = 28
@@ -17,10 +9,10 @@ object Config {
 
 object Versions {
     const val kotlin = "1.3.31"
-    const val androidPlugin = "3.4.0"
+    const val androidPlugin = "3.5.0-beta05"
 
     const val androidx = "1.0.2"
-    const val constraint = "1.1.3"
+    const val constraint = "2.0.0-beta1"
 
     const val room = "2.1.0-alpha07"
 
@@ -50,7 +42,7 @@ object Dependencies {
     const val coreKtx = "androidx.core:core-ktx:1.0.1"
     const val appcompat = "androidx.appcompat:appcompat:${Versions.androidx}"
     const val constraint = "androidx.constraintlayout:constraintlayout:${Versions.constraint}"
-    const val material = "com.google.android.material:material:1.1.0-alpha05"
+    const val material = "com.google.android.material:material:1.1.0-alpha07"
 
     object RxBinding {
         const val core = "com.jakewharton.rxbinding3:rxbinding-core:${Versions.rxBinding}"

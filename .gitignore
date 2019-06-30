@@ -35,8 +35,6 @@ build/
 gradle/
 gradlew*
 gradlew.*
-gradle.properties
-
 
 # Local configuration file (sdk path, etc)
 local.properties
