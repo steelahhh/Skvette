@@ -16,6 +16,7 @@ object Versions {
 
     const val room = "2.1.0-alpha07"
 
+    const val dagger = "2.23.2"
     const val klock = "1.4.0"
 
     const val rxBinding = "3.0.0-alpha2"
@@ -43,6 +44,11 @@ object Dependencies {
     const val appcompat = "androidx.appcompat:appcompat:${Versions.androidx}"
     const val constraint = "androidx.constraintlayout:constraintlayout:${Versions.constraint}"
     const val material = "com.google.android.material:material:1.1.0-alpha07"
+
+    object Dagger {
+        const val core = "com.google.dagger:dagger:${Versions.dagger}"
+        const val compiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
+    }
 
     object RxBinding {
         const val core = "com.jakewharton.rxbinding3:rxbinding-core:${Versions.rxBinding}"
@@ -85,6 +91,8 @@ object Dependencies {
     }
 
     const val timber = "com.jakewharton.timber:timber-android:${Versions.timber}"
+
+    const val annotations = "javax.annotation:jsr250-api:1.0"
 
     const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
     const val leakSentry = "com.squareup.leakcanary:leaksentry:${Versions.leakCanary}"

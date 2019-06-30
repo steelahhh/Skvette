@@ -24,7 +24,10 @@ android {
         versionCode = Config.appVersionCode
         versionName = Config.appVersionName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        testInstrumentationRunnerArgument("runnerBuilder", "de.mannodermaus.junit5.AndroidJUnit5Builder")
+        testInstrumentationRunnerArgument(
+            "runnerBuilder",
+            "de.mannodermaus.junit5.AndroidJUnit5Builder"
+        )
     }
 
     packagingOptions {
@@ -48,6 +51,7 @@ dependencies {
         Dependencies.material,
         Dependencies.Glide.core,
         Dependencies.timber,
+        Dependencies.Dagger.core,
         Dependencies.Rx.kotlin,
         Dependencies.Rx.android,
         Dependencies.Rx.relay,
@@ -64,9 +68,14 @@ dependencies {
         implementation(it)
     }
 
-    listOf(Dependencies.Glide.kapt).forEach {
+    listOf(
+        Dependencies.Glide.kapt,
+        Dependencies.Dagger.compiler
+    ).forEach {
         kapt(it)
     }
+
+    compileOnly(Dependencies.annotations)
 
     listOf(Dependencies.leakCanary).forEach {
         debugImplementation(it)
