@@ -44,6 +44,7 @@ android {
 
 dependencies {
     listOf(
+        project(":core"),
         Dependencies.kotlin,
         Dependencies.appcompat,
         Dependencies.coreKtx,
