@@ -42,6 +42,10 @@ android {
     }
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
     listOf(
         project(":core"),
@@ -64,14 +68,19 @@ dependencies {
         Dependencies.Retrofit.rx,
         Dependencies.Retrofit.moshi,
         Dependencies.Moshi.core,
+        Dependencies.Airbnb.mvRx,
+        Dependencies.Airbnb.Epoxy.core,
+        Dependencies.Lifecycle.viewModel,
         Dependencies.leakSentry
     ).forEach {
         implementation(it)
     }
 
     listOf(
-        Dependencies.Glide.kapt,
-        Dependencies.Dagger.compiler
+        Dependencies.Glide.compiler,
+        Dependencies.Dagger.compiler,
+        Dependencies.Airbnb.Epoxy.compiler,
+        Dependencies.Lifecycle.compiler
     ).forEach {
         kapt(it)
     }

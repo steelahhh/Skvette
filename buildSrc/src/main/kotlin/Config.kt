@@ -16,6 +16,8 @@ object Versions {
 
     const val room = "2.1.0-alpha07"
 
+    const val lifecycle = "2.0.0"
+
     const val dagger = "2.23.2"
     const val klock = "1.4.0"
 
@@ -29,6 +31,10 @@ object Versions {
     const val moshi = "1.8.0"
 
     const val glide = "4.9.0"
+
+    const val mvRx = "1.0.2"
+
+    const val epoxy = "3.7.0"
 
     const val leakCanary = "2.0-alpha-2"
 
@@ -59,6 +65,11 @@ object Dependencies {
         const val material = "com.jakewharton.rxbinding3:rxbinding-material:${Versions.rxBinding}"
     }
 
+    object Lifecycle {
+        const val viewModel = "androidx.lifecycle:lifecycle-viewmodel:${Versions.lifecycle}"
+        const val compiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
+    }
+
     object Rx {
         const val kotlin = "io.reactivex.rxjava2:rxkotlin:${Versions.rxKotlin}"
         const val android = "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroid}"
@@ -80,7 +91,7 @@ object Dependencies {
 
     object Glide {
         const val core = "com.github.bumptech.glide:glide:${Versions.glide}"
-        const val kapt = "com.github.bumptech.glide:compiler:${Versions.glide}"
+        const val compiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
     }
 
     const val okHttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.0.0-alpha01"
@@ -88,6 +99,15 @@ object Dependencies {
     object Moshi {
         const val core = "com.squareup.moshi:moshi:${Versions.moshi}"
         const val kotlin = "com.squareup.moshi:moshi-kotlin:${Versions.moshi}"
+    }
+
+    object Airbnb {
+        const val mvRx = "com.airbnb.android:mvrx:${Versions.mvRx}"
+
+        object Epoxy {
+            const val core = "com.airbnb.android:epoxy:${Versions.epoxy}"
+            const val compiler = "com.airbnb.android:epoxy-compiler:${Versions.epoxy}"
+        }
     }
 
     const val timber = "com.jakewharton.timber:timber-android:${Versions.timber}"
