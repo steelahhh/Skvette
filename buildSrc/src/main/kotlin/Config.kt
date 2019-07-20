@@ -106,7 +106,7 @@ object Dependencies {
 
         object Epoxy {
             const val core = "com.airbnb.android:epoxy:${Versions.epoxy}"
-            const val compiler = "com.airbnb.android:epoxy-compiler:${Versions.epoxy}"
+            const val compiler = "com.airbnb.android:epoxy-processor:${Versions.epoxy}"
         }
     }
 
