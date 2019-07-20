@@ -6,11 +6,11 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package dev.steelahhh.skvette.core
+package io.github.steelahhh.core.mvrx
 
 import com.airbnb.mvrx.BaseMvRxViewModel
 import com.airbnb.mvrx.MvRxState
-import dev.steelahhh.skvette.BuildConfig
+import io.github.steelahhh.core.BuildConfig
 
 abstract class MvRxViewModel<S : MvRxState>(
     initialState: S

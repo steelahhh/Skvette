@@ -28,7 +28,9 @@ dependencies {
     listOf(
         Dependencies.kotlin,
         Dependencies.Rx.kotlin,
-        Dependencies.Rx.android
+        Dependencies.Rx.android,
+        Dependencies.Airbnb.Epoxy.core,
+        Dependencies.Airbnb.mvRx
     ).forEach {
         implementation(it)
     }
