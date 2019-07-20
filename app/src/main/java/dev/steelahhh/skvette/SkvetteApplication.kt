@@ -9,11 +9,19 @@
 package dev.steelahhh.skvette
 
 import android.app.Application
+import dev.steelahhh.skvette.di.ApplicationComponent
+import dev.steelahhh.skvette.di.DaggerApplicationComponent
+import dev.steelahhh.skvette.di.InjectorProvider
 import timber.log.LogcatTree
 import timber.log.Timber
 
 @Suppress("unused")
-class SkvetteApplication : Application() {
+class SkvetteApplication : Application(), InjectorProvider {
+
+    override val component: ApplicationComponent by lazy {
+        DaggerApplicationComponent.factory().create(applicationContext)
+    }
+
     override fun onCreate() {
         super.onCreate()
         setupTimber()
