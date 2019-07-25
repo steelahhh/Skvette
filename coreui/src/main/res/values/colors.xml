@@ -8,6 +8,10 @@
   -->
 
 <resources>
-    <string name="search_query_hint">Type here</string>
-    <string name="search_query_result_empty">Nothing was found matching your query</string>
+    <color name="colorPrimary">#6A4BA0</color>
+    <color name="colorAccent">#304FFE</color>
+    <color name="transparent">#00FFFFFF</color>
+
+    <color name="white">#fff</color>
+    <color name="gray">#292931</color>
 </resources>

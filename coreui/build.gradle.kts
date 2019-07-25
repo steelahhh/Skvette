@@ -1,0 +1,37 @@
+plugins {
+    id("com.android.library")
+    kotlin("android")
+    kotlin("kapt")
+    kotlin("android.extensions")
+}
+
+android {
+    compileSdkVersion(Config.compileSdk)
+    androidExtensions {
+        isExperimental = true
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        minSdkVersion(Config.minSdk)
+        targetSdkVersion(Config.targetSdk)
+    }
+}
+
+dependencies {
+    listOf(
+        Dependencies.Airbnb.Epoxy.core
+    ).forEach {
+        implementation(it)
+    }
+
+    listOf(
+        Dependencies.Airbnb.Epoxy.compiler
+    ).forEach {
+        kapt(it)
+    }
+}

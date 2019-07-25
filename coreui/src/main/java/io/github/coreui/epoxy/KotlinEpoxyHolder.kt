@@ -6,7 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package io.github.steelahhh.core.mvrx
+package io.github.coreui.epoxy
 
 import android.view.View
 import com.airbnb.epoxy.EpoxyHolder

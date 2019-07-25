@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (C) 2019. Alexander Efimenko
+  ~
+  ~ This Source Code Form is subject to the terms of the Mozilla Public
+  ~ License, v. 2.0. If a copy of the MPL was not distributed with this
+  ~ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+  -->
+
+<resources>
+    <dimen name="spacing_m">8dp</dimen>
+    <dimen name="spacing_xm">12dp</dimen>
+    <dimen name="spacing_h">16dp</dimen>
+    <dimen name="spacing_xxxxh">56dp</dimen>
+
+    <dimen name="item_loading_height">72dp</dimen>
+    <dimen name="item_photo_height">320dp</dimen>
+
+    <dimen name="elevation_s">2dp</dimen>
+    <dimen name="elevation_m">4dp</dimen>
+    <dimen name="elevation_l">8dp</dimen>
+
+    <dimen name="corner_radius_s">4dp</dimen>
+    <dimen name="corner_radius_m">8dp</dimen>
+    <dimen name="corner_radius_h">16dp</dimen>
+    <dimen name="corner_radius_xh">24dp</dimen>
+</resources>

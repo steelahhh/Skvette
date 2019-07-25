@@ -63,6 +63,7 @@ kapt {
 dependencies {
     listOf(
         project(":core"),
+        project(":coreui"),
         Dependencies.kotlin,
         Dependencies.appcompat,
         Dependencies.coreKtx,
