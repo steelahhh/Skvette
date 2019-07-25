@@ -6,7 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package dev.steelahhh.skvette.data
+package dev.steelahhh.skvette.network
 
 import dev.steelahhh.skvette.BuildConfig
 import okhttp3.Interceptor
@@ -16,9 +16,8 @@ object ApiKeyInterceptor : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val original = chain.request()
-        val originalHttpUrl = original.url()
-
-        val newHttpUrl = originalHttpUrl.newBuilder()
+        
+        val newHttpUrl = original.url().newBuilder()
             .addQueryParameter("client_id", BuildConfig.APP_ID)
             .build()
 

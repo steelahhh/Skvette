@@ -6,9 +6,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package dev.steelahhh.skvette.data
+package dev.steelahhh.skvette.network
 
-import dev.steelahhh.skvette.data.model.PhotoResponse
+import dev.steelahhh.skvette.network.model.PhotoResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -6,11 +6,13 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package dev.steelahhh.skvette.data
+package dev.steelahhh.skvette.network
 
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
+import dev.steelahhh.skvette.data.photos.PhotosRepository
+import io.github.steelahhh.core.SchedulerProvider
 import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -27,9 +29,9 @@ object DataModule {
     private const val TIME_OUT = 3000L
     private const val BASE_URL = "https://api.unsplash.com/"
 
+    @JvmStatic
     @Provides
     @Reusable
-    @JvmStatic
     fun provideOkHttpClient(): OkHttpClient = OkHttpClient.Builder()
         .addInterceptor(HttpLoggingInterceptor().setLevel(BODY))
         .addInterceptor(ApiKeyInterceptor)
@@ -37,9 +39,9 @@ object DataModule {
         .readTimeout(TIME_OUT, TimeUnit.MILLISECONDS)
         .build()
 
+    @JvmStatic
     @Provides
     @Singleton
-    @JvmStatic
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .client(okHttpClient)
@@ -47,8 +49,16 @@ object DataModule {
         .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
         .build()
 
-    @Provides
     @JvmStatic
-    @Reusable
+    @Provides
+    @Singleton
     fun provideApi(retrofit: Retrofit): SKVService = retrofit.create(SKVService::class.java)
+
+    @JvmStatic
+    @Provides
+    @Reusable
+    fun provideRepository(
+        service: SKVService,
+        schedulers: SchedulerProvider
+    ) = PhotosRepository(service, schedulers)
 }

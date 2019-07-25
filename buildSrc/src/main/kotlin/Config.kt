@@ -9,7 +9,7 @@ object Config {
 
 object Versions {
     const val kotlin = "1.3.40"
-    const val androidPlugin = "3.5.0-beta05"
+    const val androidPlugin = "3.5.0-rc01"
 
     const val androidx = "1.0.2"
     const val constraint = "2.0.0-beta1"

@@ -6,7 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package dev.steelahhh.skvette.data.model
+package dev.steelahhh.skvette.network.model
 
 import com.squareup.moshi.Json
 
@@ -50,7 +50,7 @@ data class UserResponse(
 data class LinksResponse(
     @Json(name = "self") val self: String?,
     @Json(name = "html") val html: String?,
-    @Json(name = "photos") val photos: String?,
+    @Json(name = "getPhotos") val photos: String?,
     @Json(name = "likes") val likes: String?,
     @Json(name = "portfolio") val portfolio: String?,
     @Json(name = "following") val following: String?,

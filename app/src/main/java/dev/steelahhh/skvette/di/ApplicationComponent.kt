@@ -11,17 +11,17 @@ package dev.steelahhh.skvette.di
 import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
-import dev.steelahhh.skvette.data.DataModule
-import dev.steelahhh.skvette.data.SKVService
+import dev.steelahhh.skvette.data.photos.PhotosRepository
+import dev.steelahhh.skvette.network.DataModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [DataModule::class])
+@Component(modules = [DataModule::class, CoreModule::class])
 interface ApplicationComponent {
     @Component.Factory
     interface Factory {
         fun create(@BindsInstance applicationContext: Context): ApplicationComponent
     }
 
-    val service: SKVService
+    val photosRepository: PhotosRepository
 }

@@ -102,6 +102,9 @@
     <fields>;
 }
 
+-keep public class * extends com.bumptech.glide.module.AppGlideModule
+-keep class com.bumptech.glide.GeneratedAppGlideModuleImpl
+
 #-keep class kotlin.reflect.jvm.internal.impl.builtins.BuiltInsLoaderImpl
 #
 #-keepclassmembers class kotlin.Metadata {
