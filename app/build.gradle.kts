@@ -86,7 +86,7 @@ dependencies {
         Dependencies.Airbnb.mvRx,
         Dependencies.Airbnb.Epoxy.core,
         Dependencies.Lifecycle.viewModel,
-        Dependencies.leakSentry
+        Dependencies.LeakCanary.objectWatcher
     ).forEach {
         implementation(it)
     }
@@ -102,7 +102,9 @@ dependencies {
 
     compileOnly(Dependencies.annotations)
 
-    listOf(Dependencies.leakCanary).forEach {
+    listOf(
+        Dependencies.LeakCanary.core
+    ).forEach {
         debugImplementation(it)
     }
 

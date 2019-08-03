@@ -9,13 +9,10 @@ object Config {
 
 object Versions {
     const val kotlin = "1.3.40"
-    const val androidPlugin = "3.5.0-rc01"
-
+    const val androidPlugin = "3.5.0-rc02"
     const val androidx = "1.0.2"
     const val constraint = "2.0.0-beta1"
-
     const val room = "2.1.0-alpha07"
-
     const val lifecycle = "2.0.0"
 
     const val dagger = "2.23.2"
@@ -27,16 +24,15 @@ object Versions {
     const val rxAndroid = "2.1.1"
 
     const val timber = "5.0.0-SNAPSHOT"
+    const val chuck = "3.0.0-alpha2"
     const val retrofit = "2.6.0"
     const val moshi = "1.8.0"
-
     const val glide = "4.9.0"
 
     const val mvRx = "1.0.2"
-
     const val epoxy = "3.7.0"
 
-    const val leakCanary = "2.0-alpha-2"
+    const val leakCanary = "2.0-beta-2"
 
     const val mockk = "1.9.3.kotlin12"
     const val junit = "5.3.1"
@@ -94,7 +90,7 @@ object Dependencies {
         const val compiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
     }
 
-    const val okHttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.0.0-alpha01"
+    const val okHttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.0.1"
 
     object Moshi {
         const val core = "com.squareup.moshi:moshi:${Versions.moshi}"
@@ -110,12 +106,19 @@ object Dependencies {
         }
     }
 
+    object Chuck {
+        const val core = "com.github.ChuckerTeam.Chucker:library:${Versions.chuck}"
+        const val noop = "com.github.ChuckerTeam.Chucker:library-no-op:${Versions.chuck}"
+    }
+
     const val timber = "com.jakewharton.timber:timber-android:${Versions.timber}"
 
     const val annotations = "javax.annotation:jsr250-api:1.0"
 
-    const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
-    const val leakSentry = "com.squareup.leakcanary:leaksentry:${Versions.leakCanary}"
+    object LeakCanary {
+        const val core = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
+        const val objectWatcher = "com.squareup.leakcanary:leakcanary-object-watcher-android:${Versions.leakCanary}"
+    }
 
     const val testRunner = "androidx.test:runner:${Versions.testRunner}"
 

@@ -17,7 +17,7 @@ object ApiKeyInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val original = chain.request()
 
-        val newHttpUrl = original.url().newBuilder()
+        val newHttpUrl = original.url.newBuilder()
             .addQueryParameter("client_id", BuildConfig.APP_ID)
             .build()
 

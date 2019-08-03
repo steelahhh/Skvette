@@ -8,6 +8,7 @@
 
 package dev.steelahhh.skvette.network
 
+import android.content.Context
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
@@ -32,12 +33,14 @@ object DataModule {
     @JvmStatic
     @Provides
     @Reusable
-    fun provideOkHttpClient(): OkHttpClient = OkHttpClient.Builder()
-        .addInterceptor(HttpLoggingInterceptor().setLevel(BODY))
-        .addInterceptor(ApiKeyInterceptor)
-        .connectTimeout(TIME_OUT, TimeUnit.MILLISECONDS)
-        .readTimeout(TIME_OUT, TimeUnit.MILLISECONDS)
-        .build()
+    fun provideOkHttpClient(): OkHttpClient {
+        return OkHttpClient.Builder()
+            .addInterceptor(HttpLoggingInterceptor().apply { level = BODY })
+            .addInterceptor(ApiKeyInterceptor)
+            .connectTimeout(TIME_OUT, TimeUnit.MILLISECONDS)
+            .readTimeout(TIME_OUT, TimeUnit.MILLISECONDS)
+            .build()
+    }
 
     @JvmStatic
     @Provides
