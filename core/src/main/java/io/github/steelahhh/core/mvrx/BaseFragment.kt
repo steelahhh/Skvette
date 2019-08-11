@@ -8,6 +8,31 @@
 
 package io.github.steelahhh.core.mvrx
 
+import android.os.Bundle
 import com.airbnb.mvrx.BaseMvRxFragment
 
-abstract class BaseFragment : BaseMvRxFragment()
+abstract class BaseFragment : BaseMvRxFragment() {
+
+    protected val epoxyController by lazy { epoxyController() }
+
+    abstract fun epoxyController(): MvRxEpoxyController
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        epoxyController.onRestoreInstanceState(savedInstanceState)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        epoxyController.onSaveInstanceState(outState)
+    }
+
+    override fun onDestroyView() {
+        epoxyController.cancelPendingModelBuild()
+        super.onDestroyView()
+    }
+
+    override fun invalidate() {
+        epoxyController.requestModelBuild()
+    }
+}
