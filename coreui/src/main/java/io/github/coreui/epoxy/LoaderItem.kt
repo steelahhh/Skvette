@@ -11,20 +11,28 @@ package io.github.coreui.epoxy
 import android.view.ViewGroup.LayoutParams
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.widget.LinearLayout
+import com.airbnb.epoxy.EpoxyAttribute
+import com.airbnb.epoxy.EpoxyModelClass
+import com.airbnb.epoxy.EpoxyModelWithHolder
 import io.github.coreui.R
+import io.github.coreui.R2
 import io.github.coreui.getDimen
 
-data class LoaderItem(
-    var isMatchParent: Boolean = false
-) : KotlinModel(R.layout.item_loader) {
+@EpoxyModelClass(layout = R2.layout.item_loader)
+abstract class LoaderItem : EpoxyModelWithHolder<LoaderItem.Holder>() {
 
-    private val container by bind<LinearLayout>(R.id.progressContainer)
+    @EpoxyAttribute
+    open var isMatchParent: Boolean = false
 
-    override fun bind() {
+    override fun bind(holder: Holder) = with(holder) {
         val containerHeight = container.context.getDimen(R.dimen.item_loading_height)
         container.layoutParams = if (isMatchParent)
             LayoutParams(MATCH_PARENT, MATCH_PARENT)
         else
             LayoutParams(MATCH_PARENT, containerHeight)
+    }
+
+    class Holder : KotlinEpoxyHolder() {
+        val container by bind<LinearLayout>(R.id.progressContainer)
     }
 }

@@ -37,7 +37,7 @@ abstract class PhotoItem : EpoxyModelWithHolder<PhotoItem.Holder>() {
         }
     }
 
-    class Holder : io.github.coreui.epoxy.KotlinEpoxyHolder() {
+    class Holder : KotlinEpoxyHolder() {
         val image by bind<ImageView>(R.id.itemPhotoImageView)
         val container by bind<MaterialCardView>(R.id.itemPhotoContainer)
     }
