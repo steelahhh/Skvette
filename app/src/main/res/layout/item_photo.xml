@@ -21,7 +21,7 @@
         android:layout_marginRight="@dimen/spacing_h"
         android:layout_marginBottom="@dimen/spacing_m"
         app:cardCornerRadius="@dimen/corner_radius_xh"
-        app:cardElevation="@dimen/elevation_s">
+        app:cardElevation="@dimen/elevation_m">
 
         <ImageView
             android:id="@+id/itemPhotoImageView"

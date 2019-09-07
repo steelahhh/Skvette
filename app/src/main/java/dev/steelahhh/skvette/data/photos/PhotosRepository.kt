@@ -18,7 +18,7 @@ class PhotosRepository @Inject constructor(
     private val service: SKVService,
     private val schedulers: SchedulerProvider
 ) {
-    fun getPhotos(page: Int, order: Order = Order.OLDEST) =
+    fun getPhotos(page: Int, order: Order = Order.LATEST) =
         service.getPhotos(page, ITEMS_PER_PAGE, order.name)
             .subscribeOn(schedulers.io())
             .observeOn(schedulers.main())

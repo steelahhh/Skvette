@@ -9,7 +9,7 @@ object Config {
 
 object Versions {
     const val kotlin = "1.3.40"
-    const val androidPlugin = "3.5.0-rc02"
+    const val androidPlugin = "3.5.0"
     const val androidx = "1.0.2"
     const val constraint = "2.0.0-beta1"
     const val room = "2.1.0-alpha07"
@@ -45,7 +45,7 @@ object Dependencies {
     const val coreKtx = "androidx.core:core-ktx:1.0.1"
     const val appcompat = "androidx.appcompat:appcompat:${Versions.androidx}"
     const val constraint = "androidx.constraintlayout:constraintlayout:${Versions.constraint}"
-    const val material = "com.google.android.material:material:1.1.0-alpha07"
+    const val material = "com.google.android.material:material:1.1.0-alpha10"
 
     object Dagger {
         const val core = "com.google.dagger:dagger:${Versions.dagger}"
