@@ -15,8 +15,7 @@ import android.view.ViewGroup
 import com.airbnb.mvrx.fragmentViewModel
 import dev.steelahhh.skvette.R
 import dev.steelahhh.skvette.data.photos.PhotosRepository.Companion.ITEMS_PER_PAGE
-import io.github.coreui.epoxy.LoaderItem
-import io.github.coreui.epoxy.addIf
+import io.github.coreui.epoxy.loaderItem
 import io.github.steelahhh.core.mvrx.BaseFragment
 import io.github.steelahhh.core.mvrx.simpleController
 import kotlinx.android.synthetic.main.fragment_photos.*
@@ -39,9 +38,12 @@ class PhotosFragment : BaseFragment() {
     }
 
     override fun epoxyController() = simpleController(vm) { state ->
-        LoaderItem(isMatchParent = true)
-            .id("fullScreenLoader${state.photos.size}")
-            .addIf(this) { state.isRefreshing }
+        if (state.isRefreshing) {
+            loaderItem {
+                id("fullScreenLoader${state.photos.size}")
+                isMatchParent(true)
+            }
+        }
 
         state.photos.forEach {
             photoItem {
@@ -54,8 +56,11 @@ class PhotosFragment : BaseFragment() {
             }
         }
 
-        LoaderItem(isMatchParent = false)
-            .id("loaderItem${state.photos.size}")
-            .addIf(this) { state.isLoadingMore }
+        if (state.isLoadingMore) {
+            loaderItem {
+                id("loaderItem${state.photos.size}")
+                isMatchParent(false)
+            }
+        }
     }
 }
