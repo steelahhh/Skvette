@@ -64,6 +64,7 @@ dependencies {
     listOf(
         project(":core"),
         project(":coreui"),
+        project(":data"),
         Dependencies.kotlin,
         Dependencies.appcompat,
         Dependencies.coreKtx,

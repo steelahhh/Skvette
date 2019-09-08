@@ -17,7 +17,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.card.MaterialCardView
 import dev.steelahhh.skvette.R
-import io.github.coreui.epoxy.KotlinEpoxyHolder
+import dev.steelahhh.coreui.epoxy.KotlinEpoxyHolder
+import dev.steelahhh.data.photos.Photo
 
 @EpoxyModelClass(layout = R.layout.item_photo)
 abstract class PhotoItem : EpoxyModelWithHolder<PhotoItem.Holder>() {

@@ -10,17 +10,25 @@ package dev.steelahhh.skvette.feature.photos
 
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
+import com.google.android.material.button.MaterialButton
 import dev.steelahhh.skvette.R
-import io.github.coreui.epoxy.KotlinEpoxyHolder
+import dev.steelahhh.coreui.epoxy.KotlinEpoxyHolder
 
 @EpoxyModelClass(layout = R.layout.item_header)
 abstract class HeaderItem : EpoxyModelWithHolder<HeaderItem.Holder>() {
 
-    override fun bind(holder: Holder) {
+    override fun bind(holder: Holder) = with(holder) {
+        searchButton.setOnClickListener {  }
+        filterButton.setOnClickListener {  }
     }
 
-    override fun unbind(holder: Holder) {
+    override fun unbind(holder: Holder) = with(holder) {
+        searchButton.setOnClickListener(null)
+        filterButton.setOnClickListener(null)
     }
 
-    class Holder : KotlinEpoxyHolder()
+    class Holder : KotlinEpoxyHolder() {
+        val searchButton by bind<MaterialButton>(R.id.searchButton)
+        val filterButton by bind<MaterialButton>(R.id.filterButton)
+    }
 }
