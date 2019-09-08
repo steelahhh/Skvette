@@ -11,7 +11,11 @@
         <item name="colorSecondary">@color/colorAccent</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@color/white</item>
+        <item name="android:textColorSecondaryInverse">@color/white</item>
+        <item name="android:textColorPrimaryInverse">@color/white</item>
+        <item name="android:textColorSecondary">@color/gray</item>
+        <item name="android:textColorPrimary">@color/gray</item>
+        <item name="android:windowBackground">@color/gray</item>
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 </resources>

@@ -35,13 +35,20 @@ class PhotosFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         photosRecycler.setController(epoxyController)
+        // TODO consider the actual status height
+        refresher.setProgressViewOffset(false, 75, 100)
+        refresher.setOnRefreshListener { vm.refresh() }
     }
 
     override fun epoxyController() = simpleController(vm) { state ->
-        if (state.isRefreshing) {
+        if (state.isLoading) {
             loaderItem {
                 id("fullScreenLoader${state.photos.size}")
                 isMatchParent(true)
+            }
+        } else {
+            headerItem {
+                id("thisisaheader")
             }
         }
 
@@ -62,5 +69,6 @@ class PhotosFragment : BaseFragment() {
                 isMatchParent(false)
             }
         }
+        refresher.isRefreshing = state.isRefreshing
     }
 }

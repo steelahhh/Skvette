@@ -7,6 +7,10 @@
   -->
 
 <resources>
+    <dimen name="item_height_36">36dp</dimen>
+    <dimen name="item_height_48">48dp</dimen>
+
+    <dimen name="spacing_s">4dp</dimen>
     <dimen name="spacing_m">8dp</dimen>
     <dimen name="spacing_xm">12dp</dimen>
     <dimen name="spacing_h">16dp</dimen>

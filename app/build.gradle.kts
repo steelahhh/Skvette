@@ -68,6 +68,7 @@ dependencies {
         Dependencies.appcompat,
         Dependencies.coreKtx,
         Dependencies.constraint,
+        Dependencies.refresher,
         Dependencies.material,
         Dependencies.Glide.core,
         Dependencies.timber,

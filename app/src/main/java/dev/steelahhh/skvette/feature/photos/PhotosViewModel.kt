@@ -19,6 +19,7 @@ import io.reactivex.Single
 
 data class PhotosState(
     val photos: List<Photo> = listOf(),
+    val isLoading: Boolean = false,
     val isRefreshing: Boolean = false,
     val isLoadingMore: Boolean = false
 ) : MvRxState
@@ -40,10 +41,18 @@ class PhotosViewModel(
             }
 
             override fun showEmptyProgress() = setState {
-                copy(isRefreshing = true)
+                copy(isLoading = true)
             }
 
             override fun hideEmptyProgress() = setState {
+                copy(isLoading = false)
+            }
+
+            override fun showRefreshProgress() = setState {
+                copy(isRefreshing = true)
+            }
+
+            override fun hideRefreshProgress() = setState {
                 copy(isRefreshing = false)
             }
 
@@ -59,9 +68,9 @@ class PhotosViewModel(
 
     private fun fetchPhotos(page: Int): Single<List<Photo>> = photosRepository.getPhotos(page)
 
-    fun loadMore() {
-        paginator.loadNewPage()
-    }
+    fun loadMore() = paginator.loadNewPage()
+
+    fun refresh() = paginator.refresh()
 
     companion object : MvRxViewModelFactory<PhotosViewModel, PhotosState> {
 

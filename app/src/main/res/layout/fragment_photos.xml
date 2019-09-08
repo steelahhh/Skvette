@@ -11,10 +11,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.airbnb.epoxy.EpoxyRecyclerView
-        android:id="@+id/photosRecycler"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresher"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="@dimen/spacing_xxxxh" />
+        android:layout_height="match_parent">
+
+        <com.airbnb.epoxy.EpoxyRecyclerView
+            android:id="@+id/photosRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="@dimen/corner_radius_xh" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
