@@ -13,11 +13,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.airbnb.mvrx.fragmentViewModel
+import dev.steelahhh.core.mvrx.BaseFragment
+import dev.steelahhh.core.mvrx.simpleController
+import dev.steelahhh.coreui.epoxy.loaderItem
+import dev.steelahhh.data.photos.PhotosRepository.Companion.ITEMS_PER_PAGE
 import dev.steelahhh.skvette.R
-import dev.steelahhh.skvette.data.photos.PhotosRepository.Companion.ITEMS_PER_PAGE
-import io.github.coreui.epoxy.loaderItem
-import io.github.steelahhh.core.mvrx.BaseFragment
-import io.github.steelahhh.core.mvrx.simpleController
 import kotlinx.android.synthetic.main.fragment_photos.*
 import kotlin.math.abs
 

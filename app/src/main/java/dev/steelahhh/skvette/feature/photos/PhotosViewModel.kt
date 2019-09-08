@@ -11,10 +11,11 @@ package dev.steelahhh.skvette.feature.photos
 import com.airbnb.mvrx.MvRxState
 import com.airbnb.mvrx.MvRxViewModelFactory
 import com.airbnb.mvrx.ViewModelContext
-import dev.steelahhh.skvette.data.photos.PhotosRepository
 import dev.steelahhh.skvette.di.injector
-import io.github.steelahhh.core.Paginator
-import io.github.steelahhh.core.mvrx.MvRxViewModel
+import dev.steelahhh.data.photos.Photo
+import dev.steelahhh.data.photos.PhotosRepository
+import dev.steelahhh.core.Paginator
+import dev.steelahhh.core.mvrx.MvRxViewModel
 import io.reactivex.Single
 
 data class PhotosState(

@@ -11,12 +11,14 @@ package dev.steelahhh.skvette.di
 import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
-import dev.steelahhh.skvette.data.photos.PhotosRepository
-import dev.steelahhh.skvette.network.DataModule
+import dev.steelahhh.data.DataModule
+import dev.steelahhh.data.photos.PhotosRepository
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [DataModule::class, CoreModule::class])
+@Component(
+    modules = [DataModule::class]
+)
 interface ApplicationComponent {
     @Component.Factory
     interface Factory {
