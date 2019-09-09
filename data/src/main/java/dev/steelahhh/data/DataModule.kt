@@ -57,11 +57,4 @@ object DataModule {
     @Singleton
     fun provideApi(retrofit: Retrofit): SKVService = retrofit.create(SKVService::class.java)
 
-    @JvmStatic
-    @Provides
-    @Reusable
-    fun provideRepository(
-        service: SKVService,
-        schedulers: SchedulerProvider
-    ) = PhotosRepository(service, schedulers)
 }

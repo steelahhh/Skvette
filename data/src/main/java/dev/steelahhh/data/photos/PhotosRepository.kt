@@ -8,12 +8,14 @@
 
 package dev.steelahhh.data.photos
 
+import dagger.Reusable
 import dev.steelahhh.data.Order
 import dev.steelahhh.data.SKVService
 import dev.steelahhh.core.SchedulerProvider
 import dev.steelahhh.core.rx.mapList
 import javax.inject.Inject
 
+@Reusable
 class PhotosRepository @Inject constructor(
     private val service: SKVService,
     private val schedulers: SchedulerProvider
