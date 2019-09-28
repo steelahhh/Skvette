@@ -118,7 +118,8 @@ object Dependencies {
 
     object LeakCanary {
         const val core = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
-        const val objectWatcher = "com.squareup.leakcanary:leakcanary-object-watcher-android:${Versions.leakCanary}"
+        const val objectWatcher =
+            "com.squareup.leakcanary:leakcanary-object-watcher-android:${Versions.leakCanary}"
     }
 
     const val testRunner = "androidx.test:runner:${Versions.testRunner}"

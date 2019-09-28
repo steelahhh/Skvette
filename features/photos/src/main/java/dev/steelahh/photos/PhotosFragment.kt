@@ -6,23 +6,27 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package dev.steelahhh.skvette.feature.photos
+package dev.steelahh.photos
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OVER_SCROLL_NEVER
 import android.view.ViewGroup
 import com.airbnb.mvrx.fragmentViewModel
+import dev.steelahh.photos.di.DaggerPhotosComponent
+import dev.steelahh.photos.di.PhotosComponent
 import dev.steelahhh.core.mvrx.BaseFragment
 import dev.steelahhh.core.mvrx.simpleController
 import dev.steelahhh.coreui.epoxy.loaderItem
 import dev.steelahhh.data.photos.PhotosRepository.Companion.ITEMS_PER_PAGE
-import dev.steelahhh.skvette.R
-import kotlinx.android.synthetic.main.fragment_photos.*
 import kotlin.math.abs
+import kotlinx.android.synthetic.main.fragment_photos.*
 
 class PhotosFragment : BaseFragment() {
     private val vm: PhotosViewModel by fragmentViewModel()
+
+    val component: PhotosComponent by lazy { DaggerPhotosComponent.create() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,6 +38,7 @@ class PhotosFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        photosRecycler.overScrollMode = OVER_SCROLL_NEVER
         photosRecycler.setController(epoxyController)
         // TODO consider the actual status height
         refresher.setProgressViewOffset(false, 75, 100)
@@ -69,6 +74,7 @@ class PhotosFragment : BaseFragment() {
                 isMatchParent(false)
             }
         }
+        refresher.isEnabled = !state.isLoading
         refresher.isRefreshing = state.isRefreshing
     }
 }

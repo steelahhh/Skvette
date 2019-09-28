@@ -11,7 +11,7 @@ package dev.steelahhh.skvette
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import dev.steelahhh.skvette.feature.photos.PhotosFragment
+import dev.steelahh.photos.PhotosFragment
 
 class MainActivity : AppCompatActivity() {
 

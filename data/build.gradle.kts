@@ -18,7 +18,6 @@ fun getProperty(fileName: String, prop: String): Any? {
     return null
 }
 
-
 android {
     compileSdkVersion(Config.compileSdk)
     androidExtensions {
@@ -45,14 +44,19 @@ dependencies {
         Dependencies.kotlin,
         Dependencies.Rx.kotlin,
         Dependencies.Rx.android,
-        Dependencies.okHttpLoggingInterceptor,
-        Dependencies.Retrofit.core,
         Dependencies.Dagger.core,
-        Dependencies.Retrofit.rx,
-        Dependencies.Retrofit.moshi,
         Dependencies.Moshi.core
     ).forEach {
         implementation(it)
+    }
+
+    listOf(
+        Dependencies.okHttpLoggingInterceptor,
+        Dependencies.Retrofit.core,
+        Dependencies.Retrofit.rx,
+        Dependencies.Retrofit.moshi
+    ).forEach {
+        api(it)
     }
 
     listOf(

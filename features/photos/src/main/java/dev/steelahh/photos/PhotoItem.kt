@@ -6,7 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package dev.steelahhh.skvette.feature.photos
+package dev.steelahh.photos
 
 import android.graphics.Color
 import android.widget.ImageView
@@ -16,11 +16,10 @@ import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.card.MaterialCardView
-import dev.steelahhh.skvette.R
 import dev.steelahhh.coreui.epoxy.KotlinEpoxyHolder
 import dev.steelahhh.data.photos.Photo
 
-@EpoxyModelClass(layout = R.layout.item_photo)
+@EpoxyModelClass(layout = R2.layout.item_photo)
 abstract class PhotoItem : EpoxyModelWithHolder<PhotoItem.Holder>() {
 
     @EpoxyAttribute

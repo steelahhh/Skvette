@@ -6,16 +6,16 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package dev.steelahhh.skvette.feature.photos
+package dev.steelahh.photos
 
+import com.airbnb.mvrx.FragmentViewModelContext
 import com.airbnb.mvrx.MvRxState
 import com.airbnb.mvrx.MvRxViewModelFactory
 import com.airbnb.mvrx.ViewModelContext
-import dev.steelahhh.skvette.di.injector
-import dev.steelahhh.data.photos.Photo
-import dev.steelahhh.data.photos.PhotosRepository
 import dev.steelahhh.core.Paginator
 import dev.steelahhh.core.mvrx.MvRxViewModel
+import dev.steelahhh.data.photos.Photo
+import dev.steelahhh.data.photos.PhotosRepository
 import io.reactivex.Single
 
 data class PhotosState(
@@ -79,7 +79,8 @@ class PhotosViewModel(
             viewModelContext: ViewModelContext,
             state: PhotosState
         ): PhotosViewModel? {
-            val repo = viewModelContext.activity.injector.photosRepository
+            val fragmentContext = viewModelContext as FragmentViewModelContext
+            val repo = (fragmentContext.fragment as PhotosFragment).component.repository
             return PhotosViewModel(PhotosState(), repo)
         }
     }

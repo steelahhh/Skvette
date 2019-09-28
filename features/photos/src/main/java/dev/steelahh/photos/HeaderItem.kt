@@ -6,20 +6,19 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package dev.steelahhh.skvette.feature.photos
+package dev.steelahh.photos
 
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.google.android.material.button.MaterialButton
-import dev.steelahhh.skvette.R
 import dev.steelahhh.coreui.epoxy.KotlinEpoxyHolder
 
-@EpoxyModelClass(layout = R.layout.item_header)
+@EpoxyModelClass(layout = R2.layout.item_header)
 abstract class HeaderItem : EpoxyModelWithHolder<HeaderItem.Holder>() {
 
     override fun bind(holder: Holder) = with(holder) {
-        searchButton.setOnClickListener {  }
-        filterButton.setOnClickListener {  }
+        searchButton.setOnClickListener { }
+        filterButton.setOnClickListener { }
     }
 
     override fun unbind(holder: Holder) = with(holder) {

@@ -11,18 +11,16 @@ package dev.steelahhh.data
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
-import dev.steelahhh.data.photos.PhotosRepository
 import dev.steelahhh.core.CoreModule
-import dev.steelahhh.core.SchedulerProvider
 import io.reactivex.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level.BODY
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
-import java.util.concurrent.TimeUnit
-import javax.inject.Singleton
 
 @Module(includes = [CoreModule::class])
 object DataModule {
@@ -56,5 +54,4 @@ object DataModule {
     @Provides
     @Singleton
     fun provideApi(retrofit: Retrofit): SKVService = retrofit.create(SKVService::class.java)
-
 }
