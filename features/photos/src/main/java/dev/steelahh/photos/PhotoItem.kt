@@ -19,11 +19,13 @@ import com.google.android.material.card.MaterialCardView
 import dev.steelahhh.coreui.epoxy.KotlinEpoxyHolder
 import dev.steelahhh.data.photos.Photo
 
-@EpoxyModelClass(layout = R2.layout.item_photo)
+@EpoxyModelClass
 abstract class PhotoItem : EpoxyModelWithHolder<PhotoItem.Holder>() {
 
     @EpoxyAttribute
     lateinit var photo: Photo
+
+    override fun getDefaultLayout(): Int = R.layout.item_photo
 
     override fun bind(holder: Holder) {
         super.bind(holder)

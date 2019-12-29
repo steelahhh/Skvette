@@ -8,10 +8,10 @@ object Config {
 }
 
 object Versions {
-    const val kotlin = "1.3.40"
-    const val androidPlugin = "3.5.0"
-    const val androidx = "1.0.2"
-    const val constraint = "2.0.0-beta1"
+    const val kotlin = "1.3.50"
+    const val androidPlugin = "3.6.0-rc01"
+    const val androidx = "1.1.0"
+    const val constraint = "2.0.0-beta3"
     const val room = "2.1.0-alpha07"
     const val lifecycle = "2.0.0"
 
@@ -30,7 +30,7 @@ object Versions {
     const val glide = "4.9.0"
 
     const val mvRx = "1.0.2"
-    const val epoxy = "3.7.0"
+    const val epoxy = "3.9.0"
 
     const val leakCanary = "2.0-beta-2"
 

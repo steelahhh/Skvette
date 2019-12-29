@@ -15,11 +15,12 @@ import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import dev.steelahhh.coreui.R
-import dev.steelahhh.coreui.R2
 import dev.steelahhh.coreui.getDimen
 
-@EpoxyModelClass(layout = R2.layout.item_loader)
+@EpoxyModelClass
 abstract class LoaderItem : EpoxyModelWithHolder<LoaderItem.Holder>() {
+
+    override fun getDefaultLayout(): Int = R.layout.item_loader
 
     @EpoxyAttribute
     open var isMatchParent: Boolean = false

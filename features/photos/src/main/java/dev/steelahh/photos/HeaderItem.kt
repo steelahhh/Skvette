@@ -13,8 +13,10 @@ import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.google.android.material.button.MaterialButton
 import dev.steelahhh.coreui.epoxy.KotlinEpoxyHolder
 
-@EpoxyModelClass(layout = R2.layout.item_header)
+@EpoxyModelClass
 abstract class HeaderItem : EpoxyModelWithHolder<HeaderItem.Holder>() {
+
+    override fun getDefaultLayout(): Int = R.layout.item_header
 
     override fun bind(holder: Holder) = with(holder) {
         searchButton.setOnClickListener { }

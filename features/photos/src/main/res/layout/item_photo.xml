@@ -20,14 +20,14 @@
         android:layout_marginTop="@dimen/spacing_m"
         android:layout_marginRight="@dimen/spacing_h"
         android:layout_marginBottom="@dimen/spacing_m"
-        app:cardCornerRadius="@dimen/corner_radius_xh"
+        app:cardCornerRadius="@dimen/corner_radius_h"
         app:cardElevation="@dimen/elevation_m">
 
         <ImageView
             android:id="@+id/itemPhotoImageView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/item_photo_height"
-            android:contentDescription="@string/photo_content_description" />
+            android:contentDescription="Oppachki" />
     </com.google.android.material.card.MaterialCardView>
 
 </FrameLayout>
