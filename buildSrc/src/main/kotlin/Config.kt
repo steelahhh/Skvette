@@ -8,28 +8,28 @@ object Config {
 }
 
 object Versions {
-    const val kotlin = "1.3.50"
-    const val androidPlugin = "3.6.0-rc01"
-    const val androidx = "1.1.0"
-    const val constraint = "2.0.0-beta3"
-    const val room = "2.1.0-alpha07"
-    const val lifecycle = "2.0.0"
+    const val kotlin = "1.3.71"
+    const val androidPlugin = "4.0.0-beta03"
+    const val androidx = "1.2.0"
+    const val constraint = "2.0.0-beta4"
+    const val room = "2.2.5"
+    const val lifecycle = "2.2.0"
 
-    const val dagger = "2.23.2"
+    const val dagger = "2.27"
     const val klock = "1.4.0"
 
     const val rxBinding = "3.0.0-alpha2"
-    const val rxKotlin = "2.3.0"
+    const val rxKotlin = "2.4.0"
     const val rxRelay = "2.1.0"
     const val rxAndroid = "2.1.1"
 
     const val timber = "5.0.0-SNAPSHOT"
-    const val chuck = "3.0.0-alpha2"
-    const val retrofit = "2.6.0"
-    const val moshi = "1.8.0"
+    const val chuck = "3.2.0"
+    const val retrofit = "2.8.1"
+    const val moshi = "1.9.2"
     const val glide = "4.9.0"
 
-    const val mvRx = "1.0.2"
+    const val mvRx = "2.0.0-alpha2"
     const val epoxy = "3.9.0"
 
     const val leakCanary = "2.0-beta-2"
@@ -42,24 +42,15 @@ object Versions {
 object Dependencies {
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
 
-    const val coreKtx = "androidx.core:core-ktx:1.0.1"
-    const val appcompat = "androidx.appcompat:appcompat:${Versions.androidx}"
+    const val coreKtx = "androidx.core:core-ktx:${Versions.androidx}"
+    const val appcompat = "androidx.appcompat:appcompat:${Versions.androidx}-beta01"
     const val constraint = "androidx.constraintlayout:constraintlayout:${Versions.constraint}"
-    const val refresher = "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
-    const val material = "com.google.android.material:material:1.1.0-alpha10"
+    const val refresher = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-beta01"
+    const val material = "com.google.android.material:material:1.2.0-alpha05"
 
     object Dagger {
         const val core = "com.google.dagger:dagger:${Versions.dagger}"
         const val compiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
-    }
-
-    object RxBinding {
-        const val core = "com.jakewharton.rxbinding3:rxbinding-core:${Versions.rxBinding}"
-        const val appCompat = "com.jakewharton.rxbinding3:rxbinding-appcompat:${Versions.rxBinding}"
-        const val leanBack = "com.jakewharton.rxbinding3:rxbinding-leanback:${Versions.rxBinding}"
-        const val recycler = "com.jakewharton.rxbinding3:rxbinding-recyclerview:${Versions.rxBinding}"
-        const val viewPager = "com.jakewharton.rxbinding3:rxbinding-viewpager:${Versions.rxBinding}"
-        const val material = "com.jakewharton.rxbinding3:rxbinding-material:${Versions.rxBinding}"
     }
 
     object Lifecycle {
@@ -95,7 +86,7 @@ object Dependencies {
 
     object Moshi {
         const val core = "com.squareup.moshi:moshi:${Versions.moshi}"
-        const val kotlin = "com.squareup.moshi:moshi-kotlin:${Versions.moshi}"
+        const val kotlin = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshi}"
     }
 
     object Airbnb {

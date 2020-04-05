@@ -9,9 +9,10 @@
 package dev.steelahhh.core.mvrx
 
 import android.os.Bundle
+import androidx.annotation.LayoutRes
 import com.airbnb.mvrx.BaseMvRxFragment
 
-abstract class BaseFragment : BaseMvRxFragment() {
+abstract class BaseFragment(@LayoutRes layout: Int) : BaseMvRxFragment(layout) {
 
     protected val epoxyController by lazy { epoxyController() }
 

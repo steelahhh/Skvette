@@ -9,6 +9,11 @@
 package dev.steelahhh.skvette
 
 import android.app.Application
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_UNSPECIFIED
+import com.airbnb.mvrx.MvRx
+import com.airbnb.mvrx.MvRxViewModelConfigFactory
 import dev.steelahhh.skvette.di.ApplicationComponent
 import dev.steelahhh.skvette.di.DaggerApplicationComponent
 import dev.steelahhh.skvette.di.InjectorProvider
@@ -24,10 +29,21 @@ class SkvetteApplication : Application(), InjectorProvider {
 
     override fun onCreate() {
         super.onCreate()
+        setupTheme()
         setupTimber()
+        setupMvRx()
     }
 
     private fun setupTimber() {
         if (BuildConfig.DEBUG) Timber.plant(LogcatTree())
+    }
+
+    private fun setupMvRx() {
+        MvRx.viewModelConfigFactory = MvRxViewModelConfigFactory(this)
+    }
+
+    private fun setupTheme() {
+        if (AppCompatDelegate.getDefaultNightMode() == MODE_NIGHT_UNSPECIFIED)
+            AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
     }
 }

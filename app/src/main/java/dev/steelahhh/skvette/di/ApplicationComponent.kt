@@ -12,7 +12,6 @@ import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
 import dev.steelahhh.data.DataModule
-import dev.steelahhh.data.photos.PhotosRepository
 import javax.inject.Singleton
 
 @Singleton
@@ -24,6 +23,4 @@ interface ApplicationComponent {
     interface Factory {
         fun create(@BindsInstance applicationContext: Context): ApplicationComponent
     }
-
-    val photosRepository: PhotosRepository
 }

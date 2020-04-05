@@ -9,10 +9,8 @@
 package dev.steelahh.photos
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OVER_SCROLL_NEVER
-import android.view.ViewGroup
 import com.airbnb.mvrx.fragmentViewModel
 import dev.steelahh.photos.di.DaggerPhotosComponent
 import dev.steelahh.photos.di.PhotosComponent
@@ -23,18 +21,10 @@ import dev.steelahhh.data.photos.PhotosRepository.Companion.ITEMS_PER_PAGE
 import kotlin.math.abs
 import kotlinx.android.synthetic.main.fragment_photos.*
 
-class PhotosFragment : BaseFragment() {
+class PhotosFragment : BaseFragment(R.layout.fragment_photos) {
     private val vm: PhotosViewModel by fragmentViewModel()
 
     val component: PhotosComponent by lazy { DaggerPhotosComponent.create() }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_photos, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

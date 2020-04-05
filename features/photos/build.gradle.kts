@@ -26,6 +26,8 @@ android {
             "de.mannodermaus.junit5.AndroidJUnit5Builder"
         )
     }
+
+    kotlinOptions.jvmTarget = "1.8"
 }
 
 dependencies {
@@ -51,10 +53,7 @@ dependencies {
         Dependencies.Dagger.core,
         Dependencies.Rx.kotlin,
         Dependencies.Rx.android,
-        Dependencies.Rx.relay,
-        Dependencies.RxBinding.core,
-        Dependencies.RxBinding.appCompat,
-        Dependencies.RxBinding.material
+        Dependencies.Rx.relay
     ).forEach {
         implementation(it)
     }

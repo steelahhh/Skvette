@@ -29,6 +29,8 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
+    kotlinOptions.jvmTarget = "1.8"
+
     defaultConfig {
         minSdkVersion(Config.minSdk)
         targetSdkVersion(Config.targetSdk)
@@ -45,10 +47,13 @@ dependencies {
         Dependencies.Rx.kotlin,
         Dependencies.Rx.android,
         Dependencies.Dagger.core,
-        Dependencies.Moshi.core
+        Dependencies.Moshi.core,
+        Dependencies.Chuck.core
     ).forEach {
         implementation(it)
     }
+
+    releaseImplementation(Dependencies.Chuck.noop)
 
     listOf(
         Dependencies.okHttpLoggingInterceptor,
@@ -60,6 +65,7 @@ dependencies {
     }
 
     listOf(
+        Dependencies.Moshi.kotlin,
         Dependencies.Dagger.compiler
     ).forEach {
         kapt(it)

@@ -8,6 +8,7 @@
 
 package dev.steelahhh.data
 
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
@@ -28,29 +29,28 @@ object DataModule {
     private const val TIME_OUT = 3000L
     private const val BASE_URL = "https://api.unsplash.com/"
 
-    @JvmStatic
-    @Provides
-    @Reusable
-    fun provideOkHttpClient(): OkHttpClient {
-        return OkHttpClient.Builder()
-            .addInterceptor(HttpLoggingInterceptor().apply { level = BODY })
-            .addInterceptor(ApiKeyInterceptor)
-            .connectTimeout(TIME_OUT, TimeUnit.MILLISECONDS)
-            .readTimeout(TIME_OUT, TimeUnit.MILLISECONDS)
-            .build()
-    }
-
-    @JvmStatic
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
+    fun provideMoshi() = Moshi.Builder().build()
+
+    @Provides
+    @Reusable
+    fun provideOkHttpClient(): OkHttpClient = OkHttpClient.Builder()
+        .addInterceptor(HttpLoggingInterceptor().apply { level = BODY })
+        .addInterceptor(ApiKeyInterceptor)
+        .connectTimeout(TIME_OUT, TimeUnit.MILLISECONDS)
+        .readTimeout(TIME_OUT, TimeUnit.MILLISECONDS)
+        .build()
+
+    @Provides
+    @Singleton
+    fun provideRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .client(okHttpClient)
-        .addConverterFactory(MoshiConverterFactory.create())
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
         .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
         .build()
 
-    @JvmStatic
     @Provides
     @Singleton
     fun provideApi(retrofit: Retrofit): SKVService = retrofit.create(SKVService::class.java)

@@ -17,6 +17,8 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
+    kotlinOptions.jvmTarget = "1.8"
+
     defaultConfig {
         minSdkVersion(Config.minSdk)
         targetSdkVersion(Config.targetSdk)

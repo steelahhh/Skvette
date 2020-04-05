@@ -30,6 +30,8 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
+    kotlinOptions.jvmTarget = "1.8"
+
     defaultConfig {
         applicationId = Config.applicationId
         minSdkVersion(Config.minSdk)
@@ -78,9 +80,6 @@ dependencies {
         Dependencies.Rx.kotlin,
         Dependencies.Rx.android,
         Dependencies.Rx.relay,
-        Dependencies.RxBinding.core,
-        Dependencies.RxBinding.appCompat,
-        Dependencies.RxBinding.material,
         Dependencies.Airbnb.mvRx,
         Dependencies.Airbnb.Epoxy.core,
         Dependencies.Lifecycle.viewModel,
