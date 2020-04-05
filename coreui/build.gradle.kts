@@ -9,7 +9,11 @@ plugins {
 android {
     compileSdkVersion(Config.compileSdk)
     androidExtensions {
-        isExperimental = true
+        features = setOf("parcelize")
+    }
+
+    buildFeatures {
+        viewBinding = true
     }
 
     compileOptions {
@@ -27,7 +31,13 @@ android {
 
 dependencies {
     listOf(
-        Dependencies.Airbnb.Epoxy.core
+        Dependencies.Airbnb.Epoxy.core,
+        Dependencies.coreKtx,
+        Dependencies.appcompat,
+        Dependencies.Lifecycle.runtime,
+        Dependencies.Lifecycle.common,
+        Dependencies.Lifecycle.viewModel,
+        Dependencies.Lifecycle.livedata
     ).forEach {
         implementation(it)
     }

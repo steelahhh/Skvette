@@ -17,7 +17,6 @@ import com.airbnb.mvrx.MvRxViewModelConfigFactory
 import dev.steelahhh.skvette.di.ApplicationComponent
 import dev.steelahhh.skvette.di.DaggerApplicationComponent
 import dev.steelahhh.skvette.di.InjectorProvider
-import timber.log.LogcatTree
 import timber.log.Timber
 
 @Suppress("unused")
@@ -35,7 +34,7 @@ class SkvetteApplication : Application(), InjectorProvider {
     }
 
     private fun setupTimber() {
-        if (BuildConfig.DEBUG) Timber.plant(LogcatTree())
+        if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
     }
 
     private fun setupMvRx() {

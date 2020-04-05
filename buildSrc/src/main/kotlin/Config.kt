@@ -23,7 +23,7 @@ object Versions {
     const val rxRelay = "2.1.0"
     const val rxAndroid = "2.1.1"
 
-    const val timber = "5.0.0-SNAPSHOT"
+    const val timber = "4.7.1"
     const val chuck = "3.2.0"
     const val retrofit = "2.8.1"
     const val moshi = "1.9.2"
@@ -54,7 +54,10 @@ object Dependencies {
     }
 
     object Lifecycle {
+        const val common = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle}"
+        const val runtime = "androidx.lifecycle:lifecycle-runtime:${Versions.lifecycle}"
         const val viewModel = "androidx.lifecycle:lifecycle-viewmodel:${Versions.lifecycle}"
+        const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
         const val compiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
     }
 
@@ -103,7 +106,7 @@ object Dependencies {
         const val noop = "com.github.ChuckerTeam.Chucker:library-no-op:${Versions.chuck}"
     }
 
-    const val timber = "com.jakewharton.timber:timber-android:${Versions.timber}"
+    const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
 
     const val annotations = "javax.annotation:jsr250-api:1.0"
 

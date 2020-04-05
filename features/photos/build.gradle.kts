@@ -9,7 +9,11 @@ plugins {
 android {
     compileSdkVersion(Config.compileSdk)
     androidExtensions {
-        isExperimental = true
+        features = setOf("parcelize")
+    }
+
+    buildFeatures {
+        viewBinding = true
     }
 
     compileOptions {

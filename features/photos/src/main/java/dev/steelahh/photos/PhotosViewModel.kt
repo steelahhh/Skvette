@@ -81,7 +81,7 @@ class PhotosViewModel(
         ): PhotosViewModel? {
             val fragmentContext = viewModelContext as FragmentViewModelContext
             val repo = (fragmentContext.fragment as PhotosFragment).component.repository
-            return PhotosViewModel(PhotosState(), repo)
+            return PhotosViewModel(state, repo)
         }
     }
 }

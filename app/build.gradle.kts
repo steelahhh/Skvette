@@ -22,7 +22,7 @@ fun getProperty(fileName: String, prop: String): Any? {
 android {
     compileSdkVersion(Config.compileSdk)
     androidExtensions {
-        isExperimental = true
+        features = setOf("parcelize")
     }
 
     compileOptions {

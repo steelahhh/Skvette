@@ -12,27 +12,29 @@ import android.os.Bundle
 import android.view.View
 import android.view.View.OVER_SCROLL_NEVER
 import com.airbnb.mvrx.fragmentViewModel
+import dev.steelahh.photos.databinding.FragmentPhotosBinding
 import dev.steelahh.photos.di.DaggerPhotosComponent
 import dev.steelahh.photos.di.PhotosComponent
 import dev.steelahhh.core.mvrx.BaseFragment
 import dev.steelahhh.core.mvrx.simpleController
 import dev.steelahhh.coreui.epoxy.loaderItem
+import dev.steelahhh.coreui.viewBinding
 import dev.steelahhh.data.photos.PhotosRepository.Companion.ITEMS_PER_PAGE
 import kotlin.math.abs
-import kotlinx.android.synthetic.main.fragment_photos.*
 
 class PhotosFragment : BaseFragment(R.layout.fragment_photos) {
     private val vm: PhotosViewModel by fragmentViewModel()
+    private val binding: FragmentPhotosBinding by viewBinding(FragmentPhotosBinding::bind)
 
     val component: PhotosComponent by lazy { DaggerPhotosComponent.create() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        photosRecycler.overScrollMode = OVER_SCROLL_NEVER
-        photosRecycler.setController(epoxyController)
+        binding.photosRecycler.overScrollMode = OVER_SCROLL_NEVER
+        binding.photosRecycler.setController(epoxyController)
         // TODO consider the actual status height
-        refresher.setProgressViewOffset(false, 75, 100)
-        refresher.setOnRefreshListener { vm.refresh() }
+        binding.refresher.setProgressViewOffset(false, 75, 100)
+        binding.refresher.setOnRefreshListener { vm.refresh() }
     }
 
     override fun epoxyController() = simpleController(vm) { state ->
@@ -64,7 +66,7 @@ class PhotosFragment : BaseFragment(R.layout.fragment_photos) {
                 isMatchParent(false)
             }
         }
-        refresher.isEnabled = !state.isLoading
-        refresher.isRefreshing = state.isRefreshing
+        binding.refresher.isEnabled = !state.isLoading
+        binding.refresher.isRefreshing = state.isRefreshing
     }
 }
