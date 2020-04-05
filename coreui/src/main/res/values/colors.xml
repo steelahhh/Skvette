@@ -8,7 +8,8 @@
   -->
 
 <resources>
-    <color name="colorPrimary">#000</color>
+    <color name="primary_dark">#000</color>
+    <color name="primary_light">#FFF</color>
     <color name="colorAccent">#304FFE</color>
     <color name="transparent">#00FFFFFF</color>
 
