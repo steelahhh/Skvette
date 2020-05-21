@@ -1,5 +1,3 @@
-package dev.steelahhh.skvette
-
 /*
  * Copyright (C) 2019. Alexander Efimenko
  *
@@ -7,6 +5,8 @@ package dev.steelahhh.skvette
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
+
+package dev.steelahhh.skvette
 
 import android.annotation.SuppressLint
 import android.os.Bundle
