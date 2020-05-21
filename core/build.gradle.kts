@@ -33,7 +33,9 @@ dependencies {
         Dependencies.Rx.android,
         Dependencies.Dagger.core,
         Dependencies.Airbnb.Epoxy.core,
-        Dependencies.Airbnb.mvRx
+        Dependencies.Airbnb.mvRx,
+        Dependencies.Coroutines.core,
+        Dependencies.Coroutines.android
     ).forEach {
         implementation(it)
     }

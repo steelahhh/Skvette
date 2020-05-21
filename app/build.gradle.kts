@@ -30,6 +30,10 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     kotlinOptions.jvmTarget = "1.8"
 
     defaultConfig {
@@ -70,6 +74,7 @@ dependencies {
         project(":features:photos"),
         Dependencies.kotlin,
         Dependencies.appcompat,
+        Dependencies.activity,
         Dependencies.coreKtx,
         Dependencies.constraint,
         Dependencies.refresher,
@@ -82,7 +87,10 @@ dependencies {
         Dependencies.Rx.relay,
         Dependencies.Airbnb.mvRx,
         Dependencies.Airbnb.Epoxy.core,
-        Dependencies.Lifecycle.viewModel
+        Dependencies.Lifecycle.common,
+        Dependencies.Lifecycle.viewModel,
+        Dependencies.Coroutines.core,
+        Dependencies.Coroutines.android
     ).forEach {
         implementation(it)
     }

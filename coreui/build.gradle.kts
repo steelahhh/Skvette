@@ -31,6 +31,12 @@ android {
 
 dependencies {
     listOf(
+        project(":core")
+    ).forEach {
+        implementation(it)
+    }
+
+    listOf(
         Dependencies.Airbnb.Epoxy.core,
         Dependencies.coreKtx,
         Dependencies.appcompat,

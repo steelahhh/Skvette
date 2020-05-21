@@ -17,6 +17,7 @@ import dev.steelahhh.core.mvrx.MvRxViewModel
 import dev.steelahhh.data.photos.Photo
 import dev.steelahhh.data.photos.PhotosRepository
 import io.reactivex.Single
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 data class PhotosState(
     val photos: List<Photo> = listOf(),
@@ -75,6 +76,7 @@ class PhotosViewModel(
 
     companion object : MvRxViewModelFactory<PhotosViewModel, PhotosState> {
 
+        @ExperimentalCoroutinesApi
         override fun create(
             viewModelContext: ViewModelContext,
             state: PhotosState

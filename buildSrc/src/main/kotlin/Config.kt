@@ -42,6 +42,8 @@ object Dependencies {
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
 
     const val coreKtx = "androidx.core:core-ktx:${Versions.androidx}"
+    const val activity = "androidx.activity:activity-ktx:1.2.0-alpha05"
+    const val fragment = "androidx.fragment:fragment-ktx:1.2.4"
     const val appcompat = "androidx.appcompat:appcompat:${Versions.androidx}-beta01"
     const val constraint = "androidx.constraintlayout:constraintlayout:${Versions.constraint}"
     const val refresher = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-rc01"
@@ -64,6 +66,11 @@ object Dependencies {
         const val kotlin = "io.reactivex.rxjava2:rxkotlin:${Versions.rxKotlin}"
         const val android = "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroid}"
         const val relay = "com.jakewharton.rxrelay2:rxrelay:${Versions.rxRelay}"
+    }
+
+    object Coroutines {
+        const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7"
+        const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.7"
     }
 
     object SqlDelight {

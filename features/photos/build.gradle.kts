@@ -39,6 +39,7 @@ dependencies {
         project(":core"),
         project(":data"),
         project(":coreui"),
+        Dependencies.fragment,
         Dependencies.kotlin,
         Dependencies.Rx.kotlin,
         Dependencies.Rx.android,
@@ -57,7 +58,9 @@ dependencies {
         Dependencies.Dagger.core,
         Dependencies.Rx.kotlin,
         Dependencies.Rx.android,
-        Dependencies.Rx.relay
+        Dependencies.Rx.relay,
+        Dependencies.Coroutines.core,
+        Dependencies.Coroutines.android
     ).forEach {
         implementation(it)
     }
