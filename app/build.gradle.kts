@@ -82,8 +82,7 @@ dependencies {
         Dependencies.Rx.relay,
         Dependencies.Airbnb.mvRx,
         Dependencies.Airbnb.Epoxy.core,
-        Dependencies.Lifecycle.viewModel,
-        Dependencies.LeakCanary.objectWatcher
+        Dependencies.Lifecycle.viewModel
     ).forEach {
         implementation(it)
     }

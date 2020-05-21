@@ -8,8 +8,8 @@ object Config {
 }
 
 object Versions {
-    const val kotlin = "1.3.71"
-    const val androidPlugin = "4.0.0-beta03"
+    const val kotlin = "1.3.72"
+    const val androidPlugin = "4.0.0-beta05"
     const val androidx = "1.2.0"
     const val constraint = "2.0.0-beta4"
     const val room = "2.2.5"
@@ -18,7 +18,6 @@ object Versions {
     const val dagger = "2.27"
     const val klock = "1.4.0"
 
-    const val rxBinding = "3.0.0-alpha2"
     const val rxKotlin = "2.4.0"
     const val rxRelay = "2.1.0"
     const val rxAndroid = "2.1.1"
@@ -30,9 +29,9 @@ object Versions {
     const val glide = "4.9.0"
 
     const val mvRx = "2.0.0-alpha2"
-    const val epoxy = "3.9.0"
+    const val epoxy = "3.11.0"
 
-    const val leakCanary = "2.0-beta-2"
+    const val leakCanary = "2.0"
 
     const val mockk = "1.9.3.kotlin12"
     const val junit = "5.3.1"
@@ -45,8 +44,8 @@ object Dependencies {
     const val coreKtx = "androidx.core:core-ktx:${Versions.androidx}"
     const val appcompat = "androidx.appcompat:appcompat:${Versions.androidx}-beta01"
     const val constraint = "androidx.constraintlayout:constraintlayout:${Versions.constraint}"
-    const val refresher = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-beta01"
-    const val material = "com.google.android.material:material:1.2.0-alpha05"
+    const val refresher = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-rc01"
+    const val material = "com.google.android.material:material:1.2.0-alpha06"
 
     object Dagger {
         const val core = "com.google.dagger:dagger:${Versions.dagger}"
@@ -67,11 +66,8 @@ object Dependencies {
         const val relay = "com.jakewharton.rxrelay2:rxrelay:${Versions.rxRelay}"
     }
 
-    object Room {
-        const val core = "androidx.room:room-runtime:${Versions.room}"
-        const val compiler = "androidx.room:room-compiler:${Versions.room}"
-        const val rx = "androidx.room:room-rxjava2:${Versions.room}"
-        const val test = "androidx.room:room-testing:${Versions.room}"
+    object SqlDelight {
+        // TODO: add actual deps
     }
 
     object Retrofit {
@@ -112,8 +108,6 @@ object Dependencies {
 
     object LeakCanary {
         const val core = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
-        const val objectWatcher =
-            "com.squareup.leakcanary:leakcanary-object-watcher-android:${Versions.leakCanary}"
     }
 
     const val testRunner = "androidx.test:runner:${Versions.testRunner}"
