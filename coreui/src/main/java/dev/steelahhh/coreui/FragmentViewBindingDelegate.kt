@@ -10,6 +10,10 @@ import androidx.viewbinding.ViewBinding
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
+object IllegalBindingAccessException : IllegalStateException(
+    "Should not attempt to get bindings when Fragment views are destroyed."
+)
+
 class FragmentViewBindingDelegate<T : ViewBinding>(
     val fragment: Fragment,
     val viewBindingFactory: (View) -> T
@@ -38,7 +42,7 @@ class FragmentViewBindingDelegate<T : ViewBinding>(
 
         val lifecycle = fragment.viewLifecycleOwner.lifecycle
         if (!lifecycle.currentState.isAtLeast(Lifecycle.State.INITIALIZED)) {
-            throw IllegalStateException("Should not attempt to get bindings when Fragment views are destroyed.")
+            throw IllegalBindingAccessException
         }
 
         return viewBindingFactory(thisRef.requireView()).also {
