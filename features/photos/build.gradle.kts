@@ -56,7 +56,7 @@ dependencies {
         Dependencies.constraint,
         Dependencies.refresher,
         Dependencies.material,
-        Dependencies.Glide.core,
+        Dependencies.Coil.core,
         Dependencies.timber,
         Dependencies.Dagger.core,
         Dependencies.Coroutines.core,
@@ -66,7 +66,6 @@ dependencies {
     }
 
     listOf(
-        Dependencies.Glide.compiler,
         Dependencies.Dagger.compiler,
         Dependencies.AssistedInject.compiler,
         Dependencies.Airbnb.Epoxy.compiler,

@@ -10,15 +10,16 @@ package dev.steelahh.photos
 
 import android.graphics.Color
 import android.widget.ImageView
+import coil.annotation.ExperimentalCoilApi
+import coil.api.load
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.card.MaterialCardView
 import dev.steelahhh.coreui.epoxy.KotlinEpoxyHolder
 import dev.steelahhh.data.photos.Photo
 
+@ExperimentalCoilApi
 @EpoxyModelClass
 abstract class PhotoItem : EpoxyModelWithHolder<PhotoItem.Holder>() {
 
@@ -31,11 +32,10 @@ abstract class PhotoItem : EpoxyModelWithHolder<PhotoItem.Holder>() {
         super.bind(holder)
         with(holder) {
             image.setBackgroundColor(Color.parseColor(photo.color))
-
-            Glide.with(image)
-                .load(photo.url)
-                .apply(RequestOptions().centerCrop())
-                .into(image)
+            image.contentDescription = photo.id
+            image.load(photo.url) {
+                crossfade(true)
+            }
         }
     }
 

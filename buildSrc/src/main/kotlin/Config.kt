@@ -23,7 +23,7 @@ object Versions {
     const val chuck = "3.2.0"
     const val retrofit = "2.8.1"
     const val moshi = "1.9.2"
-    const val glide = "4.9.0"
+    const val coil = "0.11.0"
 
     const val mvRx = "2.0.0-alpha2"
     const val epoxy = "3.11.0"
@@ -79,9 +79,8 @@ object Dependencies {
         const val moshi = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
     }
 
-    object Glide {
-        const val core = "com.github.bumptech.glide:glide:${Versions.glide}"
-        const val compiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
+    object Coil {
+        const val core = "io.coil-kt:coil:${Versions.coil}"
     }
 
     const val okHttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.0.1"

@@ -84,7 +84,6 @@ dependencies {
         Dependencies.constraint,
         Dependencies.refresher,
         Dependencies.material,
-        Dependencies.Glide.core,
         Dependencies.timber,
         Dependencies.Dagger.core,
         Dependencies.Airbnb.mvRx,
@@ -98,7 +97,6 @@ dependencies {
     }
 
     listOf(
-        Dependencies.Glide.compiler,
         Dependencies.Dagger.compiler,
         Dependencies.Airbnb.Epoxy.compiler,
         Dependencies.Lifecycle.compiler
