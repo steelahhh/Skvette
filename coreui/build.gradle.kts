@@ -31,9 +31,9 @@ android {
 
 dependencies {
     listOf(
-        project(":core")
+        ":core"
     ).forEach {
-        implementation(it)
+        implementation(project(it))
     }
 
     listOf(

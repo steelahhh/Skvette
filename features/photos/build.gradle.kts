@@ -36,9 +36,14 @@ android {
 
 dependencies {
     listOf(
-        project(":core"),
-        project(":data"),
-        project(":coreui"),
+        ":core",
+        ":data",
+        ":coreui"
+    ).forEach {
+        implementation(project(it))
+    }
+
+    listOf(
         Dependencies.fragment,
         Dependencies.kotlin,
         Dependencies.Rx.kotlin,

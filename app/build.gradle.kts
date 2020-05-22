@@ -68,10 +68,15 @@ kapt {
 
 dependencies {
     listOf(
-        project(":core"),
-        project(":coreui"),
-        project(":data"),
-        project(":features:photos"),
+        ":core",
+        ":coreui",
+        ":data",
+        ":features:photos"
+    ).forEach {
+        implementation(project(it))
+    }
+
+    listOf(
         Dependencies.kotlin,
         Dependencies.appcompat,
         Dependencies.activity,

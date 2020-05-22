@@ -42,7 +42,12 @@ android {
 
 dependencies {
     listOf(
-        project(":core"),
+        ":core"
+    ).forEach {
+        implementation(project(it))
+    }
+
+    listOf(
         Dependencies.kotlin,
         Dependencies.Rx.kotlin,
         Dependencies.Rx.android,
