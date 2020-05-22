@@ -14,15 +14,15 @@ import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_UNSPECIFIED
 import com.airbnb.mvrx.MvRx
 import com.airbnb.mvrx.MvRxViewModelConfigFactory
-import dev.steelahhh.skvette.di.ApplicationComponent
+import dev.steelahhh.core.di.AppComponent
+import dev.steelahhh.core.di.InjectorProvider
 import dev.steelahhh.skvette.di.DaggerApplicationComponent
-import dev.steelahhh.skvette.di.InjectorProvider
 import timber.log.Timber
 
 @Suppress("unused")
 class SkvetteApplication : Application(), InjectorProvider {
 
-    override val component: ApplicationComponent by lazy {
+    override val component: AppComponent by lazy {
         DaggerApplicationComponent.factory().create(applicationContext)
     }
 

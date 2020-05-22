@@ -8,8 +8,10 @@
 
 package dev.steelahh.photos.di
 
+import com.squareup.inject.assisted.dagger2.AssistedModule
 import dagger.Module
 import dev.steelahhh.data.DataModule
 
-@Module(includes = [DataModule::class])
-class PhotosModule
+@AssistedModule
+@Module(includes = [DataModule::class, AssistedInject_PhotosModule::class])
+interface PhotosModule

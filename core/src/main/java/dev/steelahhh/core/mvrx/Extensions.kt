@@ -8,10 +8,18 @@
 
 package dev.steelahhh.core.mvrx
 
+import androidx.fragment.app.Fragment
 import com.airbnb.epoxy.AsyncEpoxyController
 import com.airbnb.epoxy.EpoxyController
+import com.airbnb.mvrx.FragmentViewModelContext
 import com.airbnb.mvrx.MvRxState
+import com.airbnb.mvrx.ViewModelContext
 import com.airbnb.mvrx.withState
+
+fun <T : Fragment> ViewModelContext.fragment() = when (this) {
+    is FragmentViewModelContext -> fragment<T>()
+    else -> error("Cannot get fragment from other ${this.javaClass.simpleName}")
+}
 
 open class MvRxEpoxyController(
     val buildModelsCallback: EpoxyController.() -> Unit = {}

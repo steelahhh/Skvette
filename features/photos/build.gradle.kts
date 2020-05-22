@@ -73,6 +73,7 @@ dependencies {
     listOf(
         Dependencies.Glide.compiler,
         Dependencies.Dagger.compiler,
+        Dependencies.AssistedInject.compiler,
         Dependencies.Airbnb.Epoxy.compiler,
         Dependencies.Lifecycle.compiler
     ).forEach {
@@ -80,4 +81,5 @@ dependencies {
     }
 
     compileOnly(Dependencies.annotations)
+    compileOnly(Dependencies.AssistedInject.annotations)
 }

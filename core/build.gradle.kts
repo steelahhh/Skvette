@@ -29,6 +29,7 @@ android {
 dependencies {
     listOf(
         Dependencies.kotlin,
+        Dependencies.fragment,
         Dependencies.Rx.kotlin,
         Dependencies.Rx.android,
         Dependencies.Dagger.core,

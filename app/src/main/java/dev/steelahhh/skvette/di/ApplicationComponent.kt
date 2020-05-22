@@ -11,6 +11,7 @@ package dev.steelahhh.skvette.di
 import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
+import dev.steelahhh.core.di.AppComponent
 import dev.steelahhh.data.DataModule
 import javax.inject.Singleton
 
@@ -18,7 +19,7 @@ import javax.inject.Singleton
 @Component(
     modules = [DataModule::class]
 )
-interface ApplicationComponent {
+interface ApplicationComponent : AppComponent {
     @Component.Factory
     interface Factory {
         fun create(@BindsInstance applicationContext: Context): ApplicationComponent

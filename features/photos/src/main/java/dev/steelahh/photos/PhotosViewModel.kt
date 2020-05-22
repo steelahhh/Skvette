@@ -8,12 +8,14 @@
 
 package dev.steelahh.photos
 
-import com.airbnb.mvrx.FragmentViewModelContext
 import com.airbnb.mvrx.MvRxState
 import com.airbnb.mvrx.MvRxViewModelFactory
 import com.airbnb.mvrx.ViewModelContext
+import com.squareup.inject.assisted.Assisted
+import com.squareup.inject.assisted.AssistedInject
 import dev.steelahhh.core.Paginator
 import dev.steelahhh.core.mvrx.MvRxViewModel
+import dev.steelahhh.core.mvrx.fragment
 import dev.steelahhh.data.photos.Photo
 import dev.steelahhh.data.photos.PhotosRepository
 import io.reactivex.Single
@@ -26,8 +28,8 @@ data class PhotosState(
     val isLoadingMore: Boolean = false
 ) : MvRxState
 
-class PhotosViewModel(
-    initialState: PhotosState,
+class PhotosViewModel @AssistedInject constructor(
+    @Assisted initialState: PhotosState,
     private val photosRepository: PhotosRepository
 ) : MvRxViewModel<PhotosState>(initialState) {
 
@@ -74,16 +76,19 @@ class PhotosViewModel(
 
     fun refresh() = paginator.refresh()
 
-    companion object : MvRxViewModelFactory<PhotosViewModel, PhotosState> {
+    @AssistedInject.Factory
+    interface Factory {
+        fun create(initialState: PhotosState): PhotosViewModel
+    }
 
+    companion object : MvRxViewModelFactory<PhotosViewModel, PhotosState> {
         @ExperimentalCoroutinesApi
         override fun create(
             viewModelContext: ViewModelContext,
             state: PhotosState
         ): PhotosViewModel? {
-            val fragmentContext = viewModelContext as FragmentViewModelContext
-            val repo = (fragmentContext.fragment as PhotosFragment).component.repository
-            return PhotosViewModel(state, repo)
+            val fragment = viewModelContext.fragment<PhotosFragment>()
+            return fragment.component.photosViewModelFactory.create(state)
         }
     }
 }

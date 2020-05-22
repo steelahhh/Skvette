@@ -12,10 +12,11 @@ object Versions {
     const val androidPlugin = "4.0.0-beta05"
     const val androidx = "1.2.0"
     const val constraint = "2.0.0-beta4"
-    const val room = "2.2.5"
     const val lifecycle = "2.2.0"
 
     const val dagger = "2.27"
+    const val assisted = "0.5.2"
+
     const val klock = "1.4.0"
 
     const val rxKotlin = "2.4.0"
@@ -52,6 +53,11 @@ object Dependencies {
     object Dagger {
         const val core = "com.google.dagger:dagger:${Versions.dagger}"
         const val compiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
+    }
+
+    object AssistedInject {
+        const val annotations = "com.squareup.inject:assisted-inject-annotations-dagger2:${Versions.assisted}"
+        const val compiler = "com.squareup.inject:assisted-inject-processor-dagger2:${Versions.assisted}"
     }
 
     object Lifecycle {

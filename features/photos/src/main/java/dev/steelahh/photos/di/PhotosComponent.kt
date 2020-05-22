@@ -9,11 +9,10 @@
 package dev.steelahh.photos.di
 
 import dagger.Component
-import dev.steelahhh.data.photos.PhotosRepository
-import javax.inject.Singleton
+import dev.steelahh.photos.PhotosViewModel
 
 @Component(modules = [PhotosModule::class])
-@Singleton
+@PhotoListScope
 interface PhotosComponent {
-    val repository: PhotosRepository
+    val photosViewModelFactory: PhotosViewModel.Factory
 }

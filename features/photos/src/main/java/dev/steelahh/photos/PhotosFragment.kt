@@ -33,7 +33,7 @@ class PhotosFragment : BaseFragment(R.layout.fragment_photos) {
     private val vm: PhotosViewModel by fragmentViewModel()
     private val binding: FragmentPhotosBinding by viewBinding(FragmentPhotosBinding::bind)
 
-    val component: PhotosComponent by lazy { DaggerPhotosComponent.create() }
+    internal val component: PhotosComponent by lazy { DaggerPhotosComponent.create() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
