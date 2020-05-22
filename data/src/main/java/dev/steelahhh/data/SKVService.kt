@@ -9,15 +9,14 @@
 package dev.steelahhh.data
 
 import dev.steelahhh.data.photos.PhotoResponse
-import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface SKVService {
     @GET("photos")
-    fun getPhotos(
+    suspend fun getPhotos(
         @Query("page") page: Int,
         @Query("per_page") per_page: Int,
         @Query("order_by") order_by: String
-    ): Single<List<PhotoResponse>>
+    ): List<PhotoResponse>
 }

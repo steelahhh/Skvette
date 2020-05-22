@@ -19,10 +19,6 @@ object Versions {
 
     const val klock = "1.4.0"
 
-    const val rxKotlin = "2.4.0"
-    const val rxRelay = "2.1.0"
-    const val rxAndroid = "2.1.1"
-
     const val timber = "4.7.1"
     const val chuck = "3.2.0"
     const val retrofit = "2.8.1"
@@ -62,16 +58,11 @@ object Dependencies {
 
     object Lifecycle {
         const val common = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle}"
-        const val runtime = "androidx.lifecycle:lifecycle-runtime:${Versions.lifecycle}"
+        const val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
         const val viewModel = "androidx.lifecycle:lifecycle-viewmodel:${Versions.lifecycle}"
         const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
         const val compiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
-    }
-
-    object Rx {
-        const val kotlin = "io.reactivex.rxjava2:rxkotlin:${Versions.rxKotlin}"
-        const val android = "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroid}"
-        const val relay = "com.jakewharton.rxrelay2:rxrelay:${Versions.rxRelay}"
+        const val process = "androidx.lifecycle:lifecycle-process:${Versions.lifecycle}"
     }
 
     object Coroutines {
@@ -86,7 +77,6 @@ object Dependencies {
     object Retrofit {
         const val core = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
         const val moshi = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
-        const val rx = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"
     }
 
     object Glide {

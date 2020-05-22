@@ -49,8 +49,9 @@ dependencies {
 
     listOf(
         Dependencies.kotlin,
-        Dependencies.Rx.kotlin,
-        Dependencies.Rx.android,
+        Dependencies.Coroutines.core,
+        Dependencies.Coroutines.android,
+        Dependencies.Lifecycle.runtime,
         Dependencies.Dagger.core,
         Dependencies.Moshi.core,
         Dependencies.Chuck.core
@@ -63,7 +64,6 @@ dependencies {
     listOf(
         Dependencies.okHttpLoggingInterceptor,
         Dependencies.Retrofit.core,
-        Dependencies.Retrofit.rx,
         Dependencies.Retrofit.moshi
     ).forEach {
         api(it)

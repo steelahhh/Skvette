@@ -1,15 +1,16 @@
 /*
- * Copyright (C) 2019. Alexander Efimenko
+ * Copyright (C) 2020. Alexander Efimenko
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package dev.steelahhh.core.rx
+package dev.steelahhh.core
 
-import io.reactivex.Single
+import javax.inject.Qualifier
 
-fun <T, R> Single<List<T>>.mapList(
-    mapper: (T) -> R
-): Single<List<R>> = map { it.map(mapper) }
+@Retention(AnnotationRetention.RUNTIME)
+@Qualifier
+@MustBeDocumented
+annotation class ProcessLifetime

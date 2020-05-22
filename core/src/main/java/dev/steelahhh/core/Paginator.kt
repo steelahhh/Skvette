@@ -1,34 +1,36 @@
-
 package dev.steelahhh.core
 
-import io.reactivex.Single
-import io.reactivex.disposables.Disposable
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.plus
 
 /**
  * author: terrakok
  */
 @Suppress("ClassName", "PrivatePropertyName")
 class Paginator<T>(
-    private val requestFactory: (Int) -> Single<List<T>>,
+    private val scope: CoroutineScope,
+    private val requestFactory: suspend ((Int) -> List<T>),
     private val viewController: ViewController<T>
 ) {
 
     interface ViewController<T> {
-        fun showEmptyProgress()
-        fun hideEmptyProgress()
-        fun showEmptyView()
-        fun hideEmptyView()
-        fun showEmptyError(error: Throwable)
-        fun hideEmptyError()
-        fun showRefreshProgress()
-        fun hideRefreshProgress()
-        fun showPageLoadingProgress()
-        fun hidePageLoadingProgress()
-        fun hideData()
-        fun showData(data: List<T>)
-        fun showRefreshError(error: Throwable)
-        fun showPageLoadingError(error: Throwable)
-        fun hidePageLoadingError()
+        fun showEmptyProgress() = Unit
+        fun hideEmptyProgress() = Unit
+        fun showEmptyView() = Unit
+        fun hideEmptyView() = Unit
+        fun showEmptyError(error: Throwable) = Unit
+        fun hideEmptyError() = Unit
+        fun showRefreshProgress() = Unit
+        fun hideRefreshProgress() = Unit
+        fun showPageLoadingProgress() = Unit
+        fun hidePageLoadingProgress() = Unit
+        fun hideData() = Unit
+        fun showData(data: List<T>) = Unit
+        fun showRefreshError(error: Throwable) = Unit
+        fun showPageLoadingError(error: Throwable) = Unit
+        fun hidePageLoadingError() = Unit
     }
 
     open class EmptyViewController<T> : ViewController<T> {
@@ -54,7 +56,7 @@ class Paginator<T>(
     private var currentState: State<T> = EMPTY()
     private var currentData = emptyList<T>()
     private var currentPage = 0
-    private var disposable: Disposable? = null
+    private var job: Job? = null
 
     fun restart() {
         currentState.restart()
@@ -73,12 +75,15 @@ class Paginator<T>(
     }
 
     private fun loadPage(page: Int) {
-        disposable?.dispose()
-        disposable = requestFactory.invoke(page)
-            .subscribe(
-                currentState::newData,
-                currentState::fail
-            )
+        job?.cancel()
+        job = scope.launch {
+            try {
+                val data = requestFactory.invoke(page)
+                currentState.newData(data)
+            } catch (e: Exception) {
+                currentState.fail(e)
+            }
+        }
     }
 
     private interface State<T> {
@@ -106,7 +111,7 @@ class Paginator<T>(
 
         override fun release() {
             currentState = RELEASED()
-            disposable?.dispose()
+            job?.cancel()
         }
     }
 
@@ -138,7 +143,7 @@ class Paginator<T>(
 
         override fun release() {
             currentState = RELEASED()
-            disposable?.dispose()
+            job?.cancel()
         }
     }
 
@@ -160,7 +165,7 @@ class Paginator<T>(
 
         override fun release() {
             currentState = RELEASED()
-            disposable?.dispose()
+            job?.cancel()
         }
     }
 
@@ -182,7 +187,7 @@ class Paginator<T>(
 
         override fun release() {
             currentState = RELEASED()
-            disposable?.dispose()
+            job?.cancel()
         }
     }
 
@@ -209,7 +214,7 @@ class Paginator<T>(
 
         override fun release() {
             currentState = RELEASED()
-            disposable?.dispose()
+            job?.cancel()
         }
     }
 
@@ -246,7 +251,7 @@ class Paginator<T>(
 
         override fun release() {
             currentState = RELEASED()
-            disposable?.dispose()
+            job?.cancel()
         }
     }
 
@@ -288,7 +293,7 @@ class Paginator<T>(
 
         override fun release() {
             currentState = RELEASED()
-            disposable?.dispose()
+            job?.cancel()
         }
     }
 
@@ -317,7 +322,7 @@ class Paginator<T>(
 
         override fun release() {
             currentState = RELEASED()
-            disposable?.dispose()
+            job?.cancel()
         }
     }
 
@@ -338,7 +343,7 @@ class Paginator<T>(
 
         override fun release() {
             currentState = RELEASED()
-            disposable?.dispose()
+            job?.cancel()
         }
     }
 

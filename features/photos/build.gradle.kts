@@ -46,8 +46,6 @@ dependencies {
     listOf(
         Dependencies.fragment,
         Dependencies.kotlin,
-        Dependencies.Rx.kotlin,
-        Dependencies.Rx.android,
         Dependencies.Dagger.core,
         Dependencies.kotlin,
         Dependencies.Airbnb.mvRx,
@@ -61,9 +59,6 @@ dependencies {
         Dependencies.Glide.core,
         Dependencies.timber,
         Dependencies.Dagger.core,
-        Dependencies.Rx.kotlin,
-        Dependencies.Rx.android,
-        Dependencies.Rx.relay,
         Dependencies.Coroutines.core,
         Dependencies.Coroutines.android
     ).forEach {

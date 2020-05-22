@@ -6,10 +6,12 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package dev.steelahh.photos.di
+package dev.steelahhh.core
 
-import javax.inject.Scope
+import kotlinx.coroutines.CoroutineDispatcher
 
-@Scope
-@Retention(AnnotationRetention.RUNTIME)
-internal annotation class PhotoListScope
+data class AppCoroutineDispatchers(
+    val io: CoroutineDispatcher,
+    val computation: CoroutineDispatcher,
+    val main: CoroutineDispatcher
+)
