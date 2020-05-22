@@ -17,6 +17,8 @@ import com.airbnb.mvrx.fragmentViewModel
 import dev.steelahh.photos.databinding.FragmentPhotosBinding
 import dev.steelahh.photos.di.DaggerPhotosComponent
 import dev.steelahh.photos.di.PhotosComponent
+import dev.steelahh.photos.views.headerItem
+import dev.steelahh.photos.views.photoItem
 import dev.steelahhh.core.mvrx.BaseFragment
 import dev.steelahhh.core.mvrx.simpleController
 import dev.steelahhh.core.statusbar.StatusBarController
