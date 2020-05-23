@@ -7,6 +7,6 @@
   -->
 
 <resources>
-    <string name="app_name">Skvette</string>
+    <string name="app_name">skvette</string>
     <string name="photo_content_description">Photo</string>
 </resources>

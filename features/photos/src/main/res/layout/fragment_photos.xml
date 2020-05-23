@@ -6,15 +6,47 @@
   ~ file, You can obtain one at http://mozilla.org/MPL/2.0/.
   -->
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/photosAppBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        android:fitsSystemWindows="true"
+        app:elevation="0dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <dev.steelahhh.coreui.views.SkvetteToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="?colorSurface"
+            android:elevation="0dp"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <dev.steelahh.photos.views.HeaderView
+                android:id="@+id/headerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/spacing_h"
+                android:paddingTop="@dimen/spacing_m"
+                android:paddingEnd="@dimen/spacing_h"
+                android:paddingBottom="@dimen/spacing_m" />
+
+        </dev.steelahhh.coreui.views.SkvetteToolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refresher"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <com.airbnb.epoxy.EpoxyRecyclerView
             android:id="@+id/photosRecycler"
@@ -23,4 +55,4 @@
             android:clipToPadding="false" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

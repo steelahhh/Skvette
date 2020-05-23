@@ -40,6 +40,7 @@ dependencies {
         Dependencies.Airbnb.Epoxy.core,
         Dependencies.coreKtx,
         Dependencies.appcompat,
+        Dependencies.material,
         Dependencies.Lifecycle.runtime,
         Dependencies.Lifecycle.common,
         Dependencies.Lifecycle.viewModel,

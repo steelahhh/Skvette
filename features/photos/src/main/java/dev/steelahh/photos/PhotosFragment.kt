@@ -11,7 +11,7 @@ package dev.steelahh.photos
 import android.os.Bundle
 import android.view.View
 import android.view.View.OVER_SCROLL_NEVER
-import androidx.core.view.updatePadding
+import androidx.core.view.doOnLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.airbnb.mvrx.fragmentViewModel
@@ -20,23 +20,19 @@ import dev.steelahh.photos.databinding.FragmentPhotosBinding
 import dev.steelahh.photos.detail.PhotoDetailFragment
 import dev.steelahh.photos.di.DaggerPhotosComponent
 import dev.steelahh.photos.di.PhotosComponent
-import dev.steelahh.photos.views.headerItem
-import dev.steelahh.photos.views.photoItem
+import dev.steelahh.photos.views.photoListItemView
 import dev.steelahhh.core.mvrx.BaseFragment
 import dev.steelahhh.core.mvrx.simpleController
 import dev.steelahhh.core.navigation.ScreenKey
-import dev.steelahhh.core.statusbar.StatusBarController
-import dev.steelahhh.coreui.epoxy.loaderItem
 import dev.steelahhh.coreui.extensions.viewBinding
+import dev.steelahhh.coreui.views.loaderItemView
 import dev.steelahhh.data.photos.Photo
 import dev.steelahhh.data.photos.PhotosRepository.Companion.ITEMS_PER_PAGE
 import kotlin.math.abs
 import kotlinx.android.parcel.Parcelize
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collect
 
 @ExperimentalCoroutinesApi
-@Suppress("EXPERIMENTAL_API_USAGE")
 class PhotosFragment : BaseFragment(R.layout.fragment_photos) {
     private val vm: PhotosViewModel by fragmentViewModel()
     private val binding: FragmentPhotosBinding by viewBinding(FragmentPhotosBinding::bind)
@@ -48,36 +44,21 @@ class PhotosFragment : BaseFragment(R.layout.fragment_photos) {
         binding.photosRecycler.overScrollMode = OVER_SCROLL_NEVER
         binding.photosRecycler.setController(epoxyController)
         binding.refresher.setOnRefreshListener { vm.refresh() }
-        // TODO: this feels hacky and StatusBarController might even be unnecessary,
-        //  revisit when adding more screens
-        lifecycleScope.launchWhenCreated {
-            StatusBarController.flow().collect {
-                if (it.height != 0) {
-                    binding.refresher.setProgressViewOffset(
-                        true,
-                        StatusBarController.height,
-                        StatusBarController.height + 44
-                    )
-                    binding.photosRecycler.updatePadding(top = it.height)
-                }
-            }
+        binding.root.doOnLayout {
+            binding.toolbar.padToStatus = true
         }
     }
 
     override fun epoxyController() = simpleController(vm) { state ->
         if (state.isLoading) {
-            loaderItem {
+            loaderItemView {
                 id("fullScreenLoader${state.photos.size}")
                 isMatchParent(true)
-            }
-        } else {
-            headerItem {
-                id("thisisaheader")
             }
         }
 
         state.photos.forEach {
-            photoItem {
+            photoListItemView {
                 id(it.id)
                 photo(it)
                 onBind { _, _, position ->
@@ -91,7 +72,7 @@ class PhotosFragment : BaseFragment(R.layout.fragment_photos) {
         }
 
         if (state.isLoadingMore) {
-            loaderItem {
+            loaderItemView {
                 id("loaderItem${state.photos.size}")
                 isMatchParent(false)
             }

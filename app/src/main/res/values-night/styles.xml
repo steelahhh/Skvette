@@ -11,6 +11,7 @@
         <item name="colorSecondary">@color/colorAccent</item>
         <item name="colorPrimary">@color/primary_dark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorSurface">@color/gray</item>
         <item name="android:textColorSecondaryInverse">@color/white</item>
         <item name="android:textColorPrimaryInverse">@color/white</item>
         <item name="android:textColorSecondary">@color/gray</item>

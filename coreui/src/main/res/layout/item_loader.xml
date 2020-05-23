@@ -6,15 +6,14 @@
   ~ file, You can obtain one at http://mozilla.org/MPL/2.0/.
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/progressContainer"
     android:layout_width="match_parent"
     android:layout_height="@dimen/item_loading_height"
-    android:orientation="vertical"
-    android:padding="@dimen/spacing_xm">
+    android:orientation="vertical">
 
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center" />
-</LinearLayout>
+</merge>
