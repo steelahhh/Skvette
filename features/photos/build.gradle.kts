@@ -51,6 +51,7 @@ dependencies {
         Dependencies.Airbnb.mvRx,
         Dependencies.Airbnb.Epoxy.core,
         Dependencies.Lifecycle.viewModel,
+        Dependencies.SimpleStack.core,
         Dependencies.appcompat,
         Dependencies.coreKtx,
         Dependencies.constraint,

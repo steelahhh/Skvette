@@ -12,6 +12,10 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.zhuinden.simplestack.History
+import com.zhuinden.simplestack.StateChange
+import com.zhuinden.simplestack.StateChanger
+import com.zhuinden.simplestack.navigator.Navigator
 import dev.steelahh.photos.PhotosFragment
 import dev.steelahhh.core.statusbar.StatusBarController
 import dev.steelahhh.skvette.databinding.ActivityMainBinding
@@ -19,7 +23,8 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 
 @ExperimentalCoroutinesApi
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), StateChanger {
+    private lateinit var fragmentStateChanger: FragmentStateChanger
 
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,14 +32,30 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.container, PhotosFragment())
-            .commit()
+        fragmentStateChanger = FragmentStateChanger(supportFragmentManager, R.id.container)
+
+        Navigator.configure()
+            .setStateChanger(this)
+            .install(this, binding.container, History.single(PhotosFragment.Key()))
 
         lifecycleScope.launchWhenCreated {
             StatusBarController.flow().collect { configuration ->
                 binding.root.updateStatusBar(configuration.height, configuration.visible)
             }
         }
+    }
+
+    @Override
+    override fun onBackPressed() {
+        if (!Navigator.onBackPressed(this)) super.onBackPressed()
+    }
+
+    override fun handleStateChange(stateChange: StateChange, completionCallback: StateChanger.Callback) {
+        if (stateChange.isTopNewKeyEqualToPrevious) {
+            completionCallback.stateChangeComplete()
+            return
+        }
+        fragmentStateChanger.handleStateChange(stateChange)
+        completionCallback.stateChangeComplete()
     }
 }

@@ -12,7 +12,7 @@ import android.os.Bundle
 import androidx.annotation.LayoutRes
 import com.airbnb.mvrx.BaseMvRxFragment
 
-abstract class BaseFragment(@LayoutRes layout: Int) : BaseMvRxFragment(layout) {
+abstract class BaseFragment(@LayoutRes layout: Int = 0) : BaseMvRxFragment(layout) {
 
     protected val epoxyController by lazy { epoxyController() }
 

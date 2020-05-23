@@ -9,7 +9,9 @@
 package dev.steelahh.photos.views
 
 import android.graphics.Color
+import android.view.View
 import android.widget.ImageView
+import androidx.core.view.ViewCompat
 import coil.annotation.ExperimentalCoilApi
 import coil.api.load
 import com.airbnb.epoxy.EpoxyAttribute
@@ -27,6 +29,9 @@ abstract class PhotoItem : EpoxyModelWithHolder<PhotoItem.Holder>() {
     @EpoxyAttribute
     lateinit var photo: Photo
 
+    @EpoxyAttribute
+    lateinit var onClick: (photo: Photo, view: View) -> Unit
+
     override fun getDefaultLayout(): Int = R.layout.item_photo
 
     override fun bind(holder: Holder) {
@@ -37,6 +42,8 @@ abstract class PhotoItem : EpoxyModelWithHolder<PhotoItem.Holder>() {
             image.load(photo.url) {
                 crossfade(true)
             }
+            ViewCompat.setTransitionName(image, photo.id)
+            container.setOnClickListener { onClick(photo, image) }
         }
     }
 

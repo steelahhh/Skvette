@@ -8,9 +8,14 @@
 
 package dev.steelahhh.coreui
 
+import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
 fun <T : ViewBinding> Fragment.viewBinding(viewBindingFactory: (View) -> T) =
     FragmentViewBindingDelegate(this, viewBindingFactory)
+
+fun Fragment.withArguments(block: Bundle.() -> Unit): Fragment = apply {
+    arguments = (arguments ?: Bundle()).apply(block)
+}

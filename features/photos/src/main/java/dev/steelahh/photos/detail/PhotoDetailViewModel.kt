@@ -1,0 +1,25 @@
+/*
+ * Copyright (C) 2020. Alexander Efimenko
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
+package dev.steelahh.photos.detail
+
+import com.airbnb.mvrx.MvRxState
+import com.airbnb.mvrx.MvRxViewModelFactory
+import com.airbnb.mvrx.ViewModelContext
+import dev.steelahhh.core.mvrx.MvRxViewModel
+
+data class State(val ph: String = "") : MvRxState
+
+class PhotoDetailViewModel(initialState: State) : MvRxViewModel<State>(initialState) {
+
+    companion object : MvRxViewModelFactory<PhotoDetailViewModel, State> {
+        override fun create(viewModelContext: ViewModelContext, state: State): PhotoDetailViewModel? {
+            return PhotoDetailViewModel(state)
+        }
+    }
+}

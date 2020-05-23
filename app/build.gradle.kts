@@ -90,6 +90,7 @@ dependencies {
         Dependencies.Airbnb.Epoxy.core,
         Dependencies.Lifecycle.common,
         Dependencies.Lifecycle.viewModel,
+        Dependencies.SimpleStack.core,
         Dependencies.Coroutines.core,
         Dependencies.Coroutines.android
     ).forEach {

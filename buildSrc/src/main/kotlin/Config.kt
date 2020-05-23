@@ -25,6 +25,8 @@ object Versions {
     const val moshi = "1.9.2"
     const val coil = "0.11.0"
 
+    const val simpleStack = "2.3.2"
+
     const val mvRx = "2.0.0-alpha2"
     const val epoxy = "3.11.0"
 
@@ -63,6 +65,10 @@ object Dependencies {
         const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
         const val compiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
         const val process = "androidx.lifecycle:lifecycle-process:${Versions.lifecycle}"
+    }
+
+    object SimpleStack {
+        const val core = "com.github.Zhuinden:simple-stack:${Versions.simpleStack}"
     }
 
     object Coroutines {
