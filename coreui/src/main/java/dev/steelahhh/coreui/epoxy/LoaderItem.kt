@@ -15,7 +15,7 @@ import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import dev.steelahhh.coreui.R
-import dev.steelahhh.coreui.getDimen
+import dev.steelahhh.coreui.extensions.getDimen
 
 @EpoxyModelClass
 abstract class LoaderItem : EpoxyModelWithHolder<LoaderItem.Holder>() {

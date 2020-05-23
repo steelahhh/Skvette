@@ -27,7 +27,7 @@ import dev.steelahhh.core.mvrx.simpleController
 import dev.steelahhh.core.navigation.ScreenKey
 import dev.steelahhh.core.statusbar.StatusBarController
 import dev.steelahhh.coreui.epoxy.loaderItem
-import dev.steelahhh.coreui.viewBinding
+import dev.steelahhh.coreui.extensions.viewBinding
 import dev.steelahhh.data.photos.Photo
 import dev.steelahhh.data.photos.PhotosRepository.Companion.ITEMS_PER_PAGE
 import kotlin.math.abs

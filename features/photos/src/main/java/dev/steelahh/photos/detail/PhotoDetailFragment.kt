@@ -23,8 +23,8 @@ import dev.steelahhh.core.mvrx.BaseFragment
 import dev.steelahhh.core.mvrx.MvRxEpoxyController
 import dev.steelahhh.core.mvrx.simpleController
 import dev.steelahhh.core.navigation.ScreenKey
-import dev.steelahhh.coreui.viewBinding
-import dev.steelahhh.coreui.withArguments
+import dev.steelahhh.coreui.extensions.viewBinding
+import dev.steelahhh.coreui.extensions.withArguments
 import kotlinx.android.parcel.Parcelize
 
 class PhotoDetailFragment : BaseFragment(R.layout.fragment_photo_detail) {

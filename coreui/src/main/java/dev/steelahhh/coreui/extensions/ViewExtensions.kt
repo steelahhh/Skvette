@@ -6,7 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package dev.steelahhh.coreui
+package dev.steelahhh.coreui.extensions
 
 import android.content.Context
 import android.view.View
