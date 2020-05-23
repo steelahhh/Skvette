@@ -55,7 +55,7 @@ class Paginator<T>(
 
     private var currentState: State<T> = EMPTY()
     private var currentData = emptyList<T>()
-    private var currentPage = 0
+    private var currentPage = 1
     private var job: Job? = null
 
     fun restart() {

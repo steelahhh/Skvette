@@ -12,16 +12,22 @@ import androidx.lifecycle.viewModelScope
 import com.airbnb.mvrx.MvRxState
 import com.airbnb.mvrx.MvRxViewModelFactory
 import com.airbnb.mvrx.ViewModelContext
+import com.github.michaelbull.result.getOr
 import com.squareup.inject.assisted.Assisted
 import com.squareup.inject.assisted.AssistedInject
 import dev.steelahhh.core.AppCoroutineDispatchers
 import dev.steelahhh.core.Paginator
 import dev.steelahhh.core.mvrx.MvRxViewModel
 import dev.steelahhh.core.mvrx.fragment
-import dev.steelahhh.data.photos.Photo
-import dev.steelahhh.data.photos.PhotosRepository
+import dev.steelahhh.data.models.Order
+import dev.steelahhh.data.interactors.GetPhotosList
+import dev.steelahhh.data.models.Photo
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
+import kotlin.math.abs
 
 data class PhotosState(
     val photos: List<Photo> = listOf(),
@@ -31,20 +37,38 @@ data class PhotosState(
     val isLoadingMore: Boolean = false
 ) : MvRxState
 
+@ExperimentalCoroutinesApi
 class PhotosViewModel @AssistedInject constructor(
     @Assisted initialState: PhotosState,
-    private val photosRepository: PhotosRepository,
+    private val getPhotosList: GetPhotosList,
     dispatchers: AppCoroutineDispatchers
 ) : MvRxViewModel<PhotosState>(initialState), Paginator.ViewController<Photo> {
 
+    private val _order: MutableStateFlow<Order> = MutableStateFlow(
+        Order.LATEST)
+
     private val paginator = Paginator(
         scope = viewModelScope + dispatchers.io,
-        requestFactory = { page -> photosRepository.getPhotos(page) },
+        requestFactory = { page ->
+            getPhotosList(
+                GetPhotosList.Params(
+                    page = page,
+                    order = _order.value
+                )
+            ).getOr { emptyList() }
+        },
         viewController = this
     )
 
     init {
-        paginator.restart()
+        /**
+         * Whenever [_order] changes, restart the paginator
+         */
+        viewModelScope.launch {
+            _order.collect {
+                paginator.restart()
+            }
+        }
     }
 
     override fun showPageLoadingProgress() = setState {
@@ -79,7 +103,10 @@ class PhotosViewModel @AssistedInject constructor(
         copy(photos = data, isLoadingMore = false, isRefreshing = false, isError = false)
     }
 
-    fun loadMore() = paginator.loadNewPage()
+    fun loadMore(position: Int) = withState { state ->
+        if (position > abs(state.photos.size - GetPhotosList.ITEMS_PER_PAGE / 2))
+            paginator.loadNewPage()
+    }
 
     fun refresh() = paginator.refresh()
 
@@ -94,7 +121,7 @@ class PhotosViewModel @AssistedInject constructor(
             viewModelContext: ViewModelContext,
             state: PhotosState
         ): PhotosViewModel? {
-            val fragment = viewModelContext.fragment<PhotosFragment>()
+            val fragment = viewModelContext.fragment<PhotoListFragment>()
             return fragment.component.photosViewModelFactory.create(state)
         }
     }

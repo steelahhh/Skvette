@@ -6,15 +6,18 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package dev.steelahhh.data.photos
+package dev.steelahhh.data.responses
 
+import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class PhotoResponse(
     val id: String,
-    val created_at: String,
-    val updated_at: String,
+    @Json(name = "created_at")
+    val createdAt: String,
+    @Json(name = "updated_at")
+    val updatedAt: String,
     val width: Int,
     val height: Int,
     val color: String,
@@ -22,11 +25,13 @@ data class PhotoResponse(
     val categories: List<Any>,
     val urls: UrlSizesResponse,
     val links: LinksResponse,
-    val liked_by_user: Boolean,
+    @Json(name = "liked_by_user")
+    val likedByUser: Boolean,
     val sponsored: Boolean?,
     val likes: Int,
     val user: UserResponse,
-    val current_user_collections: List<Any>
+    @Json(name = "current_user_collections")
+    val currentUserCollections: List<Any>
 )
 
 @JsonClass(generateAdapter = true)
@@ -35,18 +40,27 @@ data class UserResponse(
     val updated_at: String,
     val username: String,
     val name: String,
-    val first_name: String,
-    val last_name: String?,
-    val twitter_username: String?,
-    val portfolio_url: String?,
+    @Json(name = "first_name")
+    val firstName: String,
+    @Json(name = "last_name")
+    val lastName: String?,
+    @Json(name = "twitter_username")
+    val twitterUsername: String?,
+    @Json(name = "portfolio_url")
+    val portfolioUrl: String?,
     val bio: String?,
     val location: String?,
     val links: LinksResponse,
-    val profile_image: UrlSizesResponse,
-    val total_collections: Int?,
-    val instagram_username: String?,
-    val total_likes: Int?,
-    val total_photos: Int?
+    @Json(name = "profile_image")
+    val profileImage: UrlSizesResponse,
+    @Json(name = "total_collections")
+    val totalCollections: Int?,
+    @Json(name = "instagram_username")
+    val instagramUsername: String?,
+    @Json(name = "total_likes")
+    val totalLikes: Int?,
+    @Json(name = "total_photos")
+    val totalPhotos: Int?
 )
 
 @JsonClass(generateAdapter = true)
@@ -59,7 +73,8 @@ data class LinksResponse(
     val following: String?,
     val followers: String?,
     val download: String?,
-    val download_location: String?
+    @Json(name = "download_location")
+    val downloadLocation: String?
 )
 
 @JsonClass(generateAdapter = true)
@@ -71,4 +86,18 @@ data class UrlSizesResponse(
     val medium: String?,
     val large: String?,
     val thumb: String?
+)
+
+@JsonClass(generateAdapter = true)
+data class CollectionResponse(
+    val id: String,
+    val title: String,
+    @Json(name = "published_at")
+    val publishedAt: String?,
+    @Json(name = "updated_at")
+    val updatedAt: String?,
+    @Json(name = "cover_photo")
+    val coverPhoto: UrlSizesResponse?,
+    val user: UserResponse?
+
 )

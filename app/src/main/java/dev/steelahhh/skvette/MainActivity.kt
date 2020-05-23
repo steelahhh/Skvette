@@ -16,7 +16,7 @@ import com.zhuinden.simplestack.History
 import com.zhuinden.simplestack.StateChange
 import com.zhuinden.simplestack.StateChanger
 import com.zhuinden.simplestack.navigator.Navigator
-import dev.steelahh.photos.PhotosFragment
+import dev.steelahh.photos.PhotoListFragment
 import dev.steelahhh.core.statusbar.StatusBarController
 import dev.steelahhh.skvette.databinding.ActivityMainBinding
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity(), StateChanger {
 
         Navigator.configure()
             .setStateChanger(this)
-            .install(this, binding.container, History.single(PhotosFragment.Key()))
+            .install(this, binding.container, History.single(PhotoListFragment.Key()))
 
         lifecycleScope.launchWhenCreated {
             StatusBarController.flow().collect { configuration ->

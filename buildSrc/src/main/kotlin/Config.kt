@@ -9,7 +9,7 @@ object Config {
 
 object Versions {
     const val kotlin = "1.3.72"
-    const val androidPlugin = "4.0.0-beta05"
+    const val androidPlugin = "4.0.0-rc01"
     const val androidx = "1.2.0"
     const val constraint = "2.0.0-beta4"
     const val lifecycle = "2.2.0"
@@ -88,6 +88,8 @@ object Dependencies {
     object Coil {
         const val core = "io.coil-kt:coil:${Versions.coil}"
     }
+
+    const val kotlinResult = "com.michael-bull.kotlin-result:kotlin-result:1.1.6"
 
     const val okHttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.0.1"
 

@@ -26,14 +26,12 @@ import dev.steelahhh.core.mvrx.simpleController
 import dev.steelahhh.core.navigation.ScreenKey
 import dev.steelahhh.coreui.extensions.viewBinding
 import dev.steelahhh.coreui.views.loaderItemView
-import dev.steelahhh.data.photos.Photo
-import dev.steelahhh.data.photos.PhotosRepository.Companion.ITEMS_PER_PAGE
-import kotlin.math.abs
+import dev.steelahhh.data.models.Photo
 import kotlinx.android.parcel.Parcelize
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi
-class PhotosFragment : BaseFragment(R.layout.fragment_photos) {
+class PhotoListFragment : BaseFragment(R.layout.fragment_photos) {
     private val vm: PhotosViewModel by fragmentViewModel()
     private val binding: FragmentPhotosBinding by viewBinding(FragmentPhotosBinding::bind)
 
@@ -61,13 +59,8 @@ class PhotosFragment : BaseFragment(R.layout.fragment_photos) {
             photoListItemView {
                 id(it.id)
                 photo(it)
-                onBind { _, _, position ->
-                    if (position > abs(state.photos.size - ITEMS_PER_PAGE / 2))
-                        vm.loadMore()
-                }
-                onClick { photo, view ->
-                    photo.navigate(view)
-                }
+                onBind { _, _, position -> vm.loadMore(position) }
+                onClick { photo, view -> photo.navigate(view) }
             }
         }
 
@@ -99,6 +92,6 @@ class PhotosFragment : BaseFragment(R.layout.fragment_photos) {
     }
 
     companion object {
-        fun newInstance() = PhotosFragment()
+        fun newInstance() = PhotoListFragment()
     }
 }

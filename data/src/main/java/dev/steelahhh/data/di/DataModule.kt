@@ -1,18 +1,20 @@
 /*
- * Copyright (C) 2019. Alexander Efimenko
+ * Copyright (C) 2020. Alexander Efimenko
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package dev.steelahhh.data
+package dev.steelahhh.data.di
 
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
 import dev.steelahhh.core.di.CoreModule
+import dev.steelahhh.data.ApiKeyInterceptor
+import dev.steelahhh.data.SKVService
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 import okhttp3.OkHttpClient
@@ -50,5 +52,6 @@ object DataModule {
 
     @Provides
     @Singleton
-    fun provideApi(retrofit: Retrofit): SKVService = retrofit.create(SKVService::class.java)
+    fun provideApi(retrofit: Retrofit): SKVService = retrofit.create(
+        SKVService::class.java)
 }

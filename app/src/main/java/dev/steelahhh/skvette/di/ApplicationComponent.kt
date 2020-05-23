@@ -12,7 +12,7 @@ import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
 import dev.steelahhh.core.di.AppComponent
-import dev.steelahhh.data.DataModule
+import dev.steelahhh.data.di.DataModule
 import javax.inject.Singleton
 
 @Singleton

@@ -21,7 +21,7 @@ import com.airbnb.epoxy.ModelProp
 import com.airbnb.epoxy.ModelView
 import com.google.android.material.card.MaterialCardView
 import dev.steelahh.photos.R
-import dev.steelahhh.data.photos.Photo
+import dev.steelahhh.data.models.Photo
 import javax.annotation.Nullable
 
 @ModelView(autoLayout = ModelView.Size.MATCH_WIDTH_WRAP_HEIGHT)

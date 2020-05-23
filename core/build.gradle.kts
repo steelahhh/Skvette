@@ -27,6 +27,8 @@ android {
 }
 
 dependencies {
+    api(Dependencies.kotlinResult)
+
     listOf(
         Dependencies.kotlin,
         Dependencies.fragment,

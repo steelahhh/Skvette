@@ -10,7 +10,7 @@ package dev.steelahh.photos.di
 
 import com.squareup.inject.assisted.dagger2.AssistedModule
 import dagger.Module
-import dev.steelahhh.data.DataModule
+import dev.steelahhh.data.di.DataModule
 
 @AssistedModule
 @Module(includes = [DataModule::class, AssistedInject_PhotosModule::class])
