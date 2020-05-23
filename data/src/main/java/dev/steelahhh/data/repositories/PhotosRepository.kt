@@ -11,8 +11,8 @@ package dev.steelahhh.data.repositories
 import dagger.Reusable
 import dev.steelahhh.core.AppCoroutineDispatchers
 import dev.steelahhh.core.ProcessLifetime
-import dev.steelahhh.data.models.Order
 import dev.steelahhh.data.SKVService
+import dev.steelahhh.data.models.Order
 import dev.steelahhh.data.responses.PhotoResponse
 import javax.inject.Inject
 import kotlinx.coroutines.CoroutineScope
@@ -34,5 +34,4 @@ class PhotosRepository @Inject constructor(
     ): List<PhotoResponse> = withContext(scope.coroutineContext) {
         service.getPhotos(page, itemsPerPage, order.name)
     }
-
 }

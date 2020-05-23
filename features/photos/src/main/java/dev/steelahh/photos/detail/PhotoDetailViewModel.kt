@@ -13,12 +13,15 @@ import com.airbnb.mvrx.MvRxViewModelFactory
 import com.airbnb.mvrx.ViewModelContext
 import dev.steelahhh.core.mvrx.MvRxViewModel
 
-data class State(val ph: String = "") : MvRxState
+data class PhotoDetailState(val ph: String = "") : MvRxState
 
-class PhotoDetailViewModel(initialState: State) : MvRxViewModel<State>(initialState) {
+class PhotoDetailViewModel(initialState: PhotoDetailState) : MvRxViewModel<PhotoDetailState>(initialState) {
 
-    companion object : MvRxViewModelFactory<PhotoDetailViewModel, State> {
-        override fun create(viewModelContext: ViewModelContext, state: State): PhotoDetailViewModel? {
+    companion object : MvRxViewModelFactory<PhotoDetailViewModel, PhotoDetailState> {
+        override fun create(
+            viewModelContext: ViewModelContext,
+            state: PhotoDetailState
+        ): PhotoDetailViewModel? {
             return PhotoDetailViewModel(state)
         }
     }

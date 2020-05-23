@@ -32,7 +32,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi
 class PhotoListFragment : BaseFragment(R.layout.fragment_photos) {
-    private val vm: PhotosViewModel by fragmentViewModel()
+    private val vm by fragmentViewModel<PhotoListFragment, PhotoListViewModel, PhotoListState>()
     private val binding: FragmentPhotosBinding by viewBinding(FragmentPhotosBinding::bind)
 
     internal val component: PhotosComponent by lazy { DaggerPhotosComponent.create() }

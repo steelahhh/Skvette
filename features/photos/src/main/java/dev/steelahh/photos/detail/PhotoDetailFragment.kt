@@ -28,7 +28,7 @@ import dev.steelahhh.coreui.extensions.withArguments
 import kotlinx.android.parcel.Parcelize
 
 class PhotoDetailFragment : BaseFragment(R.layout.fragment_photo_detail) {
-    private val vm: PhotoDetailViewModel by fragmentViewModel()
+    private val vm by fragmentViewModel<PhotoDetailFragment, PhotoDetailViewModel, PhotoDetailState>()
     private val args: Arguments by args()
 
     private val binding: FragmentPhotoDetailBinding by viewBinding(FragmentPhotoDetailBinding::bind)

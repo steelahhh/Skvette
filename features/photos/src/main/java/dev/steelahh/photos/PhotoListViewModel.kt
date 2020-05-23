@@ -19,17 +19,17 @@ import dev.steelahhh.core.AppCoroutineDispatchers
 import dev.steelahhh.core.Paginator
 import dev.steelahhh.core.mvrx.MvRxViewModel
 import dev.steelahhh.core.mvrx.fragment
-import dev.steelahhh.data.models.Order
 import dev.steelahhh.data.interactors.GetPhotosList
+import dev.steelahhh.data.models.Order
 import dev.steelahhh.data.models.Photo
+import kotlin.math.abs
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
-import kotlin.math.abs
 
-data class PhotosState(
+data class PhotoListState(
     val photos: List<Photo> = listOf(),
     val isError: Boolean = false,
     val isLoading: Boolean = false,
@@ -38,11 +38,11 @@ data class PhotosState(
 ) : MvRxState
 
 @ExperimentalCoroutinesApi
-class PhotosViewModel @AssistedInject constructor(
-    @Assisted initialState: PhotosState,
+class PhotoListViewModel @AssistedInject constructor(
+    @Assisted initialState: PhotoListState,
     private val getPhotosList: GetPhotosList,
     dispatchers: AppCoroutineDispatchers
-) : MvRxViewModel<PhotosState>(initialState), Paginator.ViewController<Photo> {
+) : MvRxViewModel<PhotoListState>(initialState), Paginator.ViewController<Photo> {
 
     private val _order: MutableStateFlow<Order> = MutableStateFlow(
         Order.LATEST)
@@ -112,17 +112,17 @@ class PhotosViewModel @AssistedInject constructor(
 
     @AssistedInject.Factory
     interface Factory {
-        fun create(initialState: PhotosState): PhotosViewModel
+        fun create(initialState: PhotoListState): PhotoListViewModel
     }
 
-    companion object : MvRxViewModelFactory<PhotosViewModel, PhotosState> {
+    companion object : MvRxViewModelFactory<PhotoListViewModel, PhotoListState> {
         @ExperimentalCoroutinesApi
         override fun create(
             viewModelContext: ViewModelContext,
-            state: PhotosState
-        ): PhotosViewModel? {
+            state: PhotoListState
+        ): PhotoListViewModel? {
             val fragment = viewModelContext.fragment<PhotoListFragment>()
-            return fragment.component.photosViewModelFactory.create(state)
+            return fragment.component.photoListViewModelFactory.create(state)
         }
     }
 }

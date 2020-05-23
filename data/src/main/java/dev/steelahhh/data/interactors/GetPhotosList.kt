@@ -13,11 +13,11 @@ import com.github.michaelbull.result.runCatching
 import dev.steelahhh.core.AppCoroutineDispatchers
 import dev.steelahhh.core.ResultInteractor
 import dev.steelahhh.data.models.Order
-import dev.steelahhh.data.repositories.PhotosRepository
 import dev.steelahhh.data.models.Photo
 import dev.steelahhh.data.models.toDomain
-import kotlinx.coroutines.CoroutineDispatcher
+import dev.steelahhh.data.repositories.PhotosRepository
 import javax.inject.Inject
+import kotlinx.coroutines.CoroutineDispatcher
 
 class GetPhotosList @Inject constructor(
     private val photosRepository: PhotosRepository,
