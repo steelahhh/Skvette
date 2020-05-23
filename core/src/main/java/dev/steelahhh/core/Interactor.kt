@@ -1,17 +1,10 @@
-/*
- * Copyright (C) 2020. Alexander Efimenko
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- */
-
 package dev.steelahhh.core
 
 import com.github.michaelbull.result.Result
 import dev.steelahhh.core.InvokeStatus.Error
 import dev.steelahhh.core.InvokeStatus.Started
 import dev.steelahhh.core.InvokeStatus.Success
+import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -26,7 +19,6 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeout
-import java.util.concurrent.TimeUnit
 
 sealed class InvokeStatus {
     object Idle : InvokeStatus()
