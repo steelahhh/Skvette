@@ -6,7 +6,6 @@ plugins {
     kotlin("android")
     kotlin("kapt")
     kotlin("android.extensions")
-    id("de.mannodermaus.android-junit5")
 }
 
 fun getProperty(fileName: String, prop: String): Any? {
@@ -34,7 +33,9 @@ android {
         viewBinding = true
     }
 
-    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 
     defaultConfig {
         applicationId = Config.applicationId
@@ -43,10 +44,6 @@ android {
         versionCode = Config.appVersionCode
         versionName = Config.appVersionName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        testInstrumentationRunnerArgument(
-            "runnerBuilder",
-            "de.mannodermaus.junit5.AndroidJUnit5Builder"
-        )
         buildConfigField("String", "APP_ID", "\"${getProperty("local.properties", "app_id")}\"")
     }
 
@@ -114,12 +111,4 @@ dependencies {
     }
 
     androidTestImplementation(Dependencies.testRunner)
-
-    testImplementation(Dependencies.JUnit.api)
-    testRuntimeOnly(Dependencies.JUnit.engine)
-
-    androidTestImplementation(Dependencies.JUnit.api)
-    androidTestImplementation(Dependencies.JUnit.Android.core)
-    androidTestRuntimeOnly(Dependencies.JUnit.Android.runner)
-    androidTestRuntimeOnly(Dependencies.JUnit.engine)
 }

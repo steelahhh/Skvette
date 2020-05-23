@@ -8,7 +8,6 @@ buildscript {
     dependencies {
         classpath("com.android.tools.build:gradle:${Versions.androidPlugin}")
         classpath(kotlin("gradle-plugin", version = Versions.kotlin))
-        classpath("de.mannodermaus.gradle.plugins:android-junit5:1.4.2.0")
         classpath("com.jakewharton:butterknife-gradle-plugin:10.1.0")
     }
 }
