@@ -28,7 +28,7 @@ object Versions {
     const val simpleStack = "2.3.2"
 
     const val mvRx = "2.0.0-alpha2"
-    const val epoxy = "3.11.0"
+    const val epoxy = "4.0.0-beta4"
 
     const val leakCanary = "2.0"
 
