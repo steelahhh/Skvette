@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity(), StateChanger {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        fragmentStateChanger = FragmentStateChanger(supportFragmentManager, R.id.container)
+        fragmentStateChanger = FragmentStateChanger(supportFragmentManager, binding.container.id)
 
         Navigator.configure()
             .setStateChanger(this)
