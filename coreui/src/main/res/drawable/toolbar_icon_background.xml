@@ -1,4 +1,4 @@
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2020. Alexander Efimenko
   ~
   ~ This Source Code Form is subject to the terms of the Mozilla Public
@@ -6,8 +6,8 @@
   ~ file, You can obtain one at http://mozilla.org/MPL/2.0/.
   -->
 
-<resources>
-    <string name="app_name">photos</string>
-
-    <string name="back_button_title">Back button</string>
-</resources>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="#BFFFFFFF" />
+    <corners android:radius="50dp" />
+</shape>

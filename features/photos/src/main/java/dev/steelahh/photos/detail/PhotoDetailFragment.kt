@@ -17,6 +17,7 @@ import coil.api.load
 import com.airbnb.mvrx.MvRx
 import com.airbnb.mvrx.args
 import com.airbnb.mvrx.fragmentViewModel
+import com.zhuinden.simplestack.navigator.Navigator
 import dev.steelahh.photos.R
 import dev.steelahh.photos.databinding.FragmentPhotoDetailBinding
 import dev.steelahhh.core.mvrx.BaseFragment
@@ -24,6 +25,8 @@ import dev.steelahhh.core.mvrx.MvRxEpoxyController
 import dev.steelahhh.core.mvrx.simpleController
 import dev.steelahhh.core.navigation.FullScreen
 import dev.steelahhh.core.navigation.ScreenKey
+import dev.steelahhh.coreui.extensions.dp
+import dev.steelahhh.coreui.extensions.updateTopMarginToStatusBar
 import dev.steelahhh.coreui.extensions.viewBinding
 import dev.steelahhh.coreui.extensions.withArguments
 import kotlinx.android.parcel.Parcelize
@@ -36,7 +39,14 @@ class PhotoDetailFragment : BaseFragment(R.layout.fragment_photo_detail) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.backButton.setOnClickListener {
+            Navigator.getBackstack(requireContext()).goBack()
+        }
+
         lifecycleScope.launchWhenCreated {
+            binding.backButton.updateTopMarginToStatusBar(8.dp)
+
             binding.bigImageIv.load(args.url) {
                 crossfade(true)
                 listener { _, _ ->
@@ -53,7 +63,9 @@ class PhotoDetailFragment : BaseFragment(R.layout.fragment_photo_detail) {
     data class Arguments(
         val id: Long = -1,
         @Deprecated("Pass only valid id")
-        val url: String = ""
+        val url: String = "",
+        @Deprecated("Should be taken from PhotoResponse")
+        val color: String = ""
     ) : Parcelable
 
     @Parcelize

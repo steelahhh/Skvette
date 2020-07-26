@@ -82,7 +82,8 @@ class PhotoListFragment : BaseFragment(R.layout.fragment_photos) {
         Navigator.getBackstack(requireContext()).goTo(
             PhotoDetailFragment.Key(
                 PhotoDetailFragment.Arguments(
-                    url = url
+                    url = url,
+                    color = color
                 )
             )
         )
