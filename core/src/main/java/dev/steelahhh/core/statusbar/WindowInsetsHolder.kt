@@ -9,12 +9,10 @@
 package dev.steelahhh.core.statusbar
 
 import android.graphics.Rect
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 
 @Suppress("ObjectPropertyName")
-@ExperimentalCoroutinesApi
 object WindowInsetsHolder {
     private val _rect = MutableStateFlow(Rect())
 

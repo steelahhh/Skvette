@@ -21,6 +21,7 @@ import dev.steelahh.photos.detail.PhotoDetailFragment
 import dev.steelahh.photos.di.DaggerPhotosComponent
 import dev.steelahh.photos.di.PhotosComponent
 import dev.steelahh.photos.views.photoListItemView
+import dev.steelahhh.core.attachNavBarController
 import dev.steelahhh.core.mvrx.BaseFragment
 import dev.steelahhh.core.mvrx.simpleController
 import dev.steelahhh.core.navigation.ScreenKey
@@ -28,9 +29,7 @@ import dev.steelahhh.coreui.extensions.viewBinding
 import dev.steelahhh.coreui.views.loaderItemView
 import dev.steelahhh.data.models.Photo
 import kotlinx.android.parcel.Parcelize
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-@ExperimentalCoroutinesApi
 class PhotoListFragment : BaseFragment(R.layout.fragment_photos) {
     private val vm by fragmentViewModel<PhotoListFragment, PhotoListViewModel, PhotoListState>()
     private val binding: FragmentPhotosBinding by viewBinding(FragmentPhotosBinding::bind)
@@ -39,8 +38,11 @@ class PhotoListFragment : BaseFragment(R.layout.fragment_photos) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.photosRecycler.overScrollMode = OVER_SCROLL_NEVER
-        binding.photosRecycler.setController(epoxyController)
+        binding.photosRecycler.run {
+            overScrollMode = OVER_SCROLL_NEVER
+            setController(epoxyController)
+            attachNavBarController()
+        }
         binding.refresher.setOnRefreshListener { vm.refresh() }
         binding.root.doOnLayout {
             binding.toolbar.padToStatus = true
@@ -60,7 +62,7 @@ class PhotoListFragment : BaseFragment(R.layout.fragment_photos) {
                 id(it.id)
                 photo(it)
                 onBind { _, _, position -> vm.loadMore(position) }
-                onClick { photo, view -> photo.navigate(view) }
+                onClick { photo, _ -> photo.navigate() }
             }
         }
 
@@ -76,7 +78,7 @@ class PhotoListFragment : BaseFragment(R.layout.fragment_photos) {
         }
     }
 
-    private fun Photo.navigate(view: View) {
+    private fun Photo.navigate() {
         Navigator.getBackstack(requireContext()).goTo(
             PhotoDetailFragment.Key(
                 PhotoDetailFragment.Arguments(

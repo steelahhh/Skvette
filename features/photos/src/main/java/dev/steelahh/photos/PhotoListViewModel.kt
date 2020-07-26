@@ -23,7 +23,6 @@ import dev.steelahhh.data.interactors.GetPhotosList
 import dev.steelahhh.data.models.Order
 import dev.steelahhh.data.models.Photo
 import kotlin.math.abs
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -37,7 +36,6 @@ data class PhotoListState(
     val isLoadingMore: Boolean = false
 ) : MvRxState
 
-@ExperimentalCoroutinesApi
 class PhotoListViewModel @AssistedInject constructor(
     @Assisted initialState: PhotoListState,
     private val getPhotosList: GetPhotosList,
@@ -116,7 +114,6 @@ class PhotoListViewModel @AssistedInject constructor(
     }
 
     companion object : MvRxViewModelFactory<PhotoListViewModel, PhotoListState> {
-        @ExperimentalCoroutinesApi
         override fun create(
             viewModelContext: ViewModelContext,
             state: PhotoListState

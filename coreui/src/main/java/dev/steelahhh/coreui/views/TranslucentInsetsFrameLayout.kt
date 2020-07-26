@@ -6,7 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package dev.steelahhh.coreui
+package dev.steelahhh.coreui.views
 
 import android.content.Context
 import android.graphics.Canvas
@@ -17,10 +17,9 @@ import android.util.AttributeSet
 import android.view.WindowInsets
 import android.widget.FrameLayout
 import androidx.core.view.updatePadding
+import dev.steelahhh.core.ColorRef
 import dev.steelahhh.core.statusbar.WindowInsetsHolder
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-@ExperimentalCoroutinesApi
 class TranslucentInsetsFrameLayout @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
@@ -33,22 +32,22 @@ class TranslucentInsetsFrameLayout @JvmOverloads constructor(
 
     fun updateStatusBar(
         height: Int,
-        // colorRes: ColorDesc,
+        colorRef: ColorRef,
         visible: Boolean
     ) {
-        // val color = darkenColor(colorRes.create(context), 0.08f)
-        // val shouldInvalidate = statusBarPaint.color != color
+        val color = colorRef.create(context) // , 0.08f)
+        val shouldInvalidate = statusBarPaint.color != color
         statusBarHeight = height
-        // statusBarPaint.color = color
+        statusBarPaint.color = color
         drawStatusBar = visible
         if (visible) {
-            // statusBarPaint.color = Color.TRANSPARENT
+            statusBarPaint.color = Color.TRANSPARENT
         } else {
             statusBarPaint.color = Color.TRANSPARENT
-            // statusBarPaint.color = Color.parseColor("#14000000") // 8% of black
+            statusBarPaint.color = Color.parseColor("#14000000") // 8% of black
         }
         updatePadding(top = if (drawStatusBar) statusBarHeight else 0)
-        // if (shouldInvalidate) invalidate()
+        if (shouldInvalidate) invalidate()
     }
 
     override fun dispatchDraw(canvas: Canvas) {

@@ -38,6 +38,7 @@ dependencies {
 
     listOf(
         Dependencies.Airbnb.Epoxy.core,
+        Dependencies.constraint,
         Dependencies.coreKtx,
         Dependencies.appcompat,
         Dependencies.material,

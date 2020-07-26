@@ -8,22 +8,27 @@
 
 package dev.steelahhh.core.statusbar
 
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.GlobalScope
+import android.graphics.Color
+import dev.steelahhh.core.ColorRef
+import kotlin.coroutines.CoroutineContext
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
-@ExperimentalCoroutinesApi
 @Suppress("ObjectPropertyName")
-object StatusBarController {
+object StatusBarController : CoroutineScope {
     private val _configuration: MutableStateFlow<Configuration> = MutableStateFlow(Configuration())
     private val configuration: Configuration get() = _configuration.value
 
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Default
+
     init {
-        GlobalScope.launch {
+        launch {
             WindowInsetsHolder.flow()
                 .map { insets -> configuration.copy(height = insets.top) }
                 .collect { _configuration.value = it }
@@ -34,9 +39,9 @@ object StatusBarController {
 
     fun flow(): Flow<Configuration> = _configuration
 
-    // fun newColor(colorRef: ColorRef) = configurationRelay.accept(
-    //     configuration?.copy(colorRef = colorRef) ?: Configuration(colorRef = colorRef)
-    // )
+    fun newColor(colorRef: ColorRef) {
+        _configuration.value = configuration.copy(colorRef = colorRef)
+    }
 
     fun newVisibility(visible: Boolean) {
         _configuration.value = configuration.copy(visible = visible)
@@ -44,7 +49,7 @@ object StatusBarController {
 
     data class Configuration(
         val height: Int = 0,
-        val visible: Boolean = false
-        // val colorRef: ColorRef = ColorRef.Attribute(...)
+        val visible: Boolean = false,
+        val colorRef: ColorRef = ColorRef.Raw(Color.TRANSPARENT)
     )
 }

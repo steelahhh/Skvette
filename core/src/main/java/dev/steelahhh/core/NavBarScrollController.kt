@@ -9,11 +9,9 @@
 package dev.steelahhh.core
 
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 
-@ExperimentalCoroutinesApi
 object NavBarScrollController {
     private val stateFlow = MutableStateFlow(ScrollDirection.IDLE)
 
@@ -28,7 +26,6 @@ object NavBarScrollController {
     }
 }
 
-@ExperimentalCoroutinesApi
 object RecyclerScrollListener : RecyclerView.OnScrollListener() {
     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
         NavBarScrollController.accept(

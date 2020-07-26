@@ -99,5 +99,4 @@ data class CollectionResponse(
     @Json(name = "cover_photo")
     val coverPhoto: UrlSizesResponse?,
     val user: UserResponse?
-
 )

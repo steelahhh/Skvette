@@ -22,6 +22,7 @@ import dev.steelahh.photos.databinding.FragmentPhotoDetailBinding
 import dev.steelahhh.core.mvrx.BaseFragment
 import dev.steelahhh.core.mvrx.MvRxEpoxyController
 import dev.steelahhh.core.mvrx.simpleController
+import dev.steelahhh.core.navigation.FullScreen
 import dev.steelahhh.core.navigation.ScreenKey
 import dev.steelahhh.coreui.extensions.viewBinding
 import dev.steelahhh.coreui.extensions.withArguments
@@ -56,7 +57,7 @@ class PhotoDetailFragment : BaseFragment(R.layout.fragment_photo_detail) {
     ) : Parcelable
 
     @Parcelize
-    data class Key(val args: Arguments) : ScreenKey() {
+    data class Key(val args: Arguments) : ScreenKey(), FullScreen {
         override fun createFragment(): Fragment = newInstance(args)
     }
 

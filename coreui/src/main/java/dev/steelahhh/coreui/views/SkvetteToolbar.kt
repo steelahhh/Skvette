@@ -13,9 +13,7 @@ import android.util.AttributeSet
 import androidx.core.view.updatePadding
 import com.google.android.material.appbar.MaterialToolbar
 import dev.steelahhh.core.statusbar.StatusBarController
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-@ExperimentalCoroutinesApi
 open class SkvetteToolbar @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,

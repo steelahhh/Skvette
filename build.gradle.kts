@@ -21,6 +21,23 @@ allprojects {
     }
 }
 
+subprojects {
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class).configureEach {
+        kotlinOptions {
+            // Treat all Kotlin warnings as errors
+            // allWarningsAsErrors = true
+
+            // Enable experimental coroutines APIs, including Flow
+            freeCompilerArgs += "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+            freeCompilerArgs += "-Xopt-in=kotlinx.coroutines.FlowPreview"
+            freeCompilerArgs += "-Xopt-in=kotlin.Experimental"
+
+            // Set JVM target to 1.8
+            jvmTarget = "1.8"
+        }
+    }
+}
+
 tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
 }

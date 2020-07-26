@@ -7,8 +7,6 @@ import dev.steelahhh.core.InvokeStatus.Success
 import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.channels.sendBlocking
@@ -27,8 +25,6 @@ sealed class InvokeStatus {
     data class Error(val throwable: Throwable) : InvokeStatus()
 }
 
-@FlowPreview
-@ExperimentalCoroutinesApi
 abstract class Interactor<in P> {
     protected abstract val scope: CoroutineScope
 
@@ -76,8 +72,6 @@ interface ObservableInteractor<T> {
     fun observe(): Flow<T>
 }
 
-@ExperimentalCoroutinesApi
-@FlowPreview
 abstract class SuspendingWorkInteractor<P : Any, T : Any> : ObservableInteractor<T> {
     private val channel = ConflatedBroadcastChannel<T>()
 
@@ -88,8 +82,6 @@ abstract class SuspendingWorkInteractor<P : Any, T : Any> : ObservableInteractor
     override fun observe(): Flow<T> = channel.asFlow()
 }
 
-@FlowPreview
-@ExperimentalCoroutinesApi
 abstract class SubjectInteractor<P : Any, T> : ObservableInteractor<T> {
     private val channel = ConflatedBroadcastChannel<P>()
 
