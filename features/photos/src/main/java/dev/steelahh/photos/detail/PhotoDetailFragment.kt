@@ -10,53 +10,44 @@ package dev.steelahh.photos.detail
 
 import android.os.Bundle
 import android.os.Parcelable
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
-import coil.api.load
+import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.MvRx
 import com.airbnb.mvrx.args
 import com.airbnb.mvrx.fragmentViewModel
 import com.zhuinden.simplestack.navigator.Navigator
-import dev.steelahh.photos.R
-import dev.steelahh.photos.databinding.FragmentPhotoDetailBinding
-import dev.steelahhh.core.mvrx.BaseFragment
-import dev.steelahhh.core.mvrx.MvRxEpoxyController
-import dev.steelahhh.core.mvrx.simpleController
 import dev.steelahhh.core.navigation.FullScreen
 import dev.steelahhh.core.navigation.ScreenKey
-import dev.steelahhh.coreui.extensions.dp
-import dev.steelahhh.coreui.extensions.updateTopMarginToStatusBar
-import dev.steelahhh.coreui.extensions.viewBinding
 import dev.steelahhh.coreui.extensions.withArguments
 import kotlinx.android.parcel.Parcelize
 
-class PhotoDetailFragment : BaseFragment(R.layout.fragment_photo_detail) {
+class PhotoDetailFragment : Fragment(), MavericksView {
     private val vm by fragmentViewModel<PhotoDetailFragment, PhotoDetailViewModel, PhotoDetailState>()
     private val args: Arguments by args()
 
-    private val binding: FragmentPhotoDetailBinding by viewBinding(FragmentPhotoDetailBinding::bind)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? = FrameLayout(requireContext()).apply {
+        layoutParams = ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        binding.backButton.setOnClickListener {
-            Navigator.getBackstack(requireContext()).goBack()
-        }
-
-        lifecycleScope.launchWhenCreated {
-            binding.backButton.updateTopMarginToStatusBar(8.dp)
-
-            binding.bigImageIv.load(args.url) {
-                crossfade(true)
-                listener { _, _ ->
-                    startPostponedEnterTransition()
+        photoDetailUi(
+            viewGroup = this,
+            actioner = {
+                when (it) {
+                    PhotoDetailAction.GoBack -> Navigator.getBackstack(requireContext()).goBack()
                 }
-            }
-        }
-    }
-
-    override fun epoxyController(): MvRxEpoxyController = simpleController {
+            },
+            photoUrl = args.url
+        )
     }
 
     @Parcelize
@@ -77,5 +68,8 @@ class PhotoDetailFragment : BaseFragment(R.layout.fragment_photo_detail) {
         fun newInstance(args: Arguments) = PhotoDetailFragment().withArguments {
             putParcelable(MvRx.KEY_ARG, args)
         }
+    }
+
+    override fun invalidate() {
     }
 }

@@ -1,9 +1,13 @@
+val kotlin_version: String by extra
 plugins {
     id("com.android.library")
     kotlin("android")
     kotlin("kapt")
     kotlin("android.extensions")
     id("com.jakewharton.butterknife")
+}
+apply {
+    plugin("kotlin-android")
 }
 
 android {
@@ -12,8 +16,16 @@ android {
         features = setOf("parcelize")
     }
 
+    defaultConfig {
+        minSdkVersion(Config.minSdk)
+        targetSdkVersion(Config.targetSdk)
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+
     buildFeatures {
         viewBinding = true
+        compose = true
     }
 
     compileOptions {
@@ -21,14 +33,9 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    defaultConfig {
-        minSdkVersion(Config.minSdk)
-        targetSdkVersion(Config.targetSdk)
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    kotlinOptions {
-        jvmTarget = "1.8"
+    composeOptions {
+        kotlinCompilerVersion = Dependencies.Compose.kotlinCompilerVersion
+        kotlinCompilerExtensionVersion = Dependencies.Compose.version
     }
 }
 
@@ -59,7 +66,18 @@ dependencies {
         Dependencies.timber,
         Dependencies.Dagger.core,
         Dependencies.Coroutines.core,
-        Dependencies.Coroutines.android
+        Dependencies.Coroutines.android,
+        Dependencies.Compose.runtime,
+        Dependencies.Compose.foundation,
+        Dependencies.Compose.ui,
+        Dependencies.Compose.layout,
+        Dependencies.Compose.material,
+        Dependencies.Compose.animation,
+        Dependencies.Compose.tooling,
+        Dependencies.Compose.livedata,
+        Dependencies.Compose.iconsExtended,
+        Dependencies.Accompanist.mdcTheme,
+        Dependencies.Accompanist.coil
     ).forEach {
         implementation(it)
     }

@@ -8,7 +8,9 @@
 
 package dev.steelahhh.core.statusbar
 
+import android.content.res.Resources
 import android.graphics.Color
+import android.util.DisplayMetrics.DENSITY_DEFAULT
 import dev.steelahhh.core.ColorRef
 import kotlin.coroutines.CoroutineContext
 import kotlinx.coroutines.CoroutineScope
@@ -36,6 +38,8 @@ object StatusBarController : CoroutineScope {
     }
 
     val height get() = configuration.height
+
+    val heightDp get() = height / (Resources.getSystem().displayMetrics.densityDpi / DENSITY_DEFAULT)
 
     fun flow(): Flow<Configuration> = _configuration
 

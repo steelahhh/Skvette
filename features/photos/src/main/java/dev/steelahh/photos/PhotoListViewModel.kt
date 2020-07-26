@@ -21,11 +21,11 @@ import dev.steelahhh.core.mvrx.fragment
 import dev.steelahhh.data.interactors.GetPhotosList
 import dev.steelahhh.data.models.Order
 import dev.steelahhh.data.models.Photo
+import kotlin.math.abs
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
-import kotlin.math.abs
 
 data class PhotoListState(
     val photos: List<Photo> = listOf(),

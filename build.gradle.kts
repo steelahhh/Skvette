@@ -3,6 +3,7 @@ buildscript {
         google()
         jcenter()
         maven(url = "https://plugins.gradle.org/m2/")
+        maven(url = "https://dl.bintray.com/kotlin/kotlin-eap/")
     }
 
     dependencies {
@@ -22,6 +23,21 @@ allprojects {
 }
 
 subprojects {
+    configurations.configureEach {
+        resolutionStrategy {
+            eachDependency {
+                if (requested.group == "org.jetbrains.kotlin") {
+                    // kotlin-stdlib-jre7 no longer exists in 1.4, so we force the
+                    // kotlin-stdlib module instead
+                    if (requested.module.name == "kotlin-stdlib-jre7") {
+                        useTarget(Dependencies.kotlin)
+                    } else {
+                        useVersion(Versions.kotlin)
+                    }
+                }
+            }
+        }
+    }
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class).configureEach {
         kotlinOptions {
             // Treat all Kotlin warnings as errors
@@ -31,6 +47,8 @@ subprojects {
             freeCompilerArgs += "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
             freeCompilerArgs += "-Xopt-in=kotlinx.coroutines.FlowPreview"
             freeCompilerArgs += "-Xopt-in=kotlin.Experimental"
+            freeCompilerArgs += "-Xallow-jvm-ir-dependencies"
+            freeCompilerArgs += "-Xskip-prerelease-check"
 
             // Set JVM target to 1.8
             jvmTarget = "1.8"

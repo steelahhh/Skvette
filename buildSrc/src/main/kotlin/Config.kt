@@ -8,7 +8,7 @@ object Config {
 }
 
 object Versions {
-    const val kotlin = "1.3.72"
+    const val kotlin = "1.4.0-rc"
     const val androidPlugin = "4.2.0-alpha05"
     const val androidx = "1.2.0"
     const val constraint = "2.0.0-beta4"
@@ -27,6 +27,8 @@ object Versions {
 
     const val simpleStack = "2.3.2"
 
+    const val accompanist = "0.1.7"
+
     const val mvRx = "2.0.0-alpha4"
     const val epoxy = "4.0.0-beta4"
 
@@ -38,7 +40,7 @@ object Versions {
 }
 
 object Dependencies {
-    const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
+    const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
 
     const val coreKtx = "androidx.core:core-ktx:${Versions.androidx}"
     const val activity = "androidx.activity:activity-ktx:1.2.0-alpha05"
@@ -48,8 +50,31 @@ object Dependencies {
     const val refresher = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-rc01"
     const val material = "com.google.android.material:material:1.2.0-alpha06"
 
-    object AndroidX {
-        const val process = "androidx.lifecycle:lifecycle-process:${Versions.lifecycle}"
+    object Compose {
+        const val version = "0.1.0-dev15"
+
+        const val kotlinCompilerVersion = "1.4.0-dev-withExperimentalGoogleExtensions-20200720"
+
+        const val runtime = "androidx.compose.runtime:runtime:$version"
+        const val livedata = "androidx.compose.runtime:runtime-livedata:$version"
+        const val savedInstanceState = "androidx.compose.runtime:runtime-saved-instance-state$version"
+
+        const val foundation = "androidx.compose.foundation:foundation:$version"
+        const val layout = "androidx.compose.foundation:foundation-layout:$version"
+
+        const val ui = "androidx.compose.ui:ui:$version"
+        const val material = "androidx.compose.material:material:$version"
+        const val iconsExtended = "androidx.compose.material:material-icons-extended:$version"
+
+        const val animation = "androidx.compose.animation:animation:$version"
+
+        const val tooling = "androidx.ui:ui-tooling:$version"
+        const val test = "androidx.ui:ui-test:$version"
+    }
+
+    object Accompanist {
+        const val mdcTheme = "dev.chrisbanes.accompanist:accompanist-mdc-theme:${Versions.accompanist}"
+        const val coil = "dev.chrisbanes.accompanist:accompanist-coil:${Versions.accompanist}"
     }
 
     object Dagger {

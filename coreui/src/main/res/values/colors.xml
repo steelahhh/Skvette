@@ -10,10 +10,11 @@
 <resources>
     <color name="primary_dark">#000</color>
     <color name="primary_light">#FFF</color>
-    <color name="colorAccent">#304FFE</color>
     <color name="transparent">#00FFFFFF</color>
 
     <color name="white">#fff</color>
     <color name="gray">#292931</color>
     <color name="black">#000</color>
+
+    <color name="blueBrand">#304FFE</color>
 </resources>

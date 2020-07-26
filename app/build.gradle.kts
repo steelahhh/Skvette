@@ -1,11 +1,16 @@
 import java.io.FileInputStream
 import java.util.Properties
 
+val kotlin_version: String by extra
+
 plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
     kotlin("android.extensions")
+}
+apply {
+  plugin("kotlin-android")
 }
 
 fun getProperty(fileName: String, prop: String): Any? {
