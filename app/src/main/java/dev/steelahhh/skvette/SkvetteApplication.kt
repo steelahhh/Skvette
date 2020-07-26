@@ -12,11 +12,12 @@ import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_UNSPECIFIED
+import com.airbnb.mvrx.MavericksViewModelConfigFactory
 import com.airbnb.mvrx.MvRx
-import com.airbnb.mvrx.MvRxViewModelConfigFactory
 import dev.steelahhh.core.di.AppComponent
 import dev.steelahhh.core.di.InjectorProvider
 import dev.steelahhh.skvette.di.DaggerApplicationComponent
+import kotlinx.coroutines.Dispatchers
 import timber.log.Timber
 
 @Suppress("unused")
@@ -38,7 +39,7 @@ class SkvetteApplication : Application(), InjectorProvider {
     }
 
     private fun setupMvRx() {
-        MvRx.viewModelConfigFactory = MvRxViewModelConfigFactory(this)
+        MvRx.viewModelConfigFactory = MavericksViewModelConfigFactory(this, Dispatchers.IO)
     }
 
     private fun setupTheme() {

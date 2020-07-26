@@ -27,7 +27,7 @@ object Versions {
 
     const val simpleStack = "2.3.2"
 
-    const val mvRx = "2.0.0-alpha2"
+    const val mvRx = "2.0.0-alpha4"
     const val epoxy = "4.0.0-beta4"
 
     const val leakCanary = "2.0"
@@ -47,6 +47,10 @@ object Dependencies {
     const val constraint = "androidx.constraintlayout:constraintlayout:${Versions.constraint}"
     const val refresher = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-rc01"
     const val material = "com.google.android.material:material:1.2.0-alpha06"
+
+    object AndroidX {
+        const val process = "androidx.lifecycle:lifecycle-process:${Versions.lifecycle}"
+    }
 
     object Dagger {
         const val core = "com.google.dagger:dagger:${Versions.dagger}"

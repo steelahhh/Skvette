@@ -32,6 +32,7 @@ dependencies {
 
     listOf(
         Dependencies.kotlin,
+        Dependencies.AndroidX.process,
         Dependencies.fragment,
         Dependencies.Dagger.core,
         Dependencies.Airbnb.Epoxy.core,

@@ -8,7 +8,6 @@
 
 package dev.steelahh.photos
 
-import androidx.lifecycle.viewModelScope
 import com.airbnb.mvrx.MvRxState
 import com.airbnb.mvrx.MvRxViewModelFactory
 import com.airbnb.mvrx.ViewModelContext
@@ -22,11 +21,11 @@ import dev.steelahhh.core.mvrx.fragment
 import dev.steelahhh.data.interactors.GetPhotosList
 import dev.steelahhh.data.models.Order
 import dev.steelahhh.data.models.Photo
-import kotlin.math.abs
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
+import kotlin.math.abs
 
 data class PhotoListState(
     val photos: List<Photo> = listOf(),
@@ -42,8 +41,7 @@ class PhotoListViewModel @AssistedInject constructor(
     dispatchers: AppCoroutineDispatchers
 ) : MvRxViewModel<PhotoListState>(initialState), Paginator.ViewController<Photo> {
 
-    private val _order: MutableStateFlow<Order> = MutableStateFlow(
-        Order.LATEST)
+    private val _order: MutableStateFlow<Order> = MutableStateFlow(Order.LATEST)
 
     private val paginator = Paginator(
         scope = viewModelScope + dispatchers.io,
