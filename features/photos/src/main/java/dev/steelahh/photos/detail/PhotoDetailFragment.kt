@@ -8,6 +8,8 @@
 
 package dev.steelahh.photos.detail
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.LayoutInflater
@@ -15,20 +17,30 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
+import androidx.ui.layout.ExperimentalLayout
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.MvRx
 import com.airbnb.mvrx.args
 import com.airbnb.mvrx.fragmentViewModel
 import com.zhuinden.simplestack.navigator.Navigator
+import dev.steelahh.photos.di.DaggerPhotosComponent
+import dev.steelahh.photos.di.PhotosComponent
+import dev.steelahhh.core.ColorRef
 import dev.steelahhh.core.navigation.FullScreen
 import dev.steelahhh.core.navigation.ScreenKey
 import dev.steelahhh.coreui.extensions.withArguments
 import kotlinx.android.parcel.Parcelize
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.delayFlow
+import kotlinx.coroutines.flow.onEach
 
 class PhotoDetailFragment : Fragment(), MavericksView {
     private val vm by fragmentViewModel<PhotoDetailFragment, PhotoDetailViewModel, PhotoDetailState>()
     private val args: Arguments by args()
 
+    internal val component: PhotosComponent by lazy { DaggerPhotosComponent.create() }
+
+    @ExperimentalLayout
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,24 +51,30 @@ class PhotoDetailFragment : Fragment(), MavericksView {
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
 
+        background = ColorDrawable(Color.TRANSPARENT)
+
         photoDetailUi(
             viewGroup = this,
+            stateFlow = vm.stateFlow.onEach {
+                if (!it.isLoading && it.photo != null)
+                    delay(500L)
+            },
             actioner = {
                 when (it) {
                     PhotoDetailAction.GoBack -> Navigator.getBackstack(requireContext()).goBack()
+                    else -> vm.handleAction(it)
                 }
             },
-            photoUrl = args.url
+            photoUrl = args.url,
+            photoColor = ColorRef.Hex(args.color)
         )
     }
 
     @Parcelize
     data class Arguments(
-        val id: Long = -1,
-        @Deprecated("Pass only valid id")
-        val url: String = "",
-        @Deprecated("Should be taken from PhotoResponse")
-        val color: String = ""
+        val id: String,
+        val url: String,
+        val color: String,
     ) : Parcelable
 
     @Parcelize

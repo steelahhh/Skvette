@@ -49,6 +49,8 @@ subprojects {
             freeCompilerArgs += "-Xopt-in=kotlin.Experimental"
             freeCompilerArgs += "-Xallow-jvm-ir-dependencies"
             freeCompilerArgs += "-Xskip-prerelease-check"
+            freeCompilerArgs += "-Xskip-metadata-version-check"
+            freeCompilerArgs += "-Xjvm-default=enable"
 
             // Set JVM target to 1.8
             jvmTarget = "1.8"

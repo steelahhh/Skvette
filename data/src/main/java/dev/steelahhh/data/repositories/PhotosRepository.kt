@@ -34,4 +34,10 @@ class PhotosRepository @Inject constructor(
     ): List<PhotoResponse> = withContext(scope.coroutineContext) {
         service.getPhotos(page, itemsPerPage, order.name)
     }
+
+    suspend fun getPhoto(
+        id: String
+    ): PhotoResponse = withContext(scope.coroutineContext) {
+        service.getPhotoById(id)
+    }
 }

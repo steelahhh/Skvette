@@ -10,4 +10,24 @@
     <string name="app_name">photos</string>
 
     <string name="back_button_title">Back button</string>
+
+    <plurals name="photos_pattern">
+        <item quantity="one">%d photo</item>
+        <item quantity="two">%d photos</item>
+        <item quantity="many">%d photos</item>
+        <item quantity="other">%d photos</item>
+    </plurals>
+
+    <plurals name="collections_pattern">
+        <item quantity="one">%d collection</item>
+        <item quantity="two">%d collections</item>
+        <item quantity="many">%d collections</item>
+        <item quantity="other">%d collections</item>
+    </plurals>
+
+
+    <string name="action_like">Like</string>
+    <string name="action_wallpaper">Wallpaper</string>
+    <string name="action_download">Download</string>
+    <string name="action_collection">Collection</string>
 </resources>

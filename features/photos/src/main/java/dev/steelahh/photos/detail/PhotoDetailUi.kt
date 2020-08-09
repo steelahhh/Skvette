@@ -11,78 +11,120 @@ package dev.steelahh.photos.detail
 import android.view.ViewGroup
 import androidx.compose.Composable
 import androidx.compose.Recomposer
+import androidx.compose.collectAsState
+import androidx.compose.getValue
 import androidx.ui.core.Alignment
+import androidx.ui.core.ContextAmbient
 import androidx.ui.core.Modifier
 import androidx.ui.core.setContent
-import androidx.ui.foundation.Box
-import androidx.ui.foundation.Icon
-import androidx.ui.foundation.clickable
-import androidx.ui.foundation.shape.corner.CircleShape
+import androidx.ui.foundation.ScrollableColumn
+import androidx.ui.foundation.Text
+import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.graphics.Color
 import androidx.ui.layout.Column
+import androidx.ui.layout.ExperimentalLayout
 import androidx.ui.layout.Stack
-import androidx.ui.layout.fillMaxSize
 import androidx.ui.layout.fillMaxWidth
 import androidx.ui.layout.padding
-import androidx.ui.layout.preferredHeightIn
-import androidx.ui.layout.size
-import androidx.ui.material.CircularProgressIndicator
-import androidx.ui.material.icons.Icons
-import androidx.ui.material.icons.rounded.ArrowBack
+import androidx.ui.material.Divider
+import androidx.ui.material.MaterialTheme
+import androidx.ui.material.Surface
 import androidx.ui.unit.dp
-import dev.chrisbanes.accompanist.coil.CoilImage
 import dev.chrisbanes.accompanist.mdctheme.MaterialThemeFromMdcTheme
-import dev.steelahhh.core.statusbar.StatusBarController
+import dev.steelahh.photos.detail.components.ActionsRow
+import dev.steelahh.photos.detail.components.CommonPhotoInfoRow
+import dev.steelahh.photos.detail.components.PhotoHeader
+import dev.steelahh.photos.detail.components.PhotoInfoRow
+import dev.steelahh.photos.detail.components.ProfileRow
+import dev.steelahh.photos.detail.components.TagsRow
+import dev.steelahh.photos.detail.components.asColor
+import dev.steelahhh.core.ColorRef
+import dev.steelahhh.coreui.compose.ErrorComponent
+import dev.steelahhh.coreui.compose.Loader
+import dev.steelahhh.data.models.PhotoUi
+import kotlinx.coroutines.flow.Flow
 
+internal val CORNER_SIZE = 56.dp
+internal val CONTENT_SHAPE = RoundedCornerShape(topRight = CORNER_SIZE)
+internal val VISIBLE_IMAGE_HEIGHT = 420.dp
+internal val ACTUAL_IMAGE_HEIGHT = VISIBLE_IMAGE_HEIGHT + CORNER_SIZE
+
+@ExperimentalLayout
 fun photoDetailUi(
     viewGroup: ViewGroup,
+    stateFlow: Flow<PhotoDetailState>,
     actioner: (PhotoDetailAction) -> Unit,
-    photoUrl: String
+    photoUrl: String,
+    photoColor: ColorRef
 ) = viewGroup.setContent(Recomposer.current()) {
-    MaterialThemeFromMdcTheme {
-        PlaceholderUi(photoUrl = photoUrl, actioner = actioner)
+    MaterialThemeFromMdcTheme(useTextColors = true) {
+        val state by stateFlow.collectAsState(PhotoDetailState(photoUrl))
+        ScrollableColumn {
+            Stack {
+                PhotoHeader(
+                    placeholder = photoUrl,
+                    photo = state.photo?.url,
+                    color = (state.photo?.colorRef ?: photoColor).asColor(),
+                    actioner = actioner,
+                )
+                when {
+                    state.isLoading -> LoadingContent(
+                        modifier = Modifier
+                            .gravity(Alignment.Center)
+                            .padding(top = VISIBLE_IMAGE_HEIGHT)
+                            .fillMaxWidth()
+                    )
+                    state.photo != null -> PhotoContent(
+                        photo = state.photo!!,
+                        modifier = Modifier.padding(top = VISIBLE_IMAGE_HEIGHT),
+                        actioner = actioner
+                    )
+                    state.error != null -> ErrorComponent(
+                        message = state.error!!,
+                        onAction = { actioner(PhotoDetailAction.Refresh) }
+                    )
+                    else -> Text(text = "Well hello there")
+                }
+            }
+
+        }
+
     }
 }
 
 @Composable
-fun PlaceholderUi(photoUrl: String, actioner: (PhotoDetailAction) -> Unit) {
-    Stack {
-        Column(modifier = Modifier.fillMaxSize()) {
-            CoilImage(
-                data = photoUrl,
-                modifier = Modifier.fillMaxWidth().preferredHeightIn(minHeight = 120.dp)
-            )
-
-            CircularProgressIndicator(
-                modifier = Modifier.gravity(Alignment.CenterHorizontally).padding(16.dp)
-            )
-        }
-
-        BackButton {
-            actioner(PhotoDetailAction.GoBack)
-        }
-    }
-}
-
-@Composable
-private fun BackButton(
-    modifier: Modifier = Modifier
-        .padding(
-            start = 8.dp,
-            top = StatusBarController.heightDp.dp + 8.dp,
-            end = 8.dp
-        )
-        .size(48.dp),
-    action: () -> Unit
-) {
-    Box(
-        shape = CircleShape,
-        backgroundColor = Color.White.copy(alpha = 0.7f),
-        modifier = modifier + Modifier.clickable(onClick = action)
+private fun LoadingContent(modifier: Modifier) {
+    Surface(
+        color = MaterialTheme.colors.surface,
+        shape = CONTENT_SHAPE,
+        modifier = modifier,
     ) {
-        Icon(
-            asset = Icons.Rounded.ArrowBack.copy(defaultHeight = 32.dp, defaultWidth = 32.dp),
-            modifier = Modifier.padding(8.dp)
-        )
+        Loader(modifier = Modifier.padding(56.dp))
+    }
+}
+
+@ExperimentalLayout
+@Composable
+fun PhotoContent(
+    photo: PhotoUi,
+    modifier: Modifier,
+    actioner: (PhotoDetailAction) -> Unit
+) {
+    Surface(
+        color = MaterialTheme.colors.surface,
+        shape = CONTENT_SHAPE,
+        modifier = modifier,
+    ) {
+        Column {
+            ProfileRow(actioner, photo)
+            Divider(modifier = Modifier.padding(horizontal = 16.dp))
+            CommonPhotoInfoRow(photo)
+            Divider(modifier = Modifier.padding(horizontal = 16.dp))
+            photo.exif?.let { PhotoInfoRow(it) }
+            Divider(modifier = Modifier.padding(horizontal = 16.dp))
+            ActionsRow(photo, actioner)
+            Divider(modifier = Modifier.padding(horizontal = 16.dp))
+            TagsRow(photo, actioner)
+        }
     }
 }

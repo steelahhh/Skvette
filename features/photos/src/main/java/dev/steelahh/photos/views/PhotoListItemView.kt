@@ -21,7 +21,7 @@ import com.airbnb.epoxy.ModelProp
 import com.airbnb.epoxy.ModelView
 import com.google.android.material.card.MaterialCardView
 import dev.steelahh.photos.R
-import dev.steelahhh.data.models.Photo
+import dev.steelahhh.data.models.PhotoPreviewUi
 import javax.annotation.Nullable
 
 @ModelView(autoLayout = ModelView.Size.MATCH_WIDTH_WRAP_HEIGHT)
@@ -40,10 +40,10 @@ class PhotoListItemView @JvmOverloads constructor(
         container = findViewById(R.id.itemPhotoContainer)
     }
 
-    var photo: Photo? = null @ModelProp set
+    var photo: PhotoPreviewUi? = null @ModelProp set
 
     @Nullable
-    var onClick: ((photo: Photo, view: View) -> Unit)? = null
+    var onClick: ((photo: PhotoPreviewUi, view: View) -> Unit)? = null
         @CallbackProp set
 
     @AfterPropsSet

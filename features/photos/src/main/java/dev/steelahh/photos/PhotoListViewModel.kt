@@ -20,7 +20,7 @@ import dev.steelahhh.core.mvrx.MvRxViewModel
 import dev.steelahhh.core.mvrx.fragment
 import dev.steelahhh.data.interactors.GetPhotosList
 import dev.steelahhh.data.models.Order
-import dev.steelahhh.data.models.Photo
+import dev.steelahhh.data.models.PhotoPreviewUi
 import kotlin.math.abs
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
@@ -28,7 +28,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
 
 data class PhotoListState(
-    val photos: List<Photo> = listOf(),
+    val photos: List<PhotoPreviewUi> = listOf(),
     val isError: Boolean = false,
     val isLoading: Boolean = false,
     val isRefreshing: Boolean = false,
@@ -39,7 +39,7 @@ class PhotoListViewModel @AssistedInject constructor(
     @Assisted initialState: PhotoListState,
     private val getPhotosList: GetPhotosList,
     dispatchers: AppCoroutineDispatchers
-) : MvRxViewModel<PhotoListState>(initialState), Paginator.ViewController<Photo> {
+) : MvRxViewModel<PhotoListState>(initialState), Paginator.ViewController<PhotoPreviewUi> {
 
     private val _order: MutableStateFlow<Order> = MutableStateFlow(Order.LATEST)
 
@@ -95,7 +95,7 @@ class PhotoListViewModel @AssistedInject constructor(
         copy(isError = true)
     }
 
-    override fun showData(data: List<Photo>) = setState {
+    override fun showData(data: List<PhotoPreviewUi>) = setState {
         copy(photos = data, isLoadingMore = false, isRefreshing = false, isError = false)
     }
 

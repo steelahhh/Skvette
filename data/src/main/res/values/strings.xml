@@ -7,4 +7,14 @@
   -->
 
 <resources>
+    <string name="info_views_title">Views</string>
+    <string name="info_downloads_title">Downloads</string>
+    <string name="info_likes_title">Likes</string>
+    
+    <string name="camera_title">Camera</string>
+    <string name="aperture_title">Aperture</string>
+    <string name="focal_length_title">Focal length</string>
+    <string name="iso_title">ISO</string>
+    <string name="dimensions_title">Dimensions</string>
+    <string name="shutter_speed_title">Shutter speed</string>
 </resources>

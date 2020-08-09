@@ -14,6 +14,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        compose = true
     }
 
     compileOptions {
@@ -21,7 +22,10 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    kotlinOptions.jvmTarget = "1.8"
+    composeOptions {
+        kotlinCompilerVersion = Dependencies.Compose.kotlinCompilerVersion
+        kotlinCompilerExtensionVersion = Dependencies.Compose.version
+    }
 
     defaultConfig {
         minSdkVersion(Config.minSdk)
@@ -45,7 +49,18 @@ dependencies {
         Dependencies.Lifecycle.runtime,
         Dependencies.Lifecycle.common,
         Dependencies.Lifecycle.viewModel,
-        Dependencies.Lifecycle.livedata
+        Dependencies.Lifecycle.livedata,
+        Dependencies.Compose.runtime,
+        Dependencies.Compose.foundation,
+        Dependencies.Compose.ui,
+        Dependencies.Compose.layout,
+        Dependencies.Compose.material,
+        Dependencies.Compose.animation,
+        Dependencies.Compose.tooling,
+        Dependencies.Compose.livedata,
+        Dependencies.Compose.iconsExtended,
+        Dependencies.Accompanist.mdcTheme,
+        Dependencies.Accompanist.coil
     ).forEach {
         implementation(it)
     }

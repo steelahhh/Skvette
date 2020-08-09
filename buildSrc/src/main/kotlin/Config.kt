@@ -9,7 +9,7 @@ object Config {
 
 object Versions {
     const val kotlin = "1.4.0-rc"
-    const val androidPlugin = "4.2.0-alpha05"
+    const val androidPlugin = "4.2.0-alpha07"
     const val androidx = "1.2.0"
     const val constraint = "2.0.0-beta4"
     const val lifecycle = "2.2.0"
@@ -33,6 +33,8 @@ object Versions {
     const val epoxy = "4.0.0-beta4"
 
     const val leakCanary = "2.0"
+
+    const val coroutines = "1.3.8-1.4.0-rc"
 
     const val mockk = "1.9.3.kotlin12"
     const val junit = "5.3.1"
@@ -101,8 +103,8 @@ object Dependencies {
     }
 
     object Coroutines {
-        const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7"
-        const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.7"
+        const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
+        const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
     }
 
     object SqlDelight {

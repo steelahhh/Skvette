@@ -10,7 +10,7 @@ package dev.steelahhh.data.models
 
 import dev.steelahhh.data.responses.PhotoResponse
 
-data class Photo(
+data class PhotoPreviewUi(
     val id: String,
     val color: String,
     val width: Int,
@@ -19,7 +19,7 @@ data class Photo(
 )
 
 // TODO: control the url size from settings
-fun PhotoResponse.toDomain() = Photo(
+fun PhotoResponse.toPreviewUi() = PhotoPreviewUi(
     id = id,
     color = color,
     width = width,

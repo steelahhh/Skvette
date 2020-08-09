@@ -27,7 +27,7 @@ import dev.steelahhh.core.mvrx.simpleController
 import dev.steelahhh.core.navigation.ScreenKey
 import dev.steelahhh.coreui.extensions.viewBinding
 import dev.steelahhh.coreui.views.loaderItemView
-import dev.steelahhh.data.models.Photo
+import dev.steelahhh.data.models.PhotoPreviewUi
 import kotlinx.android.parcel.Parcelize
 
 class PhotoListFragment : BaseFragment(R.layout.fragment_photos) {
@@ -78,10 +78,11 @@ class PhotoListFragment : BaseFragment(R.layout.fragment_photos) {
         }
     }
 
-    private fun Photo.navigate() {
+    private fun PhotoPreviewUi.navigate() {
         Navigator.getBackstack(requireContext()).goTo(
             PhotoDetailFragment.Key(
                 PhotoDetailFragment.Arguments(
+                    id = id,
                     url = url,
                     color = color
                 )
