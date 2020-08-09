@@ -26,7 +26,8 @@ data class PhotoUi(
     val info: List<InfoItem>,
     val downloads: Int,
     val author: UserPreviewUi,
-    val tags: List<String>
+    val tags: List<String>,
+    val unsplashUrl: String?
 )
 
 fun PhotoResponse.toUi(numberFormatter: NumberFormat) = PhotoUi(
@@ -47,5 +48,6 @@ fun PhotoResponse.toUi(numberFormatter: NumberFormat) = PhotoUi(
     ),
     url = urls.regular ?: "",
     author = user.toPreviewUi(),
-    tags = tags?.map { it.title }.orEmpty()
+    tags = tags?.map { it.title }.orEmpty(),
+    unsplashUrl = links.html
 )

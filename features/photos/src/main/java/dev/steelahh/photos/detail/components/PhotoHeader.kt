@@ -54,11 +54,13 @@ internal fun PhotoHeader(
                 actioner(PhotoDetailAction.GoBack)
             }
 
-            ToolbarIconButton(
-                icon = Icons.Rounded.Public,
-                modifier = Modifier.padding(start = 8.dp, end = 8.dp).gravity(Alignment.TopEnd)
-            ) {
-                photo?.let { actioner(PhotoDetailAction.OpenInBrowser(it)) }
+            photo?.unsplashUrl?.let {
+                ToolbarIconButton(
+                    icon = Icons.Rounded.Public,
+                    modifier = Modifier.padding(start = 8.dp, end = 8.dp).gravity(Alignment.TopEnd)
+                ) {
+                    actioner(PhotoDetailAction.OpenInBrowser(it))
+                }
             }
         }
     }

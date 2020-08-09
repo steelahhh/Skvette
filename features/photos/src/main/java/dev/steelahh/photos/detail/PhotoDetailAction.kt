@@ -18,6 +18,7 @@ sealed class PhotoDetailAction {
     data class Like(val photo: PhotoUi) : PhotoDetailAction()
     data class AddToCollection(val photo: PhotoUi) : PhotoDetailAction()
     data class SetAsWallpaper(val photo: PhotoUi) : PhotoDetailAction()
-    data class OpenInBrowser(val photo: PhotoUi) : PhotoDetailAction()
+    data class OpenInBrowser(val unsplashUrl: String) : PhotoDetailAction()
+    data class Share(val unsplashUrl: String?) : PhotoDetailAction()
     object Refresh : PhotoDetailAction()
 }

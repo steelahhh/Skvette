@@ -28,6 +28,8 @@ import dev.steelahh.photos.di.PhotosComponent
 import dev.steelahhh.core.ColorRef
 import dev.steelahhh.core.navigation.FullScreen
 import dev.steelahhh.core.navigation.ScreenKey
+import dev.steelahhh.coreui.extensions.tryToOpenUrl
+import dev.steelahhh.coreui.extensions.tryToShare
 import dev.steelahhh.coreui.extensions.withArguments
 import kotlinx.android.parcel.Parcelize
 import kotlinx.coroutines.delay
@@ -58,10 +60,14 @@ class PhotoDetailFragment : Fragment(), MavericksView {
                 if (!it.isLoading && it.photo != null)
                     delay(300L)
             },
-            actioner = {
-                when (it) {
-                    PhotoDetailAction.GoBack -> Navigator.getBackstack(requireContext()).goBack()
-                    else -> vm.handleAction(it)
+            actioner = { action ->
+                when (action) {
+                    is PhotoDetailAction.GoBack -> Navigator.getBackstack(requireContext()).goBack()
+                    is PhotoDetailAction.OpenInBrowser -> tryToOpenUrl(action.unsplashUrl)
+                    is PhotoDetailAction.Share -> {
+                        action.unsplashUrl?.let(::tryToShare)
+                    }
+                    else -> vm.handleAction(action)
                 }
             },
             photoUrl = args.url,

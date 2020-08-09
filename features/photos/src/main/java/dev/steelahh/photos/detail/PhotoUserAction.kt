@@ -13,6 +13,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.filled.CloudDownload
 import androidx.compose.material.icons.filled.FilterFrames
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.ui.graphics.vector.VectorAsset
 import dev.steelahh.photos.R
@@ -23,6 +24,7 @@ enum class PhotoUserAction(
     val icon: VectorAsset
 ) {
     LIKE(R.string.action_like, Icons.Default.ThumbUp),
+    SHARE(R.string.action_share, Icons.Default.Share),
     SET_AS_WALLPAPER(R.string.action_wallpaper, Icons.Default.FilterFrames),
     DOWNLOAD(R.string.action_download, Icons.Default.CloudDownload),
     COLLECTION(R.string.action_collection, Icons.Default.Bookmark),

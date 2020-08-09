@@ -83,5 +83,6 @@ private fun PhotoUserAction.toPhotoDetailAction(photo: PhotoUi) = when (this) {
     PhotoUserAction.SET_AS_WALLPAPER -> PhotoDetailAction.SetAsWallpaper(photo = photo)
     PhotoUserAction.DOWNLOAD -> PhotoDetailAction.Download(photo = photo)
     PhotoUserAction.COLLECTION -> PhotoDetailAction.AddToCollection(photo = photo)
+    PhotoUserAction.SHARE -> PhotoDetailAction.Share(unsplashUrl = photo.unsplashUrl)
 }
 
