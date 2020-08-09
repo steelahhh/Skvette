@@ -11,6 +11,7 @@ package dev.steelahh.photos
 import com.airbnb.mvrx.MvRxState
 import com.airbnb.mvrx.MvRxViewModelFactory
 import com.airbnb.mvrx.ViewModelContext
+import com.github.michaelbull.result.get
 import com.github.michaelbull.result.getOr
 import com.squareup.inject.assisted.Assisted
 import com.squareup.inject.assisted.AssistedInject
@@ -26,6 +27,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
+import timber.log.Timber
+import java.lang.RuntimeException
 
 data class PhotoListState(
     val photos: List<PhotoPreviewUi> = listOf(),
@@ -46,12 +49,14 @@ class PhotoListViewModel @AssistedInject constructor(
     private val paginator = Paginator(
         scope = viewModelScope + dispatchers.io,
         requestFactory = { page ->
-            getPhotosList(
+            val (data, error) = getPhotosList(
                 GetPhotosList.Params(
                     page = page,
                     order = _order.value
                 )
-            ).getOr { emptyList() }
+            )
+            if (error != null) throw error
+            else data.orEmpty()
         },
         viewController = this
     )
