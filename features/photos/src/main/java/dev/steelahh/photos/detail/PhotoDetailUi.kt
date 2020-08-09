@@ -118,9 +118,9 @@ fun PhotoContent(
             Divider(modifier = Modifier.padding(horizontal = 16.dp))
             CommonPhotoInfoRow(photo)
             Divider(modifier = Modifier.padding(horizontal = 16.dp))
-            photo.exif?.let { PhotoInfoRow(it) }
-            Divider(modifier = Modifier.padding(horizontal = 16.dp))
             ActionsRow(photo, actioner)
+            Divider(modifier = Modifier.padding(horizontal = 16.dp))
+            photo.exif?.let { PhotoInfoRow(it) }
             Divider(modifier = Modifier.padding(horizontal = 16.dp))
             TagsRow(photo, actioner)
         }
