@@ -8,11 +8,11 @@
 
 package dev.steelahhh.coreui.compose
 
-import androidx.compose.Composable
-import androidx.ui.core.Modifier
-import androidx.ui.foundation.Text
-import androidx.ui.layout.Column
-import androidx.ui.layout.fillMaxSize
+import androidx.compose.foundation.Text
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 
 @Composable
 fun ErrorComponent(
@@ -21,7 +21,7 @@ fun ErrorComponent(
     message: String? = null,
     onAction: () -> Unit,
 ) {
-    Column(modifier = modifier.plus(Modifier.fillMaxSize())) {
+    Column(modifier = modifier.then(Modifier.fillMaxSize())) {
         Text(text = "To be implemented...")
     }
 }

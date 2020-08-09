@@ -8,15 +8,15 @@
 
 package dev.steelahh.photos.detail.components
 
-import androidx.compose.Composable
-import androidx.ui.core.Modifier
-import androidx.ui.foundation.drawBackground
-import androidx.ui.graphics.Color
-import androidx.ui.layout.Column
-import androidx.ui.layout.Stack
-import androidx.ui.layout.fillMaxSize
-import androidx.ui.layout.fillMaxWidth
-import androidx.ui.layout.height
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Stack
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import dev.steelahh.photos.detail.ACTUAL_IMAGE_HEIGHT
 import dev.steelahh.photos.detail.PhotoDetailAction
 import dev.steelahhh.coreui.compose.CoilGradualLoadingPhoto
@@ -29,7 +29,7 @@ internal fun PhotoHeader(
     color: Color = Color.Gray,
     actioner: (PhotoDetailAction) -> Unit
 ) {
-    Column(modifier = Modifier.fillMaxSize().height(ACTUAL_IMAGE_HEIGHT).drawBackground(color)) {
+    Column(modifier = Modifier.fillMaxSize().height(ACTUAL_IMAGE_HEIGHT).background(color = color)) {
         Stack {
             Column(modifier = Modifier.fillMaxWidth()) {
                 CoilGradualLoadingPhoto(

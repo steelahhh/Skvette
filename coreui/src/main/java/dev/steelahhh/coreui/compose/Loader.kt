@@ -8,15 +8,15 @@
 
 package dev.steelahhh.coreui.compose
 
-import androidx.compose.Composable
-import androidx.ui.core.Modifier
-import androidx.ui.layout.size
-import androidx.ui.material.CircularProgressIndicator
-import androidx.ui.unit.dp
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun Loader(
     modifier: Modifier
 ) {
-    CircularProgressIndicator(modifier = modifier.plus(Modifier.size(56.dp)))
+    CircularProgressIndicator(modifier = modifier.then(Modifier.size(56.dp)))
 }

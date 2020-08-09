@@ -8,19 +8,21 @@
 
 package dev.steelahh.photos.detail.components
 
-import androidx.compose.Composable
-import androidx.ui.core.Alignment
-import androidx.ui.core.Modifier
-import androidx.ui.intl.Locale
-import androidx.ui.layout.Column
-import androidx.ui.layout.Row
-import androidx.ui.layout.RowScope.weight
-import androidx.ui.layout.Spacer
-import androidx.ui.layout.height
-import androidx.ui.layout.padding
-import androidx.ui.res.stringResource
-import androidx.ui.text.toUpperCase
-import androidx.ui.unit.dp
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope.weight
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.intl.Locale
+import androidx.compose.ui.text.toUpperCase
+import androidx.compose.ui.unit.dp
 import dev.steelahh.photos.R
 import dev.steelahhh.coreui.compose.ColumnItem
 import dev.steelahhh.data.models.ExifUi

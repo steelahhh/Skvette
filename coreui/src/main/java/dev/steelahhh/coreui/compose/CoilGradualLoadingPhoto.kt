@@ -8,15 +8,16 @@
 
 package dev.steelahhh.coreui.compose
 
-import androidx.compose.Composable
-import androidx.compose.getValue
-import androidx.compose.setValue
-import androidx.compose.state
-import androidx.ui.core.ContentScale
-import androidx.ui.core.Modifier
-import androidx.ui.core.drawOpacity
-import androidx.ui.layout.Stack
-import androidx.ui.layout.fillMaxWidth
+import androidx.compose.foundation.layout.Stack
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawOpacity
+import androidx.compose.ui.layout.ContentScale
 import dev.chrisbanes.accompanist.coil.CoilImage
 import dev.chrisbanes.accompanist.coil.SuccessResult
 
@@ -28,7 +29,7 @@ fun CoilGradualLoadingPhoto(
     modifier: Modifier = Modifier.fillMaxWidth()
 ) {
     Stack {
-        var isPhotoLoaded by state { false }
+        var isPhotoLoaded by remember { mutableStateOf(false) }
 
         CoilImage(
             data = placeholder,

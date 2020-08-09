@@ -8,21 +8,21 @@
 
 package dev.steelahhh.coreui.compose
 
-import androidx.compose.Composable
-import androidx.ui.core.Alignment
-import androidx.ui.core.Modifier
-import androidx.ui.foundation.Text
-import androidx.ui.foundation.currentTextStyle
-import androidx.ui.intl.Locale
-import androidx.ui.layout.Column
-import androidx.ui.layout.RowScope.weight
-import androidx.ui.layout.Spacer
-import androidx.ui.layout.height
-import androidx.ui.material.MaterialTheme
-import androidx.ui.text.toUpperCase
+import androidx.compose.foundation.Text
+import androidx.compose.foundation.currentTextStyle
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope.weight
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.material.MaterialTheme
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.intl.Locale
+import androidx.compose.ui.text.toUpperCase
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.ui.tooling.preview.Preview
-import androidx.ui.unit.dp
-import androidx.ui.unit.sp
 
 @Composable
 fun ColumnItem(

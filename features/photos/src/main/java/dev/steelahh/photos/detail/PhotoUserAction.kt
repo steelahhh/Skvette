@@ -9,12 +9,12 @@
 package dev.steelahh.photos.detail
 
 import androidx.annotation.StringRes
-import androidx.ui.graphics.vector.VectorAsset
-import androidx.ui.material.icons.Icons
-import androidx.ui.material.icons.filled.Bookmark
-import androidx.ui.material.icons.filled.CloudDownload
-import androidx.ui.material.icons.filled.FilterFrames
-import androidx.ui.material.icons.filled.ThumbUp
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Bookmark
+import androidx.compose.material.icons.filled.CloudDownload
+import androidx.compose.material.icons.filled.FilterFrames
+import androidx.compose.material.icons.filled.ThumbUp
+import androidx.compose.ui.graphics.vector.VectorAsset
 import dev.steelahh.photos.R
 
 enum class PhotoUserAction(

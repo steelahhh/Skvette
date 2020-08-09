@@ -16,8 +16,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.compose.foundation.layout.ExperimentalLayout
 import androidx.fragment.app.Fragment
-import androidx.ui.layout.ExperimentalLayout
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.MvRx
 import com.airbnb.mvrx.args
@@ -31,7 +31,6 @@ import dev.steelahhh.core.navigation.ScreenKey
 import dev.steelahhh.coreui.extensions.withArguments
 import kotlinx.android.parcel.Parcelize
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.delayFlow
 import kotlinx.coroutines.flow.onEach
 
 class PhotoDetailFragment : Fragment(), MavericksView {
@@ -88,6 +87,5 @@ class PhotoDetailFragment : Fragment(), MavericksView {
         }
     }
 
-    override fun invalidate() {
-    }
+    override fun invalidate() = Unit
 }

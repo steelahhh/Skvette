@@ -8,19 +8,19 @@
 
 package dev.steelahhh.coreui.compose
 
-import androidx.compose.Composable
-import androidx.ui.core.Modifier
-import androidx.ui.core.clip
-import androidx.ui.foundation.Box
-import androidx.ui.foundation.Icon
-import androidx.ui.foundation.clickable
-import androidx.ui.foundation.shape.corner.CircleShape
-import androidx.ui.graphics.Color
-import androidx.ui.layout.padding
-import androidx.ui.layout.size
-import androidx.ui.material.icons.Icons
-import androidx.ui.material.icons.rounded.ArrowBack
-import androidx.ui.unit.dp
+import androidx.compose.foundation.Box
+import androidx.compose.foundation.Icon
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.ArrowBack
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import dev.steelahhh.core.statusbar.StatusBarController
 
 @Composable
@@ -37,7 +37,7 @@ fun RoundBackButton(
     Box(
         shape = CircleShape,
         backgroundColor = Color.White.copy(alpha = 0.7f),
-        modifier = modifier + Modifier.clip(CircleShape)
+        modifier = modifier.then(Modifier.clip(CircleShape))
     ) {
         Icon(
             asset = Icons.Rounded.ArrowBack.copy(defaultHeight = 32.dp, defaultWidth = 32.dp),

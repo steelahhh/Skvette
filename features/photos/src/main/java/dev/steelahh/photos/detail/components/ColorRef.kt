@@ -8,9 +8,9 @@
 
 package dev.steelahh.photos.detail.components
 
-import androidx.compose.Composable
-import androidx.ui.core.ContextAmbient
-import androidx.ui.graphics.Color
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.ContextAmbient
 import dev.steelahhh.core.ColorRef
 
 @Composable

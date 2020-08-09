@@ -14,7 +14,7 @@ object Versions {
     const val constraint = "2.0.0-beta4"
     const val lifecycle = "2.2.0"
 
-    const val dagger = "2.27"
+    const val dagger = "2.28.3"
     const val assisted = "0.5.2"
 
     const val klock = "1.4.0"
@@ -27,7 +27,7 @@ object Versions {
 
     const val simpleStack = "2.3.2"
 
-    const val accompanist = "0.1.7"
+    const val accompanist = "0.1.8"
 
     const val mvRx = "2.0.0-alpha4"
     const val epoxy = "4.0.0-beta4"
@@ -53,9 +53,9 @@ object Dependencies {
     const val material = "com.google.android.material:material:1.2.0-alpha06"
 
     object Compose {
-        const val version = "0.1.0-dev15"
+        const val version = "0.1.0-dev16"
 
-        const val kotlinCompilerVersion = "1.4.0-dev-withExperimentalGoogleExtensions-20200720"
+        const val kotlinCompilerVersion = "1.4.0-rc"
 
         const val runtime = "androidx.compose.runtime:runtime:$version"
         const val livedata = "androidx.compose.runtime:runtime-livedata:$version"

@@ -8,20 +8,20 @@
 
 package dev.steelahh.photos.detail.components
 
-import androidx.compose.Composable
-import androidx.ui.core.Modifier
-import androidx.ui.foundation.Text
-import androidx.ui.foundation.clickable
-import androidx.ui.foundation.shape.corner.CircleShape
-import androidx.ui.layout.ExperimentalLayout
-import androidx.ui.layout.FlowRow
-import androidx.ui.layout.Row
-import androidx.ui.layout.padding
-import androidx.ui.material.Card
-import androidx.ui.material.MaterialTheme
-import androidx.ui.unit.dp
-import androidx.ui.unit.sp
-import androidx.ui.util.fastForEach
+import androidx.compose.foundation.Text
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.ExperimentalLayout
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.util.fastForEach
 import dev.steelahh.photos.detail.PhotoDetailAction
 import dev.steelahhh.data.models.PhotoUi
 
