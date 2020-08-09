@@ -14,33 +14,51 @@ import androidx.compose.foundation.layout.Stack
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.ArrowBack
+import androidx.compose.material.icons.rounded.Public
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import dev.steelahh.photos.detail.ACTUAL_IMAGE_HEIGHT
 import dev.steelahh.photos.detail.PhotoDetailAction
 import dev.steelahhh.coreui.compose.CoilGradualLoadingPhoto
-import dev.steelahhh.coreui.compose.RoundBackButton
+import dev.steelahhh.coreui.compose.ToolbarIconButton
+import dev.steelahhh.data.models.PhotoUi
 
 @Composable
 internal fun PhotoHeader(
     placeholder: String,
-    photo: String?,
+    photo: PhotoUi?,
     color: Color = Color.Gray,
     actioner: (PhotoDetailAction) -> Unit
 ) {
     Column(modifier = Modifier.fillMaxSize().height(ACTUAL_IMAGE_HEIGHT).background(color = color)) {
         Stack {
-            Column(modifier = Modifier.fillMaxWidth()) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .drawOverlay(Color.Black.copy(alpha = 0.2f))
+            ) {
                 CoilGradualLoadingPhoto(
                     placeholder = placeholder,
-                    actualPhoto = photo,
+                    actualPhoto = photo?.url,
                     modifier = Modifier.fillMaxWidth().height(ACTUAL_IMAGE_HEIGHT)
                 )
             }
 
-            RoundBackButton {
+            ToolbarIconButton(Icons.Rounded.ArrowBack) {
                 actioner(PhotoDetailAction.GoBack)
+            }
+
+            ToolbarIconButton(
+                icon = Icons.Rounded.Public,
+                modifier = Modifier.padding(start = 8.dp, end = 8.dp).gravity(Alignment.TopEnd)
+            ) {
+                photo?.let { actioner(PhotoDetailAction.OpenInBrowser(it)) }
             }
         }
     }

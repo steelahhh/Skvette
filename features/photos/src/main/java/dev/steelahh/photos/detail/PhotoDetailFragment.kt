@@ -56,7 +56,7 @@ class PhotoDetailFragment : Fragment(), MavericksView {
             viewGroup = this,
             stateFlow = vm.stateFlow.onEach {
                 if (!it.isLoading && it.photo != null)
-                    delay(500L)
+                    delay(300L)
             },
             actioner = {
                 when (it) {

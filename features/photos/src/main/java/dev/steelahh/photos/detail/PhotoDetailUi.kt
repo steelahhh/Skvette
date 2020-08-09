@@ -61,7 +61,7 @@ fun photoDetailUi(
             Stack {
                 PhotoHeader(
                     placeholder = photoUrl,
-                    photo = state.photo?.url,
+                    photo = state.photo,
                     color = (state.photo?.colorRef ?: photoColor).asColor(),
                     actioner = actioner,
                 )

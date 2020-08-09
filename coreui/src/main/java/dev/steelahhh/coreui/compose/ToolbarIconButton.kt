@@ -14,33 +14,32 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.VectorAsset
 import androidx.compose.ui.unit.dp
 import dev.steelahhh.core.statusbar.StatusBarController
 
 @Composable
-fun RoundBackButton(
-    modifier: Modifier = Modifier
-        .padding(
-            start = 8.dp,
-            top = StatusBarController.heightDp.dp + 8.dp,
-            end = 8.dp
-        )
-        .size(48.dp),
+fun ToolbarIconButton(
+    icon: VectorAsset,
+    modifier: Modifier = Modifier.padding(start = 8.dp, end = 8.dp),
     action: () -> Unit
 ) {
     Box(
         shape = CircleShape,
-        backgroundColor = Color.White.copy(alpha = 0.7f),
-        modifier = modifier.then(Modifier.clip(CircleShape))
+        modifier = modifier.then(
+            Modifier
+                .padding(top = StatusBarController.heightDp.dp + 8.dp)
+                .size(48.dp)
+                .clip(CircleShape)
+        )
     ) {
         Icon(
-            asset = Icons.Rounded.ArrowBack.copy(defaultHeight = 32.dp, defaultWidth = 32.dp),
+            asset = icon.copy(defaultHeight = 32.dp, defaultWidth = 32.dp),
+            tint = Color.White,
             modifier = Modifier.clickable(onClick = action).padding(8.dp)
         )
     }
