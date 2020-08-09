@@ -14,6 +14,7 @@ import dagger.Provides
 import dagger.Reusable
 import dev.steelahhh.core.di.CoreModule
 import dev.steelahhh.data.ApiKeyInterceptor
+import dev.steelahhh.data.ApiVersionInterceptor
 import dev.steelahhh.data.SKVService
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
@@ -35,9 +36,13 @@ object DataModule {
 
     @Provides
     @Reusable
-    fun provideOkHttpClient(): OkHttpClient = OkHttpClient.Builder()
+    fun provideOkHttpClient(
+        apiKeyInterceptor: ApiKeyInterceptor,
+        apiVersionInterceptor: ApiVersionInterceptor
+    ): OkHttpClient = OkHttpClient.Builder()
         .addInterceptor(HttpLoggingInterceptor().apply { level = BODY })
-        .addInterceptor(ApiKeyInterceptor)
+        .addInterceptor(apiKeyInterceptor)
+        .addInterceptor(apiVersionInterceptor)
         .connectTimeout(TIME_OUT, TimeUnit.MILLISECONDS)
         .readTimeout(TIME_OUT, TimeUnit.MILLISECONDS)
         .build()
@@ -52,6 +57,5 @@ object DataModule {
 
     @Provides
     @Singleton
-    fun provideApi(retrofit: Retrofit): SKVService = retrofit.create(
-        SKVService::class.java)
+    fun provideApi(retrofit: Retrofit): SKVService = retrofit.create(SKVService::class.java)
 }
