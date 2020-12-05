@@ -19,13 +19,13 @@ import androidx.compose.ui.graphics.vector.VectorAsset
 import dev.steelahh.photos.R
 
 enum class PhotoUserAction(
-    @StringRes
-    val titleRes: Int,
-    val icon: VectorAsset
+  @StringRes
+  val titleRes: Int,
+  val icon: VectorAsset
 ) {
-    LIKE(R.string.action_like, Icons.Default.ThumbUp),
-    SHARE(R.string.action_share, Icons.Default.Share),
-    SET_AS_WALLPAPER(R.string.action_wallpaper, Icons.Default.FilterFrames),
-    DOWNLOAD(R.string.action_download, Icons.Default.CloudDownload),
-    COLLECTION(R.string.action_collection, Icons.Default.Bookmark),
+  LIKE(R.string.action_like, Icons.Default.ThumbUp),
+  SHARE(R.string.action_share, Icons.Default.Share),
+  SET_AS_WALLPAPER(R.string.action_wallpaper, Icons.Default.FilterFrames),
+  DOWNLOAD(R.string.action_download, Icons.Default.CloudDownload),
+  COLLECTION(R.string.action_collection, Icons.Default.Bookmark),
 }

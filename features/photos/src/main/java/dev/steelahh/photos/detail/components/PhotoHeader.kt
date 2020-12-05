@@ -31,37 +31,37 @@ import dev.steelahhh.data.models.PhotoUi
 
 @Composable
 internal fun PhotoHeader(
-    placeholder: String,
-    photo: PhotoUi?,
-    color: Color = Color.Gray,
-    actioner: (PhotoDetailAction) -> Unit
+  placeholder: String,
+  photo: PhotoUi?,
+  color: Color = Color.Gray,
+  actioner: (PhotoDetailAction) -> Unit
 ) {
-    Column(modifier = Modifier.fillMaxSize().height(ACTUAL_IMAGE_HEIGHT).background(color = color)) {
-        Stack {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .drawOverlay(Color.Black.copy(alpha = 0.2f))
-            ) {
-                CoilGradualLoadingPhoto(
-                    placeholder = placeholder,
-                    actualPhoto = photo?.url,
-                    modifier = Modifier.fillMaxWidth().height(ACTUAL_IMAGE_HEIGHT)
-                )
-            }
+  Column(modifier = Modifier.fillMaxSize().height(ACTUAL_IMAGE_HEIGHT).background(color = color)) {
+    Stack {
+      Column(
+        modifier = Modifier
+          .fillMaxWidth()
+          .drawOverlay(Color.Black.copy(alpha = 0.2f))
+      ) {
+        CoilGradualLoadingPhoto(
+          placeholder = placeholder,
+          actualPhoto = photo?.url,
+          modifier = Modifier.fillMaxWidth().height(ACTUAL_IMAGE_HEIGHT)
+        )
+      }
 
-            ToolbarIconButton(Icons.Rounded.ArrowBack) {
-                actioner(PhotoDetailAction.GoBack)
-            }
+      ToolbarIconButton(Icons.Rounded.ArrowBack) {
+        actioner(PhotoDetailAction.GoBack)
+      }
 
-            photo?.unsplashUrl?.let {
-                ToolbarIconButton(
-                    icon = Icons.Rounded.Public,
-                    modifier = Modifier.padding(start = 8.dp, end = 8.dp).gravity(Alignment.TopEnd)
-                ) {
-                    actioner(PhotoDetailAction.OpenInBrowser(it))
-                }
-            }
+      photo?.unsplashUrl?.let {
+        ToolbarIconButton(
+          icon = Icons.Rounded.Public,
+          modifier = Modifier.padding(start = 8.dp, end = 8.dp).gravity(Alignment.TopEnd)
+        ) {
+          actioner(PhotoDetailAction.OpenInBrowser(it))
         }
+      }
     }
+  }
 }

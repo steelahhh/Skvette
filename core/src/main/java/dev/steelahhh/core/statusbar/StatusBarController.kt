@@ -23,37 +23,37 @@ import kotlinx.coroutines.launch
 
 @Suppress("ObjectPropertyName")
 object StatusBarController : CoroutineScope {
-    private val _configuration: MutableStateFlow<Configuration> = MutableStateFlow(Configuration())
-    private val configuration: Configuration get() = _configuration.value
+  private val _configuration: MutableStateFlow<Configuration> = MutableStateFlow(Configuration())
+  private val configuration: Configuration get() = _configuration.value
 
-    override val coroutineContext: CoroutineContext
-        get() = Dispatchers.Default
+  override val coroutineContext: CoroutineContext
+    get() = Dispatchers.Default
 
-    init {
-        launch {
-            WindowInsetsHolder.flow()
-                .map { insets -> configuration.copy(height = insets.top) }
-                .collect { _configuration.value = it }
-        }
+  init {
+    launch {
+      WindowInsetsHolder.flow()
+        .map { insets -> configuration.copy(height = insets.top) }
+        .collect { _configuration.value = it }
     }
+  }
 
-    val height get() = configuration.height
+  val height get() = configuration.height
 
-    val heightDp get() = height / (Resources.getSystem().displayMetrics.densityDpi / DENSITY_DEFAULT)
+  val heightDp get() = height / (Resources.getSystem().displayMetrics.densityDpi / DENSITY_DEFAULT)
 
-    fun flow(): Flow<Configuration> = _configuration
+  fun flow(): Flow<Configuration> = _configuration
 
-    fun newColor(colorRef: ColorRef) {
-        _configuration.value = configuration.copy(colorRef = colorRef)
-    }
+  fun newColor(colorRef: ColorRef) {
+    _configuration.value = configuration.copy(colorRef = colorRef)
+  }
 
-    fun newVisibility(visible: Boolean) {
-        _configuration.value = configuration.copy(visible = visible)
-    }
+  fun newVisibility(visible: Boolean) {
+    _configuration.value = configuration.copy(visible = visible)
+  }
 
-    data class Configuration(
-        val height: Int = 0,
-        val visible: Boolean = false,
-        val colorRef: ColorRef = ColorRef.Raw(Color.TRANSPARENT)
-    )
+  data class Configuration(
+    val height: Int = 0,
+    val visible: Boolean = false,
+    val colorRef: ColorRef = ColorRef.Raw(Color.TRANSPARENT)
+  )
 }

@@ -14,13 +14,13 @@ import kotlinx.coroutines.flow.MutableStateFlow
 
 @Suppress("ObjectPropertyName")
 object WindowInsetsHolder {
-    private val _rect = MutableStateFlow(Rect())
+  private val _rect = MutableStateFlow(Rect())
 
-    fun get(): Rect = _rect.value
+  fun get(): Rect = _rect.value
 
-    fun flow(): Flow<Rect> = _rect
+  fun flow(): Flow<Rect> = _rect
 
-    fun newInsets(insets: Rect) {
-        _rect.value = insets
-    }
+  fun newInsets(insets: Rect) {
+    _rect.value = insets
+  }
 }

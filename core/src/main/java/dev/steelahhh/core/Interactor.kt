@@ -19,85 +19,85 @@ import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeout
 
 sealed class InvokeStatus {
-    object Idle : InvokeStatus()
-    object Started : InvokeStatus()
-    object Success : InvokeStatus()
-    data class Error(val throwable: Throwable) : InvokeStatus()
+  object Idle : InvokeStatus()
+  object Started : InvokeStatus()
+  object Success : InvokeStatus()
+  data class Error(val throwable: Throwable) : InvokeStatus()
 }
 
 abstract class Interactor<in P> {
-    protected abstract val scope: CoroutineScope
+  protected abstract val scope: CoroutineScope
 
-    operator fun invoke(params: P, timeoutMs: Long = defaultTimeoutMs): Flow<InvokeStatus> {
-        val channel = ConflatedBroadcastChannel<InvokeStatus>(InvokeStatus.Idle)
-        scope.launch {
-            try {
-                withTimeout(timeoutMs) {
-                    channel.send(Started)
-                    try {
-                        doWork(params)
-                        channel.send(Success)
-                    } catch (t: Throwable) {
-                        channel.send(Error(t))
-                    }
-                }
-            } catch (t: TimeoutCancellationException) {
-                channel.send(Error(t))
-            }
+  operator fun invoke(params: P, timeoutMs: Long = defaultTimeoutMs): Flow<InvokeStatus> {
+    val channel = ConflatedBroadcastChannel<InvokeStatus>(InvokeStatus.Idle)
+    scope.launch {
+      try {
+        withTimeout(timeoutMs) {
+          channel.send(Started)
+          try {
+            doWork(params)
+            channel.send(Success)
+          } catch (t: Throwable) {
+            channel.send(Error(t))
+          }
         }
-        return channel.asFlow()
+      } catch (t: TimeoutCancellationException) {
+        channel.send(Error(t))
+      }
     }
+    return channel.asFlow()
+  }
 
-    suspend fun executeSync(params: P) = withContext(scope.coroutineContext) { doWork(params) }
+  suspend fun executeSync(params: P) = withContext(scope.coroutineContext) { doWork(params) }
 
-    protected abstract suspend fun doWork(params: P)
+  protected abstract suspend fun doWork(params: P)
 
-    companion object {
-        private val defaultTimeoutMs = TimeUnit.MINUTES.toMillis(5)
-    }
+  companion object {
+    private val defaultTimeoutMs = TimeUnit.MINUTES.toMillis(5)
+  }
 }
 
 abstract class ResultInteractor<in P, R> {
-    abstract val dispatcher: CoroutineDispatcher
+  abstract val dispatcher: CoroutineDispatcher
 
-    suspend operator fun invoke(params: P): Result<R, Throwable> {
-        return withContext(dispatcher) { doWork(params) }
-    }
+  suspend operator fun invoke(params: P): Result<R, Throwable> {
+    return withContext(dispatcher) { doWork(params) }
+  }
 
-    protected abstract suspend fun doWork(params: P): Result<R, Throwable>
+  protected abstract suspend fun doWork(params: P): Result<R, Throwable>
 }
 
 interface ObservableInteractor<T> {
-    val dispatcher: CoroutineDispatcher
-    fun observe(): Flow<T>
+  val dispatcher: CoroutineDispatcher
+  fun observe(): Flow<T>
 }
 
 abstract class SuspendingWorkInteractor<P : Any, T : Any> : ObservableInteractor<T> {
-    private val channel = ConflatedBroadcastChannel<T>()
+  private val channel = ConflatedBroadcastChannel<T>()
 
-    suspend operator fun invoke(params: P) = channel.send(doWork(params))
+  suspend operator fun invoke(params: P) = channel.send(doWork(params))
 
-    abstract suspend fun doWork(params: P): T
+  abstract suspend fun doWork(params: P): T
 
-    override fun observe(): Flow<T> = channel.asFlow()
+  override fun observe(): Flow<T> = channel.asFlow()
 }
 
 abstract class SubjectInteractor<P : Any, T> : ObservableInteractor<T> {
-    private val channel = ConflatedBroadcastChannel<P>()
+  private val channel = ConflatedBroadcastChannel<P>()
 
-    operator fun invoke(params: P) = channel.sendBlocking(params)
+  operator fun invoke(params: P) = channel.sendBlocking(params)
 
-    protected abstract fun createObservable(params: P): Flow<T>
+  protected abstract fun createObservable(params: P): Flow<T>
 
-    override fun observe(): Flow<T> = channel.asFlow()
-        .distinctUntilChanged()
-        .flatMapLatest { createObservable(it) }
+  override fun observe(): Flow<T> = channel.asFlow()
+    .distinctUntilChanged()
+    .flatMapLatest { createObservable(it) }
 }
 
 operator fun Interactor<Unit>.invoke() = invoke(Unit)
 operator fun <T> SubjectInteractor<Unit, T>.invoke() = invoke(Unit)
 
 fun <I : ObservableInteractor<T>, T> CoroutineScope.launchObserve(
-    interactor: I,
-    f: suspend (Flow<T>) -> Unit
+  interactor: I,
+  f: suspend (Flow<T>) -> Unit
 ) = launch(interactor.dispatcher) { f(interactor.observe()) }

@@ -15,26 +15,26 @@ import com.airbnb.mvrx.MavericksView
 
 abstract class BaseFragment(@LayoutRes layout: Int = 0) : MavericksView, Fragment(layout) {
 
-    protected val epoxyController by lazy { epoxyController() }
+  protected val epoxyController by lazy { epoxyController() }
 
-    open fun epoxyController(): MvRxEpoxyController = simpleController { }
+  open fun epoxyController(): MvRxEpoxyController = simpleController { }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        epoxyController.onRestoreInstanceState(savedInstanceState)
-    }
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    epoxyController.onRestoreInstanceState(savedInstanceState)
+  }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        epoxyController.onSaveInstanceState(outState)
-    }
+  override fun onSaveInstanceState(outState: Bundle) {
+    super.onSaveInstanceState(outState)
+    epoxyController.onSaveInstanceState(outState)
+  }
 
-    override fun onDestroyView() {
-        epoxyController.cancelPendingModelBuild()
-        super.onDestroyView()
-    }
+  override fun onDestroyView() {
+    epoxyController.cancelPendingModelBuild()
+    super.onDestroyView()
+  }
 
-    override fun invalidate() {
-        epoxyController.requestModelBuild()
-    }
+  override fun invalidate() {
+    epoxyController.requestModelBuild()
+  }
 }

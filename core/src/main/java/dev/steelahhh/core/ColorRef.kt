@@ -21,39 +21,39 @@ import kotlinx.android.parcel.Parcelize
 
 sealed class ColorRef : Parcelable {
 
-    @Parcelize
-    data class Resource(@ColorRes val resource: Int, val isColorStateList: Boolean = false) : ColorRef() {
-        override fun create(context: Context): Int = ContextCompat.getColor(context, resource)
+  @Parcelize
+  data class Resource(@ColorRes val resource: Int, val isColorStateList: Boolean = false) : ColorRef() {
+    override fun create(context: Context): Int = ContextCompat.getColor(context, resource)
 
-        override fun asColorStateList(
-            context: Context
-        ): ColorStateList? = ContextCompat.getColorStateList(context, resource)
+    override fun asColorStateList(
+      context: Context
+    ): ColorStateList? = ContextCompat.getColorStateList(context, resource)
+  }
+
+  @Parcelize
+  data class Raw(@ColorInt val color: Int) : ColorRef() {
+    override fun create(context: Context): Int = color
+  }
+
+  @Parcelize
+  data class Attribute(@AttrRes val attr: Int) : ColorRef() {
+    override fun create(context: Context): Int {
+      val typedValue = TypedValue()
+      val theme = context.theme
+      theme.resolveAttribute(attr, typedValue, true)
+      return ContextCompat.getColor(context, typedValue.resourceId)
     }
+  }
 
-    @Parcelize
-    data class Raw(@ColorInt val color: Int) : ColorRef() {
-        override fun create(context: Context): Int = color
-    }
+  @Parcelize
+  data class Hex(private val color: String) : ColorRef() {
+    override fun create(context: Context): Int = Color.parseColor(color)
+  }
 
-    @Parcelize
-    data class Attribute(@AttrRes val attr: Int) : ColorRef() {
-        override fun create(context: Context): Int {
-            val typedValue = TypedValue()
-            val theme = context.theme
-            theme.resolveAttribute(attr, typedValue, true)
-            return ContextCompat.getColor(context, typedValue.resourceId)
-        }
-    }
+  @ColorInt
+  abstract fun create(context: Context): Int
 
-    @Parcelize
-    data class Hex(private val color: String) : ColorRef() {
-        override fun create(context: Context): Int = Color.parseColor(color)
-    }
-
-    @ColorInt
-    abstract fun create(context: Context): Int
-
-    open fun asColorStateList(context: Context): ColorStateList? = null
+  open fun asColorStateList(context: Context): ColorStateList? = null
 }
 
 fun Int.toRawColorRef() = ColorRef.Raw(this)

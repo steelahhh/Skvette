@@ -13,11 +13,11 @@ import androidx.compose.ui.drawWithContent
 import androidx.compose.ui.graphics.Color
 
 fun Modifier.drawOverlay(
-    color: Color
+  color: Color
 ): Modifier {
-    val overlay = drawWithContent {
-        drawContent()
-        drawRect(color)
-    }
-    return this.then(overlay)
+  val overlay = drawWithContent {
+    drawContent()
+    drawRect(color)
+  }
+  return this.then(overlay)
 }

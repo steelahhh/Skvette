@@ -13,28 +13,28 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class PhotoResponse(
-    val id: String,
-    @Json(name = "created_at")
-    val createdAt: String,
-    @Json(name = "updated_at")
-    val updatedAt: String,
-    val width: Int,
-    val height: Int,
-    val color: String,
-    val description: String?,
-    val exif: ExifResponse?,
-    val position: LocationResponse.LatLngResponse?,
-    val tags: List<TagResponse>?,
-    val categories: List<Any>,
-    val urls: UrlSizesResponse,
-    val links: LinksResponse,
-    @Json(name = "liked_by_user")
-    val likedByUser: Boolean,
-    val sponsored: Boolean?,
-    val likes: Int?,
-    val views: Int?,
-    val downloads: Int?,
-    val user: UserResponse,
-    @Json(name = "current_user_collections")
-    val currentUserCollections: List<CollectionResponse>
+  val id: String,
+  @Json(name = "created_at")
+  val createdAt: String,
+  @Json(name = "updated_at")
+  val updatedAt: String,
+  val width: Int,
+  val height: Int,
+  val color: String,
+  val description: String?,
+  val exif: ExifResponse?,
+  val position: LocationResponse.LatLngResponse?,
+  val tags: List<TagResponse>?,
+  val categories: List<Any>,
+  val urls: UrlSizesResponse,
+  val links: LinksResponse,
+  @Json(name = "liked_by_user")
+  val likedByUser: Boolean,
+  val sponsored: Boolean?,
+  val likes: Int?,
+  val views: Int?,
+  val downloads: Int?,
+  val user: UserResponse,
+  @Json(name = "current_user_collections")
+  val currentUserCollections: List<CollectionResponse>
 )

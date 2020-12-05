@@ -13,32 +13,32 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 
 object NavBarScrollController {
-    private val stateFlow = MutableStateFlow(ScrollDirection.IDLE)
+  private val stateFlow = MutableStateFlow(ScrollDirection.IDLE)
 
-    fun flow(): Flow<ScrollDirection> = stateFlow
+  fun flow(): Flow<ScrollDirection> = stateFlow
 
-    fun accept(direction: ScrollDirection) {
-        stateFlow.value = direction
-    }
+  fun accept(direction: ScrollDirection) {
+    stateFlow.value = direction
+  }
 
-    enum class ScrollDirection {
-        UP, DOWN, IDLE
-    }
+  enum class ScrollDirection {
+    UP, DOWN, IDLE
+  }
 }
 
 object RecyclerScrollListener : RecyclerView.OnScrollListener() {
-    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-        NavBarScrollController.accept(
-            when {
-                dy < 0 -> NavBarScrollController.ScrollDirection.UP
-                dy > 0 -> NavBarScrollController.ScrollDirection.DOWN
-                else -> NavBarScrollController.ScrollDirection.IDLE
-            }
-        )
-    }
+  override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+    NavBarScrollController.accept(
+      when {
+        dy < 0 -> NavBarScrollController.ScrollDirection.UP
+        dy > 0 -> NavBarScrollController.ScrollDirection.DOWN
+        else -> NavBarScrollController.ScrollDirection.IDLE
+      }
+    )
+  }
 }
 
 fun RecyclerView.attachNavBarController() {
-    removeOnScrollListener(RecyclerScrollListener)
-    addOnScrollListener(RecyclerScrollListener)
+  removeOnScrollListener(RecyclerScrollListener)
+  addOnScrollListener(RecyclerScrollListener)
 }

@@ -22,25 +22,25 @@ import dev.steelahhh.coreui.extensions.getDimen
 
 @ModelView(autoLayout = ModelView.Size.MATCH_WIDTH_MATCH_HEIGHT)
 class LoaderItemView @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+  context: Context,
+  attrs: AttributeSet? = null,
+  defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
-    var isMatchParent: Boolean = false
-        @ModelProp set
+  var isMatchParent: Boolean = false
+    @ModelProp set
 
-    init {
-        View.inflate(context, R.layout.item_loader, this)
-        orientation = VERTICAL
-        setPadding(context.getDimen(R.dimen.spacing_xm))
-    }
+  init {
+    View.inflate(context, R.layout.item_loader, this)
+    orientation = VERTICAL
+    setPadding(context.getDimen(R.dimen.spacing_xm))
+  }
 
-    @ModelProp
-    fun setIsMatchParent(isMatchParent: Boolean) {
-        val containerHeight = context.getDimen(R.dimen.item_loading_height)
-        layoutParams = when {
-            isMatchParent -> ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT)
-            else -> ViewGroup.LayoutParams(MATCH_PARENT, containerHeight)
-        }
+  @ModelProp
+  fun setIsMatchParent(isMatchParent: Boolean) {
+    val containerHeight = context.getDimen(R.dimen.item_loading_height)
+    layoutParams = when {
+      isMatchParent -> ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT)
+      else -> ViewGroup.LayoutParams(MATCH_PARENT, containerHeight)
     }
+  }
 }

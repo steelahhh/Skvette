@@ -17,11 +17,11 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [DataModule::class]
+  modules = [DataModule::class]
 )
 interface ApplicationComponent : AppComponent {
-    @Component.Factory
-    interface Factory {
-        fun create(@BindsInstance applicationContext: Context): ApplicationComponent
-    }
+  @Component.Factory
+  interface Factory {
+    fun create(@BindsInstance applicationContext: Context): ApplicationComponent
+  }
 }

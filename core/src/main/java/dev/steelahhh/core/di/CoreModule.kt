@@ -20,15 +20,15 @@ import kotlinx.coroutines.Dispatchers
 
 @Module
 object CoreModule {
-    @Provides
-    @ProcessLifetime
-    fun provideLongLifetimeScope(): CoroutineScope = ProcessLifecycleOwner.get().lifecycle.coroutineScope
+  @Provides
+  @ProcessLifetime
+  fun provideLongLifetimeScope(): CoroutineScope = ProcessLifecycleOwner.get().lifecycle.coroutineScope
 
-    @Singleton
-    @Provides
-    fun provideCoroutineDispatchers() = AppCoroutineDispatchers(
-        io = Dispatchers.IO,
-        computation = Dispatchers.Default,
-        main = Dispatchers.Main
-    )
+  @Singleton
+  @Provides
+  fun provideCoroutineDispatchers() = AppCoroutineDispatchers(
+    io = Dispatchers.IO,
+    computation = Dispatchers.Default,
+    main = Dispatchers.Main
+  )
 }

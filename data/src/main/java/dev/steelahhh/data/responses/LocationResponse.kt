@@ -12,14 +12,14 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class LocationResponse(
-    val city: String,
-    val country: String,
-    val position: LatLngResponse
+  val city: String,
+  val country: String,
+  val position: LatLngResponse
 ) {
 
-    @JsonClass(generateAdapter = true)
-    data class LatLngResponse(
-        val latitude: Double,
-        val longitude: Double
-    )
+  @JsonClass(generateAdapter = true)
+  data class LatLngResponse(
+    val latitude: Double,
+    val longitude: Double
+  )
 }

@@ -16,6 +16,6 @@ import javax.inject.Singleton
 @Component(modules = [PhotosModule::class])
 @Singleton
 interface PhotosComponent {
-    val photoListViewModelFactory: PhotoListViewModel.Factory
-    val photoDetailViewModelFactory: PhotoDetailViewModel.Factory
+  val photoListViewModelFactory: PhotoListViewModel.Factory
+  val photoDetailViewModelFactory: PhotoDetailViewModel.Factory
 }

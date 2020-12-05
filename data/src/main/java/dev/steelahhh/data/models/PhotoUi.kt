@@ -13,41 +13,41 @@ import dev.steelahhh.data.responses.PhotoResponse
 import java.text.NumberFormat
 
 data class PhotoUi(
-    val id: String,
-    val colorRef: ColorRef,
-    val url: String,
-    val description: String?,
-    val isLikedByUser: Boolean,
-    val height: Int,
-    val width: Int,
-    val likes: Int,
-    val views: Int,
-    val exif: ExifUi?,
-    val info: List<InfoItem>,
-    val downloads: Int,
-    val author: UserPreviewUi,
-    val tags: List<String>,
-    val unsplashUrl: String?
+  val id: String,
+  val colorRef: ColorRef,
+  val url: String,
+  val description: String?,
+  val isLikedByUser: Boolean,
+  val height: Int,
+  val width: Int,
+  val likes: Int,
+  val views: Int,
+  val exif: ExifUi?,
+  val info: List<InfoItem>,
+  val downloads: Int,
+  val author: UserPreviewUi,
+  val tags: List<String>,
+  val unsplashUrl: String?
 )
 
 fun PhotoResponse.toUi(numberFormatter: NumberFormat) = PhotoUi(
-    id = id,
-    colorRef = ColorRef.Hex(color),
-    height = height,
-    width = width,
-    description = description,
-    isLikedByUser = likedByUser,
-    exif = exif?.toUi(width, height),
-    likes = likes ?: 0,
-    views = views ?: 0,
-    downloads = downloads ?: 0,
-    info = listOf(
-        InfoItem.VIEWS(numberFormatter.format((views ?: 0))),
-        InfoItem.DOWNLOADS(numberFormatter.format((downloads ?: 0))),
-        InfoItem.LIKES(numberFormatter.format((likes ?: 0)))
-    ),
-    url = urls.regular ?: "",
-    author = user.toPreviewUi(),
-    tags = tags?.map { it.title }.orEmpty(),
-    unsplashUrl = links.html
+  id = id,
+  colorRef = ColorRef.Hex(color),
+  height = height,
+  width = width,
+  description = description,
+  isLikedByUser = likedByUser,
+  exif = exif?.toUi(width, height),
+  likes = likes ?: 0,
+  views = views ?: 0,
+  downloads = downloads ?: 0,
+  info = listOf(
+    InfoItem.VIEWS(numberFormatter.format((views ?: 0))),
+    InfoItem.DOWNLOADS(numberFormatter.format((downloads ?: 0))),
+    InfoItem.LIKES(numberFormatter.format((likes ?: 0)))
+  ),
+  url = urls.regular ?: "",
+  author = user.toPreviewUi(),
+  tags = tags?.map { it.title }.orEmpty(),
+  unsplashUrl = links.html
 )

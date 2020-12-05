@@ -24,32 +24,32 @@ import androidx.core.view.updateLayoutParams
 import dev.steelahhh.core.statusbar.StatusBarController
 
 fun View.showSoftKeyboard() {
-    if (requestFocus()) {
-        val inputMethodManager =
-            context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
-    }
+  if (requestFocus()) {
+    val inputMethodManager =
+      context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    inputMethodManager.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
+  }
 }
 
 fun View.hideSoftKeyboard() {
-    val inputMethodManager =
-        context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-    inputMethodManager.hideSoftInputFromWindow(this.windowToken, 0)
+  val inputMethodManager =
+    context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+  inputMethodManager.hideSoftInputFromWindow(this.windowToken, 0)
 }
 
 fun View.updateTopMarginToStatusBar(@Px additionalMargin: Int = 0) {
-    updateLayoutParams<ViewGroup.LayoutParams> {
-        when (this) {
-            is ConstraintLayout.LayoutParams -> topMargin = StatusBarController.height + additionalMargin
-            is FrameLayout.LayoutParams -> topMargin = StatusBarController.height + additionalMargin
-        }
+  updateLayoutParams<ViewGroup.LayoutParams> {
+    when (this) {
+      is ConstraintLayout.LayoutParams -> topMargin = StatusBarController.height + additionalMargin
+      is FrameLayout.LayoutParams -> topMargin = StatusBarController.height + additionalMargin
     }
+  }
 }
 
 fun Drawable.applyTint(@ColorInt color: Int) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-        DrawableCompat.setTint(this, color)
-    } else {
-        this.mutate().setColorFilter(color, PorterDuff.Mode.SRC_IN)
-    }
+  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+    DrawableCompat.setTint(this, color)
+  } else {
+    this.mutate().setColorFilter(color, PorterDuff.Mode.SRC_IN)
+  }
 }

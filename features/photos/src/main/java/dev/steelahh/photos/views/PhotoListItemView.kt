@@ -26,39 +26,39 @@ import javax.annotation.Nullable
 
 @ModelView(autoLayout = ModelView.Size.MATCH_WIDTH_WRAP_HEIGHT)
 class PhotoListItemView @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+  context: Context,
+  attrs: AttributeSet? = null,
+  defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
-    private val imageView: ImageView
-    private val container: MaterialCardView
+  private val imageView: ImageView
+  private val container: MaterialCardView
 
-    init {
-        View.inflate(context, R.layout.item_photo, this)
-        imageView = findViewById(R.id.itemPhotoImageView)
-        container = findViewById(R.id.itemPhotoContainer)
+  init {
+    View.inflate(context, R.layout.item_photo, this)
+    imageView = findViewById(R.id.itemPhotoImageView)
+    container = findViewById(R.id.itemPhotoContainer)
+  }
+
+  var photo: PhotoPreviewUi? = null @ModelProp set
+
+  @Nullable
+  var onClick: ((photo: PhotoPreviewUi, view: View) -> Unit)? = null
+    @CallbackProp set
+
+  @AfterPropsSet
+  fun afterPropsSet() {
+    val photo = photo ?: return
+    val onClick = onClick ?: return
+    imageView.run {
+      setBackgroundColor(Color.parseColor(photo.color))
+      contentDescription = photo.id
+      load(photo.url) {
+        crossfade(true)
+      }
     }
-
-    var photo: PhotoPreviewUi? = null @ModelProp set
-
-    @Nullable
-    var onClick: ((photo: PhotoPreviewUi, view: View) -> Unit)? = null
-        @CallbackProp set
-
-    @AfterPropsSet
-    fun afterPropsSet() {
-        val photo = photo ?: return
-        val onClick = onClick ?: return
-        imageView.run {
-            setBackgroundColor(Color.parseColor(photo.color))
-            contentDescription = photo.id
-            load(photo.url) {
-                crossfade(true)
-            }
-        }
-        container.setOnClickListener {
-            onClick(photo, imageView)
-        }
+    container.setOnClickListener {
+      onClick(photo, imageView)
     }
+  }
 }

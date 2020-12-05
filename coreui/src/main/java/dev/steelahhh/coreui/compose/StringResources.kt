@@ -22,6 +22,6 @@ import androidx.compose.ui.platform.ContextAmbient
  */
 @Composable
 fun pluralStringResource(@PluralsRes id: Int, count: Int, vararg formatArgs: Any): String {
-    val context = ContextAmbient.current
-    return context.resources.getQuantityString(id, count, *formatArgs)
+  val context = ContextAmbient.current
+  return context.resources.getQuantityString(id, count, *formatArgs)
 }

@@ -11,42 +11,42 @@ import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
 object IllegalBindingAccessException : IllegalStateException(
-    "Should not attempt to get bindings when Fragment views are destroyed."
+  "Should not attempt to get bindings when Fragment views are destroyed."
 )
 
 class FragmentViewBindingDelegate<T : ViewBinding>(
-    val fragment: Fragment,
-    val viewBindingFactory: (View) -> T
+  val fragment: Fragment,
+  val viewBindingFactory: (View) -> T
 ) : ReadOnlyProperty<Fragment, T> {
-    private var binding: T? = null
+  private var binding: T? = null
 
-    init {
-        fragment.lifecycle.addObserver(object : DefaultLifecycleObserver {
-            override fun onCreate(owner: LifecycleOwner) {
-                fragment.viewLifecycleOwnerLiveData.observe(fragment) { lifecycleOwner ->
-                    lifecycleOwner.lifecycle.addObserver(object : DefaultLifecycleObserver {
-                        override fun onDestroy(owner: LifecycleOwner) {
-                            binding = null
-                        }
-                    })
-                }
+  init {
+    fragment.lifecycle.addObserver(object : DefaultLifecycleObserver {
+      override fun onCreate(owner: LifecycleOwner) {
+        fragment.viewLifecycleOwnerLiveData.observe(fragment) { lifecycleOwner ->
+          lifecycleOwner.lifecycle.addObserver(object : DefaultLifecycleObserver {
+            override fun onDestroy(owner: LifecycleOwner) {
+              binding = null
             }
-        })
+          })
+        }
+      }
+    })
+  }
+
+  override fun getValue(thisRef: Fragment, property: KProperty<*>): T {
+    val binding = binding
+    if (binding != null) {
+      return binding
     }
 
-    override fun getValue(thisRef: Fragment, property: KProperty<*>): T {
-        val binding = binding
-        if (binding != null) {
-            return binding
-        }
-
-        val lifecycle = fragment.viewLifecycleOwner.lifecycle
-        if (!lifecycle.currentState.isAtLeast(Lifecycle.State.INITIALIZED)) {
-            throw IllegalBindingAccessException
-        }
-
-        return viewBindingFactory(thisRef.requireView()).also {
-            this@FragmentViewBindingDelegate.binding = it
-        }
+    val lifecycle = fragment.viewLifecycleOwner.lifecycle
+    if (!lifecycle.currentState.isAtLeast(Lifecycle.State.INITIALIZED)) {
+      throw IllegalBindingAccessException
     }
+
+    return viewBindingFactory(thisRef.requireView()).also {
+      this@FragmentViewBindingDelegate.binding = it
+    }
+  }
 }

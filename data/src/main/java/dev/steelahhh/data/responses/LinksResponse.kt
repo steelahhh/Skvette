@@ -13,14 +13,14 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class LinksResponse(
-    val self: String?,
-    val html: String?,
-    val photos: String?,
-    val likes: String?,
-    val portfolio: String?,
-    val following: String?,
-    val followers: String?,
-    val download: String?,
-    @Json(name = "download_location")
-    val downloadLocation: String?
+  val self: String?,
+  val html: String?,
+  val photos: String?,
+  val likes: String?,
+  val portfolio: String?,
+  val following: String?,
+  val followers: String?,
+  val download: String?,
+  @Json(name = "download_location")
+  val downloadLocation: String?
 )

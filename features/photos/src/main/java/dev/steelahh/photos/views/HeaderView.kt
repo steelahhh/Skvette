@@ -17,14 +17,14 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import dev.steelahh.photos.R
 
 class HeaderView @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+  context: Context,
+  attrs: AttributeSet? = null,
+  defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
-    init {
-        View.inflate(context, R.layout.view_header, this)
+  init {
+    View.inflate(context, R.layout.view_header, this)
 
-        layoutParams = LayoutParams(MATCH_PARENT, WRAP_CONTENT)
-    }
+    layoutParams = LayoutParams(MATCH_PARENT, WRAP_CONTENT)
+  }
 }

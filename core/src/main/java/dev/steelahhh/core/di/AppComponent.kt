@@ -9,5 +9,5 @@
 package dev.steelahhh.core.di
 
 interface AppComponent {
-    // place for commonly accessed dependencies, that cannot be injected
+  // place for commonly accessed dependencies, that cannot be injected
 }

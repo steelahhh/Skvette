@@ -14,13 +14,13 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface SKVService {
-    @GET("photos")
-    suspend fun getPhotos(
-        @Query("page") page: Int,
-        @Query("per_page") per_page: Int,
-        @Query("order_by") order_by: String
-    ): List<PhotoResponse>
+  @GET("photos")
+  suspend fun getPhotos(
+    @Query("page") page: Int,
+    @Query("per_page") per_page: Int,
+    @Query("order_by") order_by: String
+  ): List<PhotoResponse>
 
-    @GET("photos/{id}")
-    suspend fun getPhotoById(@Path("id") id: String): PhotoResponse
+  @GET("photos/{id}")
+  suspend fun getPhotoById(@Path("id") id: String): PhotoResponse
 }

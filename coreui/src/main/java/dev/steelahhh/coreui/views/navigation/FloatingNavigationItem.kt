@@ -14,22 +14,22 @@ import dev.steelahhh.core.DrawableRef
 import dev.steelahhh.coreui.extensions.dp
 
 sealed class FloatingNavigationItem(val isActive: Boolean) {
-    data class Icon(
-        val _isActive: Boolean,
-        val icon: DrawableRef,
-        val iconTint: ColorRef,
-        val selectionColor: ColorRef
-    ) : FloatingNavigationItem(isActive = _isActive)
+  data class Icon(
+    val _isActive: Boolean,
+    val icon: DrawableRef,
+    val iconTint: ColorRef,
+    val selectionColor: ColorRef
+  ) : FloatingNavigationItem(isActive = _isActive)
 
-    data class Custom(
-        val _isActive: Boolean,
-        val view: View
-    ) : FloatingNavigationItem(isActive = _isActive) {
-        companion object {
-            fun create(isActive: Boolean, factory: (size: Int) -> View) = Custom(
-                _isActive = isActive,
-                view = factory(48.dp)
-            )
-        }
+  data class Custom(
+    val _isActive: Boolean,
+    val view: View
+  ) : FloatingNavigationItem(isActive = _isActive) {
+    companion object {
+      fun create(isActive: Boolean, factory: (size: Int) -> View) = Custom(
+        _isActive = isActive,
+        view = factory(48.dp)
+      )
     }
+  }
 }

@@ -18,28 +18,28 @@ import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 
 sealed class DrawableRef {
-    data class Attribute(@AttrRes val attr: Int) : DrawableRef() {
-        override fun create(context: Context): Drawable? {
-            val typedValue = TypedValue()
-            val theme = context.theme
-            theme.resolveAttribute(attr, typedValue, true)
-            return ContextCompat.getDrawable(context, typedValue.resourceId)
-        }
+  data class Attribute(@AttrRes val attr: Int) : DrawableRef() {
+    override fun create(context: Context): Drawable? {
+      val typedValue = TypedValue()
+      val theme = context.theme
+      theme.resolveAttribute(attr, typedValue, true)
+      return ContextCompat.getDrawable(context, typedValue.resourceId)
     }
+  }
 
-    data class ColorResource(val color: ColorRef) : DrawableRef() {
-        override fun create(context: Context): Drawable? = ColorDrawable(color.create(context))
-    }
+  data class ColorResource(val color: ColorRef) : DrawableRef() {
+    override fun create(context: Context): Drawable? = ColorDrawable(color.create(context))
+  }
 
-    data class Resource(@DrawableRes val drawableRes: Int) : DrawableRef() {
-        override fun create(context: Context): Drawable? = ContextCompat.getDrawable(context, drawableRes)
-    }
+  data class Resource(@DrawableRes val drawableRes: Int) : DrawableRef() {
+    override fun create(context: Context): Drawable? = ContextCompat.getDrawable(context, drawableRes)
+  }
 
-    data class Bitmap(val bitmap: android.graphics.Bitmap) : DrawableRef() {
-        override fun create(context: Context): Drawable? = BitmapDrawable(context.resources, bitmap)
-    }
+  data class Bitmap(val bitmap: android.graphics.Bitmap) : DrawableRef() {
+    override fun create(context: Context): Drawable? = BitmapDrawable(context.resources, bitmap)
+  }
 
-    abstract fun create(context: Context): Drawable?
+  abstract fun create(context: Context): Drawable?
 }
 
 fun Int.toResourceDrawableDesc() = DrawableRef.Resource(this)

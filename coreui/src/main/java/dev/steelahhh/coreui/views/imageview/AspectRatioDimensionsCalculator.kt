@@ -14,42 +14,43 @@ import androidx.annotation.Px
 
 internal class AspectRatioDimensionsCalculator {
 
-    fun measureDimensions(
-        widthMeasureSpec: Int,
-        heightMeasureSpec: Int,
-        ratio: Float
-    ): Pair<Int, Int> {
-        val widthSpecMode = View.MeasureSpec.getMode(widthMeasureSpec)
-        val heightSpecMode = View.MeasureSpec.getMode(heightMeasureSpec)
-        var width = View.MeasureSpec.getSize(widthMeasureSpec)
-        var height = View.MeasureSpec.getSize(heightMeasureSpec)
+  fun measureDimensions(
+    widthMeasureSpec: Int,
+    heightMeasureSpec: Int,
+    ratio: Float
+  ): Pair<Int, Int> {
+    val widthSpecMode = View.MeasureSpec.getMode(widthMeasureSpec)
+    val heightSpecMode = View.MeasureSpec.getMode(heightMeasureSpec)
+    var width = View.MeasureSpec.getSize(widthMeasureSpec)
+    var height = View.MeasureSpec.getSize(heightMeasureSpec)
 
-        when {
-            widthSpecMode == EXACTLY && heightSpecMode == EXACTLY -> Unit // do not change any dimension
-            widthSpecMode == EXACTLY -> height = (width / ratio).toInt() // scale height
-            heightSpecMode == EXACTLY -> width = (height * ratio).toInt() // scale width
-        }
-        return width to height
+    when {
+      widthSpecMode == EXACTLY && heightSpecMode == EXACTLY -> Unit // do not change any dimension
+      widthSpecMode == EXACTLY -> height = (width / ratio).toInt() // scale height
+      heightSpecMode == EXACTLY -> width = (height * ratio).toInt() // scale width
     }
+    return width to height
+  }
 
-    fun getAspectRatio(@Px width: Int, @Px height: Int): Float {
-        checkAspectRatio(width, height)
-        return width.toFloat() / height
-    }
+  fun getAspectRatio(@Px width: Int, @Px height: Int): Float {
+    checkAspectRatio(width, height)
+    return width.toFloat() / height
+  }
 
-    fun checkAspectRatio(@Px width: Int, @Px height: Int) {
-        if (width < 1 || height < 1) throw DimensionsTooSmallException
-    }
+  fun checkAspectRatio(@Px width: Int, @Px height: Int) {
+    if (width < 1 || height < 1) throw DimensionsTooSmallException
+  }
 
-    fun checkAspectRatio(ratio: Float) {
-        if (ratio <= 0) throw NegativeAspectRationException
-    }
+  fun checkAspectRatio(ratio: Float) {
+    if (ratio <= 0) throw NegativeAspectRationException
+  }
 
-    object DimensionsTooSmallException : IllegalArgumentException("Aspect ratio dimensions cannot be smaller than 1")
+  object DimensionsTooSmallException :
+    IllegalArgumentException("Aspect ratio dimensions cannot be smaller than 1")
 
-    object NegativeAspectRationException : IllegalArgumentException("Aspect ratio should be greater than 0")
+  object NegativeAspectRationException : IllegalArgumentException("Aspect ratio should be greater than 0")
 
-    companion object {
-        const val INVALID_RATIO = -1F
-    }
+  companion object {
+    const val INVALID_RATIO = -1F
+  }
 }

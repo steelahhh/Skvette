@@ -13,12 +13,12 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class ExifResponse(
-    val make: String?,
-    val model: String?,
-    @Json(name = "exposure_time")
-    val exposureTime: String?,
-    val aperture: String?,
-    @Json(name = "focal_length")
-    val focalLength: String?,
-    val iso: String?,
+  val make: String?,
+  val model: String?,
+  @Json(name = "exposure_time")
+  val exposureTime: String?,
+  val aperture: String?,
+  @Json(name = "focal_length")
+  val focalLength: String?,
+  val iso: String?,
 )

@@ -23,27 +23,27 @@ import timber.log.Timber
 @Suppress("unused")
 class SkvetteApplication : Application(), InjectorProvider {
 
-    override val component: AppComponent by lazy {
-        DaggerApplicationComponent.factory().create(applicationContext)
-    }
+  override val component: AppComponent by lazy {
+    DaggerApplicationComponent.factory().create(applicationContext)
+  }
 
-    override fun onCreate() {
-        super.onCreate()
-        setupTheme()
-        setupTimber()
-        setupMvRx()
-    }
+  override fun onCreate() {
+    super.onCreate()
+    setupTheme()
+    setupTimber()
+    setupMvRx()
+  }
 
-    private fun setupTimber() {
-        if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
-    }
+  private fun setupTimber() {
+    if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
+  }
 
-    private fun setupMvRx() {
-        MvRx.viewModelConfigFactory = MavericksViewModelConfigFactory(this, Dispatchers.IO)
-    }
+  private fun setupMvRx() {
+    MvRx.viewModelConfigFactory = MavericksViewModelConfigFactory(this, Dispatchers.IO)
+  }
 
-    private fun setupTheme() {
-        if (AppCompatDelegate.getDefaultNightMode() == MODE_NIGHT_UNSPECIFIED)
-            AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
-    }
+  private fun setupTheme() {
+    if (AppCompatDelegate.getDefaultNightMode() == MODE_NIGHT_UNSPECIFIED)
+      AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
+  }
 }

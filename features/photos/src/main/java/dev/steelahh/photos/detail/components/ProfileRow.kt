@@ -8,7 +8,6 @@
 
 package dev.steelahh.photos.detail.components
 
-import androidx.compose.material.Text
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -20,6 +19,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,52 +34,52 @@ import dev.steelahhh.data.models.UserPreviewUi
 
 @Composable
 internal fun ProfileRow(
-    actioner: (PhotoDetailAction) -> Unit,
-    photo: PhotoUi
+  actioner: (PhotoDetailAction) -> Unit,
+  photo: PhotoUi
 ) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable(onClick = { actioner(PhotoDetailAction.OpenUser(photo.author.id)) })
-            .padding(horizontal = 12.dp, vertical = 12.dp),
-        verticalAlignment = Alignment.CenterVertically
+  Row(
+    modifier = Modifier
+      .fillMaxWidth()
+      .clickable(onClick = { actioner(PhotoDetailAction.OpenUser(photo.author.id)) })
+      .padding(horizontal = 12.dp, vertical = 12.dp),
+    verticalAlignment = Alignment.CenterVertically
+  ) {
+    Surface(
+      color = Color.Gray,
+      elevation = 8.dp,
+      shape = CircleShape,
+      modifier = Modifier.size(48.dp),
     ) {
-        Surface(
-            color = Color.Gray,
-            elevation = 8.dp,
-            shape = CircleShape,
-            modifier = Modifier.size(48.dp),
-        ) {
-            photo.author.profileImage.medium?.let {
-                CoilImage(data = it, modifier = Modifier.size(48.dp))
-            }
-        }
-        Spacer(modifier = Modifier.preferredWidth(12.dp))
-        Column {
-            Text(
-                text = photo.author.name,
-                style = MaterialTheme.typography.body1
-            )
-            Text(
-                text = makeProfileSubtitle(author = photo.author),
-                style = MaterialTheme.typography.caption.copy(color = Color.Gray)
-            )
-        }
+      photo.author.profileImage.medium?.let {
+        CoilImage(data = it, modifier = Modifier.size(48.dp))
+      }
     }
+    Spacer(modifier = Modifier.preferredWidth(12.dp))
+    Column {
+      Text(
+        text = photo.author.name,
+        style = MaterialTheme.typography.body1
+      )
+      Text(
+        text = makeProfileSubtitle(author = photo.author),
+        style = MaterialTheme.typography.caption.copy(color = Color.Gray)
+      )
+    }
+  }
 }
 
 @Composable
 private fun makeProfileSubtitle(author: UserPreviewUi): String {
-    val photos = pluralStringResource(
-        R.plurals.photos_pattern,
-        author.totalPhotos,
-        author.totalPhotos
-    )
-    val collections = pluralStringResource(
-        R.plurals.collections_pattern,
-        author.totalCollections,
-        author.totalCollections
-    ).takeIf { author.totalCollections > 0 }
+  val photos = pluralStringResource(
+    R.plurals.photos_pattern,
+    author.totalPhotos,
+    author.totalPhotos
+  )
+  val collections = pluralStringResource(
+    R.plurals.collections_pattern,
+    author.totalCollections,
+    author.totalCollections
+  ).takeIf { author.totalCollections > 0 }
 
-    return listOfNotNull(photos, collections).joinToString()
+  return listOfNotNull(photos, collections).joinToString()
 }

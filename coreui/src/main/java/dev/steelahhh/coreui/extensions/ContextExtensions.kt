@@ -17,11 +17,11 @@ import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 
 val Int.dp
-    get() = TypedValue.applyDimension(
-        TypedValue.COMPLEX_UNIT_DIP,
-        this.toFloat(),
-        Resources.getSystem().displayMetrics
-    ).toInt()
+  get() = TypedValue.applyDimension(
+    TypedValue.COMPLEX_UNIT_DIP,
+    this.toFloat(),
+    Resources.getSystem().displayMetrics
+  ).toInt()
 
 fun Context.getDimen(@DimenRes id: Int) = resources.getDimensionPixelSize(id)
 

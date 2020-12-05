@@ -15,16 +15,16 @@ import com.google.android.material.appbar.MaterialToolbar
 import dev.steelahhh.core.statusbar.StatusBarController
 
 open class SkvetteToolbar @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+  context: Context,
+  attrs: AttributeSet? = null,
+  defStyleAttr: Int = 0
 ) : MaterialToolbar(context, attrs, defStyleAttr) {
 
-    var padToStatus: Boolean = false
-        set(value) {
-            field = value
-            if (value) {
-                updatePadding(top = StatusBarController.height)
-            }
-        }
+  var padToStatus: Boolean = false
+    set(value) {
+      field = value
+      if (value) {
+        updatePadding(top = StatusBarController.height)
+      }
+    }
 }

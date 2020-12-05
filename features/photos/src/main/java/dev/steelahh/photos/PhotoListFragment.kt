@@ -31,71 +31,71 @@ import dev.steelahhh.data.models.PhotoPreviewUi
 import kotlinx.android.parcel.Parcelize
 
 class PhotoListFragment : BaseFragment(R.layout.fragment_photos) {
-    private val vm by fragmentViewModel<PhotoListFragment, PhotoListViewModel, PhotoListState>()
-    private val binding: FragmentPhotosBinding by viewBinding(FragmentPhotosBinding::bind)
+  private val vm by fragmentViewModel<PhotoListFragment, PhotoListViewModel, PhotoListState>()
+  private val binding: FragmentPhotosBinding by viewBinding(FragmentPhotosBinding::bind)
 
-    internal val component: PhotosComponent by lazy { DaggerPhotosComponent.create() }
+  internal val component: PhotosComponent by lazy { DaggerPhotosComponent.create() }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding.photosRecycler.run {
-            overScrollMode = OVER_SCROLL_NEVER
-            setController(epoxyController)
-            attachNavBarController()
-        }
-        binding.refresher.setOnRefreshListener { vm.refresh() }
-        binding.root.doOnLayout {
-            binding.toolbar.padToStatus = true
-        }
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+    binding.photosRecycler.run {
+      overScrollMode = OVER_SCROLL_NEVER
+      setController(epoxyController)
+      attachNavBarController()
+    }
+    binding.refresher.setOnRefreshListener { vm.refresh() }
+    binding.root.doOnLayout {
+      binding.toolbar.padToStatus = true
+    }
+  }
+
+  override fun epoxyController() = simpleController(vm) { state ->
+    if (state.isLoading) {
+      loaderItemView {
+        id("fullScreenLoader${state.photos.size}")
+        isMatchParent(true)
+      }
     }
 
-    override fun epoxyController() = simpleController(vm) { state ->
-        if (state.isLoading) {
-            loaderItemView {
-                id("fullScreenLoader${state.photos.size}")
-                isMatchParent(true)
-            }
-        }
-
-        state.photos.forEach {
-            photoListItemView {
-                id(it.id)
-                photo(it)
-                onBind { _, _, position -> vm.loadMore(position) }
-                onClick { photo, _ -> photo.navigate() }
-            }
-        }
-
-        if (state.isLoadingMore) {
-            loaderItemView {
-                id("loaderItem${state.photos.size}")
-                isMatchParent(false)
-            }
-        }
-        lifecycleScope.launchWhenResumed {
-            binding.refresher.isEnabled = !state.isLoading
-            binding.refresher.isRefreshing = state.isRefreshing
-        }
+    state.photos.forEach {
+      photoListItemView {
+        id(it.id)
+        photo(it)
+        onBind { _, _, position -> vm.loadMore(position) }
+        onClick { photo, _ -> photo.navigate() }
+      }
     }
 
-    private fun PhotoPreviewUi.navigate() {
-        Navigator.getBackstack(requireContext()).goTo(
-            PhotoDetailFragment.Key(
-                PhotoDetailFragment.Arguments(
-                    id = id,
-                    url = url,
-                    color = color
-                )
-            )
+    if (state.isLoadingMore) {
+      loaderItemView {
+        id("loaderItem${state.photos.size}")
+        isMatchParent(false)
+      }
+    }
+    lifecycleScope.launchWhenResumed {
+      binding.refresher.isEnabled = !state.isLoading
+      binding.refresher.isRefreshing = state.isRefreshing
+    }
+  }
+
+  private fun PhotoPreviewUi.navigate() {
+    Navigator.getBackstack(requireContext()).goTo(
+      PhotoDetailFragment.Key(
+        PhotoDetailFragment.Arguments(
+          id = id,
+          url = url,
+          color = color
         )
-    }
+      )
+    )
+  }
 
-    @Parcelize
-    data class Key(private val placeholder: String = "") : ScreenKey() {
-        override fun createFragment(): Fragment = newInstance()
-    }
+  @Parcelize
+  data class Key(private val placeholder: String = "") : ScreenKey() {
+    override fun createFragment(): Fragment = newInstance()
+  }
 
-    companion object {
-        fun newInstance() = PhotoListFragment()
-    }
+  companion object {
+    fun newInstance() = PhotoListFragment()
+  }
 }

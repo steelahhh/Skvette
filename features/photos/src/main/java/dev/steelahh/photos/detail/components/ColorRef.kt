@@ -15,6 +15,6 @@ import dev.steelahhh.core.ColorRef
 
 @Composable
 fun ColorRef.asColor(): Color {
-    val context = ContextAmbient.current
-    return Color(create(context))
+  val context = ContextAmbient.current
+  return Color(create(context))
 }

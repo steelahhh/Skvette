@@ -8,13 +8,20 @@
 
 package dev.steelahh.photos.detail.components
 
-import androidx.compose.material.Icon
 import androidx.compose.foundation.ScrollableRow
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.preferredWidth
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.AmbientContentColor
 import androidx.compose.material.Card
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -32,50 +39,49 @@ import dev.steelahhh.data.models.PhotoUi
 
 @Composable
 internal fun ActionsRow(photo: PhotoUi, actioner: (PhotoDetailAction) -> Unit) {
-    ScrollableRow(contentPadding = PaddingValues(16.dp)) {
-        PhotoUserAction.values().forEachIndexed { index, photoUserAction ->
-            val (title, icon) = stringResource(id = photoUserAction.titleRes) to photoUserAction.icon
-            Card(
-                modifier = Modifier.preferredWidth(108.dp),
-                elevation = 4.dp,
-                shape = RoundedCornerShape(12.dp)
-            ) {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier
-                        .clickable(onClick = { actioner(photoUserAction.toPhotoDetailAction(photo)) })
-                        .padding(horizontal = 8.dp, vertical = 12.dp)
-                ) {
-                    Icon(
-                        modifier = Modifier.size(48.dp),
-                        asset = icon.copy(
-                            defaultHeight = icon.defaultHeight * 1.3f,
-                            defaultWidth = icon.defaultHeight * 1.3f,
-                        ),
-                        tint = if (photoUserAction == PhotoUserAction.LIKE && photo.isLikedByUser)
-                            Color.Red
-                        else
-                            AmbientContentColor.current
-                    )
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Text(
-                        text = title.toUpperCase(Locale.current),
-                        style = MaterialTheme.typography.overline.copy(fontSize = 12.sp)
-                    )
-                }
-            }
-            if (index != PhotoUserAction.values().lastIndex) {
-                Spacer(modifier = Modifier.width(8.dp))
-            }
+  ScrollableRow(contentPadding = PaddingValues(16.dp)) {
+    PhotoUserAction.values().forEachIndexed { index, photoUserAction ->
+      val (title, icon) = stringResource(id = photoUserAction.titleRes) to photoUserAction.icon
+      Card(
+        modifier = Modifier.preferredWidth(108.dp),
+        elevation = 4.dp,
+        shape = RoundedCornerShape(12.dp)
+      ) {
+        Column(
+          horizontalAlignment = Alignment.CenterHorizontally,
+          modifier = Modifier
+            .clickable(onClick = { actioner(photoUserAction.toPhotoDetailAction(photo)) })
+            .padding(horizontal = 8.dp, vertical = 12.dp)
+        ) {
+          Icon(
+            modifier = Modifier.size(48.dp),
+            asset = icon.copy(
+              defaultHeight = icon.defaultHeight * 1.3f,
+              defaultWidth = icon.defaultHeight * 1.3f,
+            ),
+            tint = if (photoUserAction == PhotoUserAction.LIKE && photo.isLikedByUser)
+              Color.Red
+            else
+              AmbientContentColor.current
+          )
+          Spacer(modifier = Modifier.height(4.dp))
+          Text(
+            text = title.toUpperCase(Locale.current),
+            style = MaterialTheme.typography.overline.copy(fontSize = 12.sp)
+          )
         }
+      }
+      if (index != PhotoUserAction.values().lastIndex) {
+        Spacer(modifier = Modifier.width(8.dp))
+      }
     }
+  }
 }
 
 private fun PhotoUserAction.toPhotoDetailAction(photo: PhotoUi) = when (this) {
-    PhotoUserAction.LIKE -> PhotoDetailAction.Like(photo = photo)
-    PhotoUserAction.SET_AS_WALLPAPER -> PhotoDetailAction.SetAsWallpaper(photo = photo)
-    PhotoUserAction.DOWNLOAD -> PhotoDetailAction.Download(photo = photo)
-    PhotoUserAction.COLLECTION -> PhotoDetailAction.AddToCollection(photo = photo)
-    PhotoUserAction.SHARE -> PhotoDetailAction.Share(unsplashUrl = photo.unsplashUrl)
+  PhotoUserAction.LIKE -> PhotoDetailAction.Like(photo = photo)
+  PhotoUserAction.SET_AS_WALLPAPER -> PhotoDetailAction.SetAsWallpaper(photo = photo)
+  PhotoUserAction.DOWNLOAD -> PhotoDetailAction.Download(photo = photo)
+  PhotoUserAction.COLLECTION -> PhotoDetailAction.AddToCollection(photo = photo)
+  PhotoUserAction.SHARE -> PhotoDetailAction.Share(unsplashUrl = photo.unsplashUrl)
 }
-

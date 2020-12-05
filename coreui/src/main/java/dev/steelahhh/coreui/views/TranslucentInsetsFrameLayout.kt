@@ -21,56 +21,56 @@ import dev.steelahhh.core.ColorRef
 import dev.steelahhh.core.statusbar.WindowInsetsHolder
 
 class TranslucentInsetsFrameLayout @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+  context: Context,
+  attrs: AttributeSet? = null,
+  defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
-    private var statusBarHeight = 0
-    private val statusBarPaint = Paint()
-    private var drawStatusBar: Boolean = false
+  private var statusBarHeight = 0
+  private val statusBarPaint = Paint()
+  private var drawStatusBar: Boolean = false
 
-    fun updateStatusBar(
-        height: Int,
-        colorRef: ColorRef,
-        visible: Boolean
-    ) {
-        val color = colorRef.create(context) // , 0.08f)
-        val shouldInvalidate = statusBarPaint.color != color
-        statusBarHeight = height
-        statusBarPaint.color = color
-        drawStatusBar = visible
-        if (visible) {
-            statusBarPaint.color = Color.TRANSPARENT
-        } else {
-            statusBarPaint.color = Color.TRANSPARENT
-            statusBarPaint.color = Color.parseColor("#14000000") // 8% of black
-        }
-        updatePadding(top = if (drawStatusBar) statusBarHeight else 0)
-        if (shouldInvalidate) invalidate()
+  fun updateStatusBar(
+    height: Int,
+    colorRef: ColorRef,
+    visible: Boolean
+  ) {
+    val color = colorRef.create(context) // , 0.08f)
+    val shouldInvalidate = statusBarPaint.color != color
+    statusBarHeight = height
+    statusBarPaint.color = color
+    drawStatusBar = visible
+    if (visible) {
+      statusBarPaint.color = Color.TRANSPARENT
+    } else {
+      statusBarPaint.color = Color.TRANSPARENT
+      statusBarPaint.color = Color.parseColor("#14000000") // 8% of black
     }
+    updatePadding(top = if (drawStatusBar) statusBarHeight else 0)
+    if (shouldInvalidate) invalidate()
+  }
 
-    override fun dispatchDraw(canvas: Canvas) {
-        super.dispatchDraw(canvas)
-        canvas.drawRect(0f, 0f, width.toFloat(), statusBarHeight.toFloat(), statusBarPaint)
+  override fun dispatchDraw(canvas: Canvas) {
+    super.dispatchDraw(canvas)
+    canvas.drawRect(0f, 0f, width.toFloat(), statusBarHeight.toFloat(), statusBarPaint)
+  }
+
+  override fun hasOverlappingRendering() = false
+
+  override fun onApplyWindowInsets(insets: WindowInsets): WindowInsets {
+    WindowInsetsHolder.newInsets(
+      Rect(
+        insets.systemWindowInsetLeft,
+        insets.systemWindowInsetTop,
+        insets.systemWindowInsetRight,
+        insets.systemWindowInsetBottom
+      )
+    )
+    val bottom = when (insets.systemWindowInsetBottom) {
+      0 -> 0
+      else -> insets.systemWindowInsetBottom // - ignoredHeight if needed
     }
-
-    override fun hasOverlappingRendering() = false
-
-    override fun onApplyWindowInsets(insets: WindowInsets): WindowInsets {
-        WindowInsetsHolder.newInsets(
-            Rect(
-                insets.systemWindowInsetLeft,
-                insets.systemWindowInsetTop,
-                insets.systemWindowInsetRight,
-                insets.systemWindowInsetBottom
-            )
-        )
-        val bottom = when (insets.systemWindowInsetBottom) {
-            0 -> 0
-            else -> insets.systemWindowInsetBottom // - ignoredHeight if needed
-        }
-        updatePadding(bottom = bottom)
-        return super.onApplyWindowInsets(insets.consumeSystemWindowInsets())
-    }
+    updatePadding(bottom = bottom)
+    return super.onApplyWindowInsets(insets.consumeSystemWindowInsets())
+  }
 }

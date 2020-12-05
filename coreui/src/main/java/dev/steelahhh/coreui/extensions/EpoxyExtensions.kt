@@ -12,6 +12,6 @@ import com.airbnb.epoxy.EpoxyController
 import com.airbnb.epoxy.EpoxyModel
 
 fun EpoxyModel<*>.addIf(
-    controller: EpoxyController,
-    predicate: () -> Boolean
+  controller: EpoxyController,
+  predicate: () -> Boolean
 ) = addIf(predicate, controller)

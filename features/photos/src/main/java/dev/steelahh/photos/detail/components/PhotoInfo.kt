@@ -27,58 +27,58 @@ import dev.steelahhh.data.models.PhotoUi
 
 @Composable
 internal fun PhotoInfoRow(exifUi: ExifUi) {
-    Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 16.dp)) {
-        Row {
-            ColumnItem(
-                title = stringResource(id = R.string.camera_title),
-                value = exifUi.camera,
-                modifier = Modifier.weight(1f)
-            )
-            ColumnItem(
-                title = stringResource(id = R.string.aperture_title),
-                value = exifUi.aperture,
-                modifier = Modifier.weight(1f)
-            )
-        }
-        Spacer(modifier = Modifier.height(4.dp))
-        Row {
-            ColumnItem(
-                title = stringResource(id = R.string.focal_length_title),
-                value = exifUi.focalLength,
-                modifier = Modifier.weight(1f)
-            )
-            ColumnItem(
-                title = stringResource(id = R.string.shutter_speed_title),
-                value = exifUi.shutterSpeed,
-                modifier = Modifier.weight(1f)
-            )
-        }
-        Spacer(modifier = Modifier.height(4.dp))
-        Row {
-            ColumnItem(
-                title = stringResource(id = R.string.iso_title),
-                value = exifUi.ISO,
-                modifier = Modifier.weight(1f)
-            )
-            ColumnItem(
-                title = stringResource(id = R.string.dimensions_title),
-                value = exifUi.dimensions,
-                modifier = Modifier.weight(1f)
-            )
-        }
+  Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 16.dp)) {
+    Row {
+      ColumnItem(
+        title = stringResource(id = R.string.camera_title),
+        value = exifUi.camera,
+        modifier = Modifier.weight(1f)
+      )
+      ColumnItem(
+        title = stringResource(id = R.string.aperture_title),
+        value = exifUi.aperture,
+        modifier = Modifier.weight(1f)
+      )
     }
+    Spacer(modifier = Modifier.height(4.dp))
+    Row {
+      ColumnItem(
+        title = stringResource(id = R.string.focal_length_title),
+        value = exifUi.focalLength,
+        modifier = Modifier.weight(1f)
+      )
+      ColumnItem(
+        title = stringResource(id = R.string.shutter_speed_title),
+        value = exifUi.shutterSpeed,
+        modifier = Modifier.weight(1f)
+      )
+    }
+    Spacer(modifier = Modifier.height(4.dp))
+    Row {
+      ColumnItem(
+        title = stringResource(id = R.string.iso_title),
+        value = exifUi.ISO,
+        modifier = Modifier.weight(1f)
+      )
+      ColumnItem(
+        title = stringResource(id = R.string.dimensions_title),
+        value = exifUi.dimensions,
+        modifier = Modifier.weight(1f)
+      )
+    }
+  }
 }
 
 @Composable
 internal fun CommonPhotoInfoRow(photo: PhotoUi) {
-    Row(modifier = Modifier.padding(vertical = 16.dp)) {
-        photo.info.forEach { item ->
-            ColumnItem(
-                title = stringResource(id = item.key).toUpperCase(Locale.current),
-                value = item.value,
-                modifier = Modifier.weight(1f),
-                horizontalGravity = Alignment.CenterHorizontally
-            )
-        }
+  Row(modifier = Modifier.padding(vertical = 16.dp)) {
+    photo.info.forEach { item ->
+      ColumnItem(
+        title = stringResource(id = item.key).toUpperCase(Locale.current),
+        value = item.value,
+        modifier = Modifier.weight(1f),
+        horizontalGravity = Alignment.CenterHorizontally
+      )
     }
+  }
 }

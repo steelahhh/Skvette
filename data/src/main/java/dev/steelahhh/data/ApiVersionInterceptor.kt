@@ -8,18 +8,18 @@
 
 package dev.steelahhh.data
 
+import javax.inject.Inject
 import okhttp3.Interceptor
 import okhttp3.Response
-import javax.inject.Inject
 
 class ApiVersionInterceptor @Inject constructor() : Interceptor {
-    override fun intercept(chain: Interceptor.Chain): Response {
-        val original = chain.request()
+  override fun intercept(chain: Interceptor.Chain): Response {
+    val original = chain.request()
 
-        val newRequest = original.newBuilder()
-            .addHeader("Accept-Version", "v1")
-            .build()
+    val newRequest = original.newBuilder()
+      .addHeader("Accept-Version", "v1")
+      .build()
 
-        return chain.proceed(newRequest)
-    }
+    return chain.proceed(newRequest)
+  }
 }

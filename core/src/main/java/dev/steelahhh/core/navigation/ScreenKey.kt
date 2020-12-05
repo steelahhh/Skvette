@@ -13,13 +13,13 @@ import android.os.Parcelable
 import androidx.fragment.app.Fragment
 
 abstract class ScreenKey : Parcelable {
-    val fragmentTag: String get() = toString()
+  val fragmentTag: String get() = toString()
 
-    fun newFragment(): Fragment = createFragment().apply {
-        arguments = (arguments ?: Bundle()).also {
-            it.putParcelable("KEY", this@ScreenKey)
-        }
+  fun newFragment(): Fragment = createFragment().apply {
+    arguments = (arguments ?: Bundle()).also {
+      it.putParcelable("KEY", this@ScreenKey)
     }
+  }
 
-    protected abstract fun createFragment(): Fragment
+  protected abstract fun createFragment(): Fragment
 }

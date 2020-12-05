@@ -36,62 +36,62 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.onEach
 
 class PhotoDetailFragment : Fragment(), MavericksView {
-    private val vm by fragmentViewModel<PhotoDetailFragment, PhotoDetailViewModel, PhotoDetailState>()
-    private val args: Arguments by args()
+  private val vm by fragmentViewModel<PhotoDetailFragment, PhotoDetailViewModel, PhotoDetailState>()
+  private val args: Arguments by args()
 
-    internal val component: PhotosComponent by lazy { DaggerPhotosComponent.create() }
+  internal val component: PhotosComponent by lazy { DaggerPhotosComponent.create() }
 
-    @ExperimentalLayout
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? = FrameLayout(requireContext()).apply {
-        layoutParams = ViewGroup.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT
-        )
+  @ExperimentalLayout
+  override fun onCreateView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View? = FrameLayout(requireContext()).apply {
+    layoutParams = ViewGroup.LayoutParams(
+      ViewGroup.LayoutParams.MATCH_PARENT,
+      ViewGroup.LayoutParams.WRAP_CONTENT
+    )
 
-        background = ColorDrawable(Color.TRANSPARENT)
+    background = ColorDrawable(Color.TRANSPARENT)
 
-        photoDetailUi(
-            viewGroup = this,
-            stateFlow = vm.stateFlow.onEach {
-                if (!it.isLoading && it.photo != null)
-                    delay(300L)
-            },
-            actioner = { action ->
-                when (action) {
-                    is PhotoDetailAction.GoBack -> Navigator.getBackstack(requireContext()).goBack()
-                    is PhotoDetailAction.OpenInBrowser -> tryToOpenUrl(action.unsplashUrl)
-                    is PhotoDetailAction.Share -> {
-                        action.unsplashUrl?.let(::tryToShare)
-                    }
-                    else -> vm.handleAction(action)
-                }
-            },
-            photoUrl = args.url,
-            photoColor = ColorRef.Hex(args.color)
-        )
-    }
-
-    @Parcelize
-    data class Arguments(
-        val id: String,
-        val url: String,
-        val color: String,
-    ) : Parcelable
-
-    @Parcelize
-    data class Key(val args: Arguments) : ScreenKey(), FullScreen {
-        override fun createFragment(): Fragment = newInstance(args)
-    }
-
-    companion object {
-        fun newInstance(args: Arguments) = PhotoDetailFragment().withArguments {
-            putParcelable(MvRx.KEY_ARG, args)
+    photoDetailUi(
+      viewGroup = this,
+      stateFlow = vm.stateFlow.onEach {
+        if (!it.isLoading && it.photo != null)
+          delay(300L)
+      },
+      actioner = { action ->
+        when (action) {
+          is PhotoDetailAction.GoBack -> Navigator.getBackstack(requireContext()).goBack()
+          is PhotoDetailAction.OpenInBrowser -> tryToOpenUrl(action.unsplashUrl)
+          is PhotoDetailAction.Share -> {
+            action.unsplashUrl?.let(::tryToShare)
+          }
+          else -> vm.handleAction(action)
         }
-    }
+      },
+      photoUrl = args.url,
+      photoColor = ColorRef.Hex(args.color)
+    )
+  }
 
-    override fun invalidate() = Unit
+  @Parcelize
+  data class Arguments(
+    val id: String,
+    val url: String,
+    val color: String,
+  ) : Parcelable
+
+  @Parcelize
+  data class Key(val args: Arguments) : ScreenKey(), FullScreen {
+    override fun createFragment(): Fragment = newInstance(args)
+  }
+
+  companion object {
+    fun newInstance(args: Arguments) = PhotoDetailFragment().withArguments {
+      putParcelable(MvRx.KEY_ARG, args)
+    }
+  }
+
+  override fun invalidate() = Unit
 }

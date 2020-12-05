@@ -9,11 +9,11 @@
 package dev.steelahhh.coreui.compose
 
 import androidx.compose.foundation.Box
-import androidx.compose.material.Icon
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -24,23 +24,23 @@ import dev.steelahhh.core.statusbar.StatusBarController
 
 @Composable
 fun ToolbarIconButton(
-    icon: VectorAsset,
-    modifier: Modifier = Modifier.padding(start = 8.dp, end = 8.dp),
-    action: () -> Unit
+  icon: VectorAsset,
+  modifier: Modifier = Modifier.padding(start = 8.dp, end = 8.dp),
+  action: () -> Unit
 ) {
-    Box(
-        shape = CircleShape,
-        modifier = modifier.then(
-            Modifier
-                .padding(top = StatusBarController.heightDp.dp + 8.dp)
-                .size(48.dp)
-                .clip(CircleShape)
-        )
-    ) {
-        Icon(
-            asset = icon.copy(defaultHeight = 32.dp, defaultWidth = 32.dp),
-            tint = Color.White,
-            modifier = Modifier.clickable(onClick = action).padding(8.dp)
-        )
-    }
+  Box(
+    shape = CircleShape,
+    modifier = modifier.then(
+      Modifier
+        .padding(top = StatusBarController.heightDp.dp + 8.dp)
+        .size(48.dp)
+        .clip(CircleShape)
+    )
+  ) {
+    Icon(
+      asset = icon.copy(defaultHeight = 32.dp, defaultWidth = 32.dp),
+      tint = Color.White,
+      modifier = Modifier.clickable(onClick = action).padding(8.dp)
+    )
+  }
 }

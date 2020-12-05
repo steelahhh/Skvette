@@ -12,17 +12,17 @@ import dev.steelahhh.data.responses.UrlSizesResponse
 import dev.steelahhh.data.responses.UserResponse
 
 data class UserPreviewUi(
-    val id: String,
-    val name: String,
-    val profileImage: UrlSizesResponse,
-    val totalPhotos: Int,
-    val totalCollections: Int
+  val id: String,
+  val name: String,
+  val profileImage: UrlSizesResponse,
+  val totalPhotos: Int,
+  val totalCollections: Int
 )
 
 fun UserResponse.toPreviewUi() = UserPreviewUi(
-    id = id,
-    name = listOfNotNull(firstName, lastName).joinToString(" "),
-    profileImage = profileImage,
-    totalPhotos = totalPhotos ?: 1,
-    totalCollections = totalCollections ?: 0
+  id = id,
+  name = listOfNotNull(firstName, lastName).joinToString(" "),
+  profileImage = profileImage,
+  totalPhotos = totalPhotos ?: 1,
+  totalCollections = totalCollections ?: 0
 )

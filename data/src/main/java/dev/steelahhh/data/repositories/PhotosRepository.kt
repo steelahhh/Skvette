@@ -21,23 +21,23 @@ import kotlinx.coroutines.withContext
 
 @Reusable
 class PhotosRepository @Inject constructor(
-    private val service: SKVService,
-    dispatchers: AppCoroutineDispatchers,
-    @ProcessLifetime val processScope: CoroutineScope
+  private val service: SKVService,
+  dispatchers: AppCoroutineDispatchers,
+  @ProcessLifetime val processScope: CoroutineScope
 ) {
-    private val scope: CoroutineScope = processScope + dispatchers.io
+  private val scope: CoroutineScope = processScope + dispatchers.io
 
-    suspend fun getPhotos(
-        page: Int,
-        order: Order,
-        itemsPerPage: Int
-    ): List<PhotoResponse> = withContext(scope.coroutineContext) {
-        service.getPhotos(page, itemsPerPage, order.name)
-    }
+  suspend fun getPhotos(
+    page: Int,
+    order: Order,
+    itemsPerPage: Int
+  ): List<PhotoResponse> = withContext(scope.coroutineContext) {
+    service.getPhotos(page, itemsPerPage, order.name)
+  }
 
-    suspend fun getPhoto(
-        id: String
-    ): PhotoResponse = withContext(scope.coroutineContext) {
-        service.getPhotoById(id)
-    }
+  suspend fun getPhoto(
+    id: String
+  ): PhotoResponse = withContext(scope.coroutineContext) {
+    service.getPhotoById(id)
+  }
 }

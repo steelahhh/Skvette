@@ -33,74 +33,74 @@ import dev.steelahhh.skvette.databinding.ActivityMainBinding
 import kotlinx.coroutines.flow.collect
 
 class MainActivity : AppCompatActivity(), StateChanger {
-    private lateinit var fragmentStateChanger: FragmentStateChanger
-    private lateinit var binding: ActivityMainBinding
+  private lateinit var fragmentStateChanger: FragmentStateChanger
+  private lateinit var binding: ActivityMainBinding
 
-    @SuppressLint("CheckResult")
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+  @SuppressLint("CheckResult")
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    binding = ActivityMainBinding.inflate(layoutInflater)
+    setContentView(binding.root)
 
-        fragmentStateChanger = FragmentStateChanger(supportFragmentManager, binding.container.id)
+    fragmentStateChanger = FragmentStateChanger(supportFragmentManager, binding.container.id)
 
-        Navigator.configure()
-            .setStateChanger(this)
-            .install(this, binding.container, History.single(PhotoListFragment.Key()))
+    Navigator.configure()
+      .setStateChanger(this)
+      .install(this, binding.container, History.single(PhotoListFragment.Key()))
 
-        lifecycleScope.launchWhenCreated {
-            StatusBarController.flow().collect { configuration ->
-                binding.root.updateStatusBar(
-                    height = configuration.height,
-                    colorRef = configuration.colorRef,
-                    visible = configuration.visible
-                )
-            }
-        }
-
-        binding.floatingNavigationView.spacing = 16.dp
-
-        binding.floatingNavigationView.items = listOf(
-            FloatingNavigationItem.Icon(
-                _isActive = true,
-                icon = DrawableRef.Resource(R.drawable.ic_photo),
-                iconTint = ColorRef.Raw(Color.DKGRAY),
-                selectionColor = ColorRef.Attribute(R.attr.colorOnSurface)
-            ),
-            FloatingNavigationItem.Icon(
-                _isActive = false,
-                icon = DrawableRef.Resource(R.drawable.ic_collections),
-                iconTint = ColorRef.Raw(Color.DKGRAY),
-                selectionColor = ColorRef.Attribute(R.attr.colorOnSurface)
-            )
+    lifecycleScope.launchWhenCreated {
+      StatusBarController.flow().collect { configuration ->
+        binding.root.updateStatusBar(
+          height = configuration.height,
+          colorRef = configuration.colorRef,
+          visible = configuration.visible
         )
-
-        lifecycleScope.launchWhenResumed {
-            NavBarScrollController.flow().collect { status ->
-                when (status) {
-                    ScrollDirection.UP -> binding.floatingNavigationView.show()
-                    ScrollDirection.DOWN -> binding.floatingNavigationView.hide()
-                    ScrollDirection.IDLE -> binding.floatingNavigationView.isVisible = true
-                }
-            }
-        }
+      }
     }
 
-    @Override
-    override fun onBackPressed() {
-        if (!Navigator.onBackPressed(this)) super.onBackPressed()
-    }
+    binding.floatingNavigationView.spacing = 16.dp
 
-    override fun handleStateChange(stateChange: StateChange, completionCallback: StateChanger.Callback) {
-        if (stateChange.isTopNewKeyEqualToPrevious) {
-            completionCallback.stateChangeComplete()
-            return
+    binding.floatingNavigationView.items = listOf(
+      FloatingNavigationItem.Icon(
+        _isActive = true,
+        icon = DrawableRef.Resource(R.drawable.ic_photo),
+        iconTint = ColorRef.Raw(Color.DKGRAY),
+        selectionColor = ColorRef.Attribute(R.attr.colorOnSurface)
+      ),
+      FloatingNavigationItem.Icon(
+        _isActive = false,
+        icon = DrawableRef.Resource(R.drawable.ic_collections),
+        iconTint = ColorRef.Raw(Color.DKGRAY),
+        selectionColor = ColorRef.Attribute(R.attr.colorOnSurface)
+      )
+    )
+
+    lifecycleScope.launchWhenResumed {
+      NavBarScrollController.flow().collect { status ->
+        when (status) {
+          ScrollDirection.UP -> binding.floatingNavigationView.show()
+          ScrollDirection.DOWN -> binding.floatingNavigationView.hide()
+          ScrollDirection.IDLE -> binding.floatingNavigationView.isVisible = true
         }
-        fragmentStateChanger.handleStateChange(stateChange)
-        completionCallback.stateChangeComplete()
-        lifecycleScope.launchWhenResumed {
-            val isCurrentFullScreen = stateChange.topNewKey<ScreenKey>() is FullScreen
-            binding.floatingNavigationView.isGone = isCurrentFullScreen
-        }
+      }
     }
+  }
+
+  @Override
+  override fun onBackPressed() {
+    if (!Navigator.onBackPressed(this)) super.onBackPressed()
+  }
+
+  override fun handleStateChange(stateChange: StateChange, completionCallback: StateChanger.Callback) {
+    if (stateChange.isTopNewKeyEqualToPrevious) {
+      completionCallback.stateChangeComplete()
+      return
+    }
+    fragmentStateChanger.handleStateChange(stateChange)
+    completionCallback.stateChangeComplete()
+    lifecycleScope.launchWhenResumed {
+      val isCurrentFullScreen = stateChange.topNewKey<ScreenKey>() is FullScreen
+      binding.floatingNavigationView.isGone = isCurrentFullScreen
+    }
+  }
 }

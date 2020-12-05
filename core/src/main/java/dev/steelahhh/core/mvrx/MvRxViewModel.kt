@@ -12,5 +12,5 @@ import com.airbnb.mvrx.MavericksViewModel
 import com.airbnb.mvrx.MvRxState
 
 abstract class MvRxViewModel<S : MvRxState>(
-    initialState: S
+  initialState: S
 ) : MavericksViewModel<S>(initialState)

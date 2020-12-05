@@ -49,80 +49,78 @@ internal val ACTUAL_IMAGE_HEIGHT = VISIBLE_IMAGE_HEIGHT + CORNER_SIZE
 
 @ExperimentalLayout
 fun photoDetailUi(
-    viewGroup: ViewGroup,
-    stateFlow: Flow<PhotoDetailState>,
-    actioner: (PhotoDetailAction) -> Unit,
-    photoUrl: String,
-    photoColor: ColorRef
+  viewGroup: ViewGroup,
+  stateFlow: Flow<PhotoDetailState>,
+  actioner: (PhotoDetailAction) -> Unit,
+  photoUrl: String,
+  photoColor: ColorRef
 ) = viewGroup.setContent(Recomposer.current()) {
-    MdcTheme(setTextColors = true) {
-        val state by stateFlow.collectAsState(PhotoDetailState(photoUrl))
-        ScrollableColumn {
-            Stack {
-                PhotoHeader(
-                    placeholder = photoUrl,
-                    photo = state.photo,
-                    color = (state.photo?.colorRef ?: photoColor).asColor(),
-                    actioner = actioner,
-                )
-                when {
-                    state.isLoading -> LoadingContent(
-                        modifier = Modifier
-                            .gravity(Alignment.Center)
-                            .padding(top = VISIBLE_IMAGE_HEIGHT)
-                            .fillMaxWidth()
-                    )
-                    state.photo != null -> PhotoContent(
-                        photo = state.photo!!,
-                        modifier = Modifier.padding(top = VISIBLE_IMAGE_HEIGHT),
-                        actioner = actioner
-                    )
-                    state.error != null -> ErrorComponent(
-                        message = state.error!!,
-                        onAction = { actioner(PhotoDetailAction.Refresh) }
-                    )
-                    else -> Text("Well hello there")
-                }
-            }
-
+  MdcTheme(setTextColors = true) {
+    val state by stateFlow.collectAsState(PhotoDetailState(photoUrl))
+    ScrollableColumn {
+      Stack {
+        PhotoHeader(
+          placeholder = photoUrl,
+          photo = state.photo,
+          color = (state.photo?.colorRef ?: photoColor).asColor(),
+          actioner = actioner,
+        )
+        when {
+          state.isLoading -> LoadingContent(
+            modifier = Modifier
+              .gravity(Alignment.Center)
+              .padding(top = VISIBLE_IMAGE_HEIGHT)
+              .fillMaxWidth()
+          )
+          state.photo != null -> PhotoContent(
+            photo = state.photo!!,
+            modifier = Modifier.padding(top = VISIBLE_IMAGE_HEIGHT),
+            actioner = actioner
+          )
+          state.error != null -> ErrorComponent(
+            message = state.error!!,
+            onAction = { actioner(PhotoDetailAction.Refresh) }
+          )
+          else -> Text("Well hello there")
         }
-
+      }
     }
+  }
 }
 
 @Composable
 private fun LoadingContent(modifier: Modifier) {
-    Surface(
-        color = MaterialTheme.colors.surface,
-        shape = CONTENT_SHAPE,
-        modifier = modifier,
-    ) {
-        Loader(modifier = Modifier.padding(56.dp))
-    }
+  Surface(
+    color = MaterialTheme.colors.surface,
+    shape = CONTENT_SHAPE,
+    modifier = modifier,
+  ) {
+    Loader(modifier = Modifier.padding(56.dp))
+  }
 }
 
 @ExperimentalLayout
 @Composable
 fun PhotoContent(
-    photo: PhotoUi,
-    modifier: Modifier,
-    actioner: (PhotoDetailAction) -> Unit
+  photo: PhotoUi,
+  modifier: Modifier,
+  actioner: (PhotoDetailAction) -> Unit
 ) {
-    Surface(
-        color = MaterialTheme.colors.surface,
-        shape = CONTENT_SHAPE,
-        modifier = modifier,
-    ) {
-        Column {
-            ProfileRow(actioner, photo)
-            Divider(modifier = Modifier.padding(horizontal = 16.dp))
-            CommonPhotoInfoRow(photo)
-            Divider(modifier = Modifier.padding(horizontal = 16.dp))
-            ActionsRow(photo, actioner)
-            Divider(modifier = Modifier.padding(horizontal = 16.dp))
-            photo.exif?.let { PhotoInfoRow(it) }
-            Divider(modifier = Modifier.padding(horizontal = 16.dp))
-            TagsRow(photo, actioner)
-        }
+  Surface(
+    color = MaterialTheme.colors.surface,
+    shape = CONTENT_SHAPE,
+    modifier = modifier,
+  ) {
+    Column {
+      ProfileRow(actioner, photo)
+      Divider(modifier = Modifier.padding(horizontal = 16.dp))
+      CommonPhotoInfoRow(photo)
+      Divider(modifier = Modifier.padding(horizontal = 16.dp))
+      ActionsRow(photo, actioner)
+      Divider(modifier = Modifier.padding(horizontal = 16.dp))
+      photo.exif?.let { PhotoInfoRow(it) }
+      Divider(modifier = Modifier.padding(horizontal = 16.dp))
+      TagsRow(photo, actioner)
     }
+  }
 }

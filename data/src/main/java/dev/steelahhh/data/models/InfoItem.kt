@@ -12,12 +12,12 @@ import androidx.annotation.StringRes
 import dev.steelahhh.data.R
 
 sealed class InfoItem(
-    @StringRes
-    val key: Int,
-    val value: String
+  @StringRes
+  val key: Int,
+  val value: String
 ) {
 
-    data class VIEWS(val _value: String) : InfoItem(R.string.info_views_title, _value)
-    data class DOWNLOADS(val _value: String) : InfoItem(R.string.info_downloads_title, _value)
-    data class LIKES(val _value: String) : InfoItem(R.string.info_likes_title, _value)
+  data class VIEWS(val _value: String) : InfoItem(R.string.info_views_title, _value)
+  data class DOWNLOADS(val _value: String) : InfoItem(R.string.info_downloads_title, _value)
+  data class LIKES(val _value: String) : InfoItem(R.string.info_likes_title, _value)
 }

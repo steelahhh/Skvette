@@ -8,12 +8,12 @@
 
 package dev.steelahhh.coreui.compose
 
-import androidx.compose.material.Text
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.AmbientTextStyle
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,32 +25,32 @@ import androidx.ui.tooling.preview.Preview
 
 @Composable
 fun ColumnItem(
-    title: String,
-    value: String,
-    modifier: Modifier,
-    horizontalGravity: Alignment.Horizontal = Alignment.Start
+  title: String,
+  value: String,
+  modifier: Modifier,
+  horizontalGravity: Alignment.Horizontal = Alignment.Start
 ) {
-    Column(modifier = modifier, horizontalAlignment = horizontalGravity) {
-        Text(
-            text = title.toUpperCase(Locale.current),
-            style = MaterialTheme.typography.overline.copy(
-                fontSize = 12.sp,
-                color = AmbientTextStyle.current.color.copy(0.7f)
-            )
-        )
-        Spacer(modifier = Modifier.height(2.dp))
-        Text(
-            text = value,
-            style = MaterialTheme.typography.body1,
-            fontSize = 14.sp
-        )
-    }
+  Column(modifier = modifier, horizontalAlignment = horizontalGravity) {
+    Text(
+      text = title.toUpperCase(Locale.current),
+      style = MaterialTheme.typography.overline.copy(
+        fontSize = 12.sp,
+        color = AmbientTextStyle.current.color.copy(0.7f)
+      )
+    )
+    Spacer(modifier = Modifier.height(2.dp))
+    Text(
+      text = value,
+      style = MaterialTheme.typography.body1,
+      fontSize = 14.sp
+    )
+  }
 }
 
 @Composable
 @Preview
 internal fun Preview() {
-    Column {
-        ColumnItem(title = "Test", value = "Value", modifier = Modifier.weight(1f))
-    }
+  Column {
+    ColumnItem(title = "Test", value = "Value", modifier = Modifier.weight(1f))
+  }
 }

@@ -20,16 +20,16 @@ import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
 
 class GetPhoto @Inject constructor(
-    private val photosRepository: PhotosRepository,
-    private val dispatchers: AppCoroutineDispatchers
+  private val photosRepository: PhotosRepository,
+  private val dispatchers: AppCoroutineDispatchers
 ) : ResultInteractor<GetPhoto.Params, PhotoUi>() {
-    override val dispatcher: CoroutineDispatcher = dispatchers.io
+  override val dispatcher: CoroutineDispatcher = dispatchers.io
 
-    override suspend fun doWork(params: Params): Result<PhotoUi, Throwable> = runCatching {
-        photosRepository.getPhoto(params.id).toUi(NumberFormat.getInstance())
-    }
+  override suspend fun doWork(params: Params): Result<PhotoUi, Throwable> = runCatching {
+    photosRepository.getPhoto(params.id).toUi(NumberFormat.getInstance())
+  }
 
-    data class Params(
-        val id: String
-    )
+  data class Params(
+    val id: String
+  )
 }

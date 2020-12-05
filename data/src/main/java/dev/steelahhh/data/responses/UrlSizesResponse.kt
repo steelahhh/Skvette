@@ -12,11 +12,11 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class UrlSizesResponse(
-    val raw: String?,
-    val full: String?,
-    val regular: String?,
-    val small: String?,
-    val medium: String?,
-    val large: String?,
-    val thumb: String?
+  val raw: String?,
+  val full: String?,
+  val regular: String?,
+  val small: String?,
+  val medium: String?,
+  val large: String?,
+  val thumb: String?
 )

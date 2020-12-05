@@ -9,7 +9,7 @@
 package dev.steelahhh.data.models
 
 sealed class Order(val name: String) {
-    object LATEST : Order("latest")
-    object OLDEST : Order("oldest")
-    object POPULAR : Order("popular")
+  object LATEST : Order("latest")
+  object OLDEST : Order("oldest")
+  object POPULAR : Order("popular")
 }

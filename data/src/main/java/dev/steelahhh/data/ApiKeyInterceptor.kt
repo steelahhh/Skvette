@@ -8,23 +8,23 @@
 
 package dev.steelahhh.data
 
-import okhttp3.Interceptor
-import okhttp3.Response
 import javax.inject.Inject
 import javax.inject.Singleton
+import okhttp3.Interceptor
+import okhttp3.Response
 
 @Singleton
 class ApiKeyInterceptor @Inject constructor() : Interceptor {
 
-    override fun intercept(chain: Interceptor.Chain): Response {
-        val original = chain.request()
+  override fun intercept(chain: Interceptor.Chain): Response {
+    val original = chain.request()
 
-        val newHttpUrl = original.url.newBuilder()
-            .addQueryParameter("client_id", BuildConfig.APP_ID)
-            .build()
+    val newHttpUrl = original.url.newBuilder()
+      .addQueryParameter("client_id", BuildConfig.APP_ID)
+      .build()
 
-        val newRequest = original.newBuilder().url(newHttpUrl).build()
+    val newRequest = original.newBuilder().url(newHttpUrl).build()
 
-        return chain.proceed(newRequest)
-    }
+    return chain.proceed(newRequest)
+  }
 }

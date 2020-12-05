@@ -27,35 +27,35 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 @Module(includes = [CoreModule::class])
 object DataModule {
 
-    private const val TIME_OUT = 3000L
-    private const val BASE_URL = "https://api.unsplash.com/"
+  private const val TIME_OUT = 3000L
+  private const val BASE_URL = "https://api.unsplash.com/"
 
-    @Provides
-    @Singleton
-    fun provideMoshi() = Moshi.Builder().build()
+  @Provides
+  @Singleton
+  fun provideMoshi() = Moshi.Builder().build()
 
-    @Provides
-    @Reusable
-    fun provideOkHttpClient(
-        apiKeyInterceptor: ApiKeyInterceptor,
-        apiVersionInterceptor: ApiVersionInterceptor
-    ): OkHttpClient = OkHttpClient.Builder()
-        .addInterceptor(HttpLoggingInterceptor().apply { level = BODY })
-        .addInterceptor(apiKeyInterceptor)
-        .addInterceptor(apiVersionInterceptor)
-        .connectTimeout(TIME_OUT, TimeUnit.MILLISECONDS)
-        .readTimeout(TIME_OUT, TimeUnit.MILLISECONDS)
-        .build()
+  @Provides
+  @Reusable
+  fun provideOkHttpClient(
+    apiKeyInterceptor: ApiKeyInterceptor,
+    apiVersionInterceptor: ApiVersionInterceptor
+  ): OkHttpClient = OkHttpClient.Builder()
+    .addInterceptor(HttpLoggingInterceptor().apply { level = BODY })
+    .addInterceptor(apiKeyInterceptor)
+    .addInterceptor(apiVersionInterceptor)
+    .connectTimeout(TIME_OUT, TimeUnit.MILLISECONDS)
+    .readTimeout(TIME_OUT, TimeUnit.MILLISECONDS)
+    .build()
 
-    @Provides
-    @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL)
-        .client(okHttpClient)
-        .addConverterFactory(MoshiConverterFactory.create(moshi))
-        .build()
+  @Provides
+  @Singleton
+  fun provideRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit = Retrofit.Builder()
+    .baseUrl(BASE_URL)
+    .client(okHttpClient)
+    .addConverterFactory(MoshiConverterFactory.create(moshi))
+    .build()
 
-    @Provides
-    @Singleton
-    fun provideApi(retrofit: Retrofit): SKVService = retrofit.create(SKVService::class.java)
+  @Provides
+  @Singleton
+  fun provideApi(retrofit: Retrofit): SKVService = retrofit.create(SKVService::class.java)
 }
