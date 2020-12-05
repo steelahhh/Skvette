@@ -8,8 +8,8 @@ object Config {
 }
 
 object Versions {
-    const val kotlin = "1.4.0-rc"
-    const val androidPlugin = "4.2.0-alpha07"
+    const val kotlin = "1.4.10"
+    const val androidPlugin = "4.2.0-alpha16"
     const val androidx = "1.2.0"
     const val constraint = "2.0.0-beta4"
     const val lifecycle = "2.2.0"
@@ -27,7 +27,7 @@ object Versions {
 
     const val simpleStack = "2.3.2"
 
-    const val accompanist = "0.1.8"
+    const val accompanist = "0.3.3.1"
 
     const val mvRx = "2.0.0-alpha4"
     const val epoxy = "4.0.0-beta4"
@@ -53,9 +53,9 @@ object Dependencies {
     const val material = "com.google.android.material:material:1.2.0-alpha06"
 
     object Compose {
-        const val version = "0.1.0-dev16"
+        const val version = "1.0.0-alpha07"
 
-        const val kotlinCompilerVersion = "1.4.0-rc"
+        const val kotlinCompilerVersion = "1.4.10"
 
         const val runtime = "androidx.compose.runtime:runtime:$version"
         const val livedata = "androidx.compose.runtime:runtime-livedata:$version"
@@ -75,7 +75,7 @@ object Dependencies {
     }
 
     object Accompanist {
-        const val mdcTheme = "dev.chrisbanes.accompanist:accompanist-mdc-theme:${Versions.accompanist}"
+        const val mdcTheme = "com.google.android.material:compose-theme-adapter:${Dependencies.Compose.version}"
         const val coil = "dev.chrisbanes.accompanist:accompanist-coil:${Versions.accompanist}"
     }
 

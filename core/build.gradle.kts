@@ -7,9 +7,6 @@ plugins {
 
 android {
     compileSdkVersion(Config.compileSdk)
-    androidExtensions {
-        features = setOf("parcelize")
-    }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8

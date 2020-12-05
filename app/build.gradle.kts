@@ -1,8 +1,6 @@
 import java.io.FileInputStream
 import java.util.Properties
 
-val kotlin_version: String by extra
-
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -25,9 +23,6 @@ fun getProperty(fileName: String, prop: String): Any? {
 
 android {
     compileSdkVersion(Config.compileSdk)
-    androidExtensions {
-        features = setOf("parcelize")
-    }
 
     defaultConfig {
         applicationId = Config.applicationId

@@ -8,22 +8,15 @@
 
 package dev.steelahh.photos.detail.components
 
-import androidx.compose.foundation.Icon
+import androidx.compose.material.Icon
 import androidx.compose.foundation.ScrollableRow
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.contentColor
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.InnerPadding
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.preferredWidth
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.AmbientContentColor
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -39,7 +32,7 @@ import dev.steelahhh.data.models.PhotoUi
 
 @Composable
 internal fun ActionsRow(photo: PhotoUi, actioner: (PhotoDetailAction) -> Unit) {
-    ScrollableRow(contentPadding = InnerPadding(16.dp)) {
+    ScrollableRow(contentPadding = PaddingValues(16.dp)) {
         PhotoUserAction.values().forEachIndexed { index, photoUserAction ->
             val (title, icon) = stringResource(id = photoUserAction.titleRes) to photoUserAction.icon
             Card(
@@ -48,7 +41,7 @@ internal fun ActionsRow(photo: PhotoUi, actioner: (PhotoDetailAction) -> Unit) {
                 shape = RoundedCornerShape(12.dp)
             ) {
                 Column(
-                    horizontalGravity = Alignment.CenterHorizontally,
+                    horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier
                         .clickable(onClick = { actioner(photoUserAction.toPhotoDetailAction(photo)) })
                         .padding(horizontal = 8.dp, vertical = 12.dp)
@@ -62,7 +55,7 @@ internal fun ActionsRow(photo: PhotoUi, actioner: (PhotoDetailAction) -> Unit) {
                         tint = if (photoUserAction == PhotoUserAction.LIKE && photo.isLikedByUser)
                             Color.Red
                         else
-                            contentColor()
+                            AmbientContentColor.current
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(

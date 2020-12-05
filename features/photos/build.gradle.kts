@@ -1,4 +1,3 @@
-val kotlin_version: String by extra
 plugins {
     id("com.android.library")
     kotlin("android")
@@ -12,9 +11,6 @@ apply {
 
 android {
     compileSdkVersion(Config.compileSdk)
-    androidExtensions {
-        features = setOf("parcelize")
-    }
 
     defaultConfig {
         minSdkVersion(Config.minSdk)

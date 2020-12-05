@@ -10,16 +10,12 @@ package dev.steelahhh.coreui.compose
 
 import androidx.compose.foundation.layout.Stack
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawOpacity
 import androidx.compose.ui.layout.ContentScale
 import dev.chrisbanes.accompanist.coil.CoilImage
-import dev.chrisbanes.accompanist.coil.SuccessResult
+import dev.chrisbanes.accompanist.imageloading.ImageLoadState
 
 @Composable
 fun CoilGradualLoadingPhoto(
@@ -41,10 +37,11 @@ fun CoilGradualLoadingPhoto(
             CoilImage(
                 data = actualPhoto,
                 contentScale = contentScale,
-                modifier = modifier.drawOpacity(if (isPhotoLoaded) 1f else 0f)
-            ) {
-                isPhotoLoaded = it is SuccessResult
-            }
+                modifier = modifier.drawOpacity(if (isPhotoLoaded) 1f else 0f),
+                onRequestCompleted = {
+                    isPhotoLoaded = it is ImageLoadState.Success
+                }
+            )
         }
     }
 }

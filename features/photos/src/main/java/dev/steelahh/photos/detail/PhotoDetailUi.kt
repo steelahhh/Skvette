@@ -10,7 +10,6 @@ package dev.steelahh.photos.detail
 
 import android.view.ViewGroup
 import androidx.compose.foundation.ScrollableColumn
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayout
 import androidx.compose.foundation.layout.Stack
@@ -20,6 +19,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Recomposer
 import androidx.compose.runtime.collectAsState
@@ -28,7 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.setContent
 import androidx.compose.ui.unit.dp
-import dev.chrisbanes.accompanist.mdctheme.MaterialThemeFromMdcTheme
+import com.google.android.material.composethemeadapter.MdcTheme
 import dev.steelahh.photos.detail.components.ActionsRow
 import dev.steelahh.photos.detail.components.CommonPhotoInfoRow
 import dev.steelahh.photos.detail.components.PhotoHeader
@@ -55,7 +55,7 @@ fun photoDetailUi(
     photoUrl: String,
     photoColor: ColorRef
 ) = viewGroup.setContent(Recomposer.current()) {
-    MaterialThemeFromMdcTheme(useTextColors = true) {
+    MdcTheme(setTextColors = true) {
         val state by stateFlow.collectAsState(PhotoDetailState(photoUrl))
         ScrollableColumn {
             Stack {
@@ -81,7 +81,7 @@ fun photoDetailUi(
                         message = state.error!!,
                         onAction = { actioner(PhotoDetailAction.Refresh) }
                     )
-                    else -> Text(text = "Well hello there")
+                    else -> Text("Well hello there")
                 }
             }
 

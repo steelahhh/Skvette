@@ -8,12 +8,11 @@
 
 package dev.steelahhh.coreui.compose
 
-import androidx.compose.foundation.Text
-import androidx.compose.foundation.currentTextStyle
+import androidx.compose.material.Text
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope.weight
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import androidx.compose.material.AmbientTextStyle
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -31,12 +30,12 @@ fun ColumnItem(
     modifier: Modifier,
     horizontalGravity: Alignment.Horizontal = Alignment.Start
 ) {
-    Column(modifier = modifier, horizontalGravity = horizontalGravity) {
+    Column(modifier = modifier, horizontalAlignment = horizontalGravity) {
         Text(
             text = title.toUpperCase(Locale.current),
             style = MaterialTheme.typography.overline.copy(
                 fontSize = 12.sp,
-                color = currentTextStyle().color.copy(0.7f)
+                color = AmbientTextStyle.current.color.copy(0.7f)
             )
         )
         Spacer(modifier = Modifier.height(2.dp))
@@ -51,5 +50,7 @@ fun ColumnItem(
 @Composable
 @Preview
 internal fun Preview() {
-    ColumnItem(title = "Test", value = "Value", modifier = Modifier.weight(1f))
+    Column {
+        ColumnItem(title = "Test", value = "Value", modifier = Modifier.weight(1f))
+    }
 }

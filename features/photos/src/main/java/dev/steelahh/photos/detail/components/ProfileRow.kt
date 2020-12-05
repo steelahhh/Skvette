@@ -8,7 +8,7 @@
 
 package dev.steelahh.photos.detail.components
 
-import androidx.compose.foundation.Text
+import androidx.compose.material.Text
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -42,7 +42,7 @@ internal fun ProfileRow(
             .fillMaxWidth()
             .clickable(onClick = { actioner(PhotoDetailAction.OpenUser(photo.author.id)) })
             .padding(horizontal = 12.dp, vertical = 12.dp),
-        verticalGravity = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Surface(
             color = Color.Gray,

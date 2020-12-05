@@ -8,9 +8,6 @@ plugins {
 
 android {
     compileSdkVersion(Config.compileSdk)
-    androidExtensions {
-        features = setOf("parcelize")
-    }
 
     buildFeatures {
         viewBinding = true
