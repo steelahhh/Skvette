@@ -9,102 +9,72 @@ object Config {
 
 object Versions {
   const val kotlin = "1.4.10"
-  const val androidPlugin = "4.2.0-alpha16"
-  const val androidx = "1.2.0"
-  const val constraint = "2.0.0-beta4"
-  const val lifecycle = "2.2.0"
-
-  const val dagger = "2.28.3"
-  const val assisted = "0.5.2"
-
-  const val klock = "1.4.0"
-
-  const val timber = "4.7.1"
-  const val chuck = "3.2.0"
-  const val retrofit = "2.8.1"
-  const val moshi = "1.9.2"
-  const val coil = "0.11.0"
-
-  const val simpleStack = "2.3.2"
-
-  const val accompanist = "0.3.3.1"
-
-  const val mvRx = "2.0.0-alpha4"
-  const val epoxy = "4.0.0-beta4"
-
-  const val leakCanary = "2.0"
-
-  const val coroutines = "1.3.8-1.4.0-rc"
-
-  const val mockk = "1.9.3.kotlin12"
-  const val junit = "5.3.1"
-  const val testRunner = "1.1.1"
 }
 
 object Dependencies {
-  const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
+  const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:_"
 
-  const val coreKtx = "androidx.core:core-ktx:${Versions.androidx}"
-  const val activity = "androidx.activity:activity-ktx:1.2.0-alpha05"
-  const val fragment = "androidx.fragment:fragment-ktx:1.2.4"
-  const val appcompat = "androidx.appcompat:appcompat:${Versions.androidx}-beta01"
-  const val constraint = "androidx.constraintlayout:constraintlayout:${Versions.constraint}"
-  const val refresher = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-rc01"
-  const val material = "com.google.android.material:material:1.2.0-alpha06"
+  const val coreKtx = "androidx.core:core-ktx:_"
+  const val activity = "androidx.activity:activity-ktx:_"
+  const val fragment = "androidx.fragment:fragment-ktx:_"
+  const val appcompat = "androidx.appcompat:appcompat:_"
+  const val constraint = "androidx.constraintlayout:constraintlayout:_"
+  const val refresher = "androidx.swiperefreshlayout:swiperefreshlayout:_"
+  const val material = "com.google.android.material:material:_"
 
   object Compose {
     const val version = "1.0.0-alpha07"
 
     const val kotlinCompilerVersion = "1.4.10"
 
-    const val runtime = "androidx.compose.runtime:runtime:$version"
-    const val livedata = "androidx.compose.runtime:runtime-livedata:$version"
-    const val savedInstanceState = "androidx.compose.runtime:runtime-saved-instance-state$version"
+    const val runtime = "androidx.compose.runtime:runtime:_"
+    const val livedata = "androidx.compose.runtime:runtime-livedata:_"
+    const val savedInstanceState = "androidx.compose.runtime:runtime-saved-instance-state:_"
 
-    const val foundation = "androidx.compose.foundation:foundation:$version"
-    const val layout = "androidx.compose.foundation:foundation-layout:$version"
+    const val foundation = "androidx.compose.foundation:foundation:_"
+    const val layout = "androidx.compose.foundation:foundation-layout:_"
 
-    const val ui = "androidx.compose.ui:ui:$version"
-    const val material = "androidx.compose.material:material:$version"
-    const val iconsExtended = "androidx.compose.material:material-icons-extended:$version"
+    const val ui = "androidx.compose.ui:ui:_"
+    const val material = "androidx.compose.material:material:_"
+    const val iconsExtended = "androidx.compose.material:material-icons-extended:_"
 
-    const val animation = "androidx.compose.animation:animation:$version"
+    const val animation = "androidx.compose.animation:animation:_"
 
-    const val tooling = "androidx.ui:ui-tooling:$version"
-    const val test = "androidx.ui:ui-test:$version"
+    const val tooling = "androidx.ui:ui-tooling:_"
+    const val test = "androidx.ui:ui-test:_"
   }
 
   object Accompanist {
-    const val mdcTheme = "com.google.android.material:compose-theme-adapter:${Dependencies.Compose.version}"
-    const val coil = "dev.chrisbanes.accompanist:accompanist-coil:${Versions.accompanist}"
+    const val mdcTheme = "com.google.android.material:compose-theme-adapter:_"
+    const val coil = "dev.chrisbanes.accompanist:accompanist-coil:_"
   }
 
   object Dagger {
-    const val core = "com.google.dagger:dagger:${Versions.dagger}"
-    const val compiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
+    const val core = "com.google.dagger:dagger:_"
+    const val compiler = "com.google.dagger:dagger-compiler:_"
   }
 
   object AssistedInject {
-    const val annotations = "com.squareup.inject:assisted-inject-annotations-dagger2:${Versions.assisted}"
-    const val compiler = "com.squareup.inject:assisted-inject-processor-dagger2:${Versions.assisted}"
+    const val annotations = "com.squareup.inject:assisted-inject-annotations-dagger2:_"
+    const val compiler = "com.squareup.inject:assisted-inject-processor-dagger2:_"
   }
 
   object Lifecycle {
-    const val common = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle}"
-    const val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
-    const val viewModel = "androidx.lifecycle:lifecycle-viewmodel:${Versions.lifecycle}"
-    const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
-    const val compiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
-    const val process = "androidx.lifecycle:lifecycle-process:${Versions.lifecycle}"
+    const val common = "androidx.lifecycle:lifecycle-common-java8:_"
+    const val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:_"
+    const val viewModel = "androidx.lifecycle:lifecycle-viewmodel:_"
+    const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:_"
+    const val compiler = "androidx.lifecycle:lifecycle-compiler:_"
+    const val process = "androidx.lifecycle:lifecycle-process:_"
   }
 
   object SimpleStack {
-    const val core = "com.github.Zhuinden:simple-stack:${Versions.simpleStack}"
+    const val core = "com.github.Zhuinden:simple-stack:_"
   }
 
   object Coroutines {
-    const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
-    const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
+    const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:_"
+    const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:_"
   }
 
   object SqlDelight {
@@ -112,50 +82,50 @@ object Dependencies {
   }
 
   object Retrofit {
-    const val core = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
-    const val moshi = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
+    const val core = "com.squareup.retrofit2:retrofit:_"
+    const val moshi = "com.squareup.retrofit2:converter-moshi:_"
   }
 
   object Coil {
-    const val core = "io.coil-kt:coil:${Versions.coil}"
+    const val core = "io.coil-kt:coil:_"
   }
 
-  const val kotlinResult = "com.michael-bull.kotlin-result:kotlin-result:1.1.6"
+  const val kotlinResult = "com.michael-bull.kotlin-result:kotlin-result:_"
 
-  const val okHttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.0.1"
+  const val okHttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:_"
 
   object Moshi {
-    const val core = "com.squareup.moshi:moshi:${Versions.moshi}"
-    const val kotlin = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshi}"
+    const val core = "com.squareup.moshi:moshi:_"
+    const val kotlin = "com.squareup.moshi:moshi-kotlin-codegen:_"
   }
 
   object Airbnb {
-    const val mvRx = "com.airbnb.android:mvrx:${Versions.mvRx}"
+    const val mvRx = "com.airbnb.android:mvrx:_"
 
     object Epoxy {
-      const val core = "com.airbnb.android:epoxy:${Versions.epoxy}"
-      const val compiler = "com.airbnb.android:epoxy-processor:${Versions.epoxy}"
+      const val core = "com.airbnb.android:epoxy:_"
+      const val compiler = "com.airbnb.android:epoxy-processor:_"
     }
   }
 
   object Chuck {
-    const val core = "com.github.ChuckerTeam.Chucker:library:${Versions.chuck}"
-    const val noop = "com.github.ChuckerTeam.Chucker:library-no-op:${Versions.chuck}"
+    const val core = "com.github.ChuckerTeam.Chucker:library:_"
+    const val noop = "com.github.ChuckerTeam.Chucker:library-no-op:_"
   }
 
-  const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
+  const val timber = "com.jakewharton.timber:timber:_"
 
   const val annotations = "javax.annotation:jsr250-api:1.0"
 
   object LeakCanary {
-    const val core = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
+    const val core = "com.squareup.leakcanary:leakcanary-android:_"
   }
 
-  const val testRunner = "androidx.test:runner:${Versions.testRunner}"
+  const val testRunner = "androidx.test:runner:1.1.1"
 
   object JUnit {
-    const val api = "org.junit.jupiter:junit-jupiter-api:${Versions.junit}"
-    const val engine = "org.junit.jupiter:junit-jupiter-engine:${Versions.junit}"
+    const val api = "org.junit.jupiter:junit-jupiter-api:5.3.1"
+    const val engine = "org.junit.jupiter:junit-jupiter-engine:5.3.1"
 
     object Android {
       const val core = "de.mannodermaus.junit5:android-test-core:1.0.0"
@@ -164,7 +134,7 @@ object Dependencies {
   }
 
   object Mockk {
-    const val core = "io.mockk:mockk:${Versions.mockk}"
-    const val android = "io.mockk:mockk-android:${Versions.mockk}"
+    const val core = "io.mockk:mockk:1.9.3.kotlin12"
+    const val android = "io.mockk:mockk-android:1.9.3.kotlin12"
   }
 }

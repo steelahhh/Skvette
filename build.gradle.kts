@@ -7,7 +7,7 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:${Versions.androidPlugin}")
+        classpath("com.android.tools.build:gradle:_")
         classpath(kotlin("gradle-plugin", version = Versions.kotlin))
         classpath("com.jakewharton:butterknife-gradle-plugin:10.1.0")
     }
