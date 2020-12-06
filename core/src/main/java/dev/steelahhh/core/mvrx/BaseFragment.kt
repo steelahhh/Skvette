@@ -17,7 +17,7 @@ abstract class BaseFragment(@LayoutRes layout: Int = 0) : MavericksView, Fragmen
 
   protected val epoxyController by lazy { epoxyController() }
 
-  open fun epoxyController(): MvRxEpoxyController = simpleController { }
+  open fun epoxyController(): MavericksEpoxyController = simpleController { }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)

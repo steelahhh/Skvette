@@ -12,7 +12,8 @@ import androidx.fragment.app.Fragment
 import com.airbnb.epoxy.AsyncEpoxyController
 import com.airbnb.epoxy.EpoxyController
 import com.airbnb.mvrx.FragmentViewModelContext
-import com.airbnb.mvrx.MvRxState
+import com.airbnb.mvrx.MavericksState
+import com.airbnb.mvrx.MavericksViewModel
 import com.airbnb.mvrx.ViewModelContext
 import com.airbnb.mvrx.withState
 
@@ -21,7 +22,7 @@ fun <T : Fragment> ViewModelContext.fragment() = when (this) {
   else -> error("Cannot get fragment from other ${this.javaClass.simpleName}")
 }
 
-open class MvRxEpoxyController(
+open class MavericksEpoxyController(
   val buildModelsCallback: EpoxyController.() -> Unit = {}
 ) : AsyncEpoxyController() {
 
@@ -31,26 +32,26 @@ open class MvRxEpoxyController(
 }
 
 /**
- * Create a [MvRxEpoxyController] that builds models with the given callback.
+ * Create a [MavericksEpoxyController] that builds models with the given callback.
  */
 fun BaseFragment.simpleController(
   buildModels: EpoxyController.() -> Unit
-) = MvRxEpoxyController {
+) = MavericksEpoxyController {
   // Models are built asynchronously, so it is possible that this is called after the fragment
   // is detached under certain race conditions.
-  if (view == null || isRemoving) return@MvRxEpoxyController
+  if (view == null || isRemoving) return@MavericksEpoxyController
   buildModels()
 }
 
 /**
- * Create a [MvRxEpoxyController] that builds models with the given callback.
+ * Create a [MavericksEpoxyController] that builds models with the given callback.
  * When models are built the current state of the viewmodel will be provided.
  */
-fun <S : MvRxState, A : MvRxViewModel<S>> BaseFragment.simpleController(
+fun <S : MavericksState, A : MavericksViewModel<S>> BaseFragment.simpleController(
   viewModel: A,
   buildModels: EpoxyController.(state: S) -> Unit
-) = MvRxEpoxyController {
-  if (view == null || isRemoving) return@MvRxEpoxyController
+) = MavericksEpoxyController {
+  if (view == null || isRemoving) return@MavericksEpoxyController
   withState(viewModel) { state ->
     buildModels(state)
   }

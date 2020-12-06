@@ -19,7 +19,7 @@ import android.widget.FrameLayout
 import androidx.compose.foundation.layout.ExperimentalLayout
 import androidx.fragment.app.Fragment
 import com.airbnb.mvrx.MavericksView
-import com.airbnb.mvrx.MvRx
+import com.airbnb.mvrx.Mavericks
 import com.airbnb.mvrx.args
 import com.airbnb.mvrx.fragmentViewModel
 import com.zhuinden.simplestack.navigator.Navigator
@@ -89,7 +89,7 @@ class PhotoDetailFragment : Fragment(), MavericksView {
 
   companion object {
     fun newInstance(args: Arguments) = PhotoDetailFragment().withArguments {
-      putParcelable(MvRx.KEY_ARG, args)
+      putParcelable(Mavericks.KEY_ARG, args)
     }
   }
 

@@ -9,15 +9,15 @@
 package dev.steelahh.photos.detail
 
 import com.airbnb.mvrx.Loading
-import com.airbnb.mvrx.MvRxState
-import com.airbnb.mvrx.MvRxViewModelFactory
+import com.airbnb.mvrx.MavericksState
+import com.airbnb.mvrx.MavericksViewModel
+import com.airbnb.mvrx.MavericksViewModelFactory
 import com.airbnb.mvrx.ViewModelContext
 import com.github.michaelbull.result.get
 import com.github.michaelbull.result.getError
 import com.squareup.inject.assisted.Assisted
 import com.squareup.inject.assisted.AssistedInject
 import dev.steelahhh.core.AppCoroutineDispatchers
-import dev.steelahhh.core.mvrx.MvRxViewModel
 import dev.steelahhh.core.mvrx.fragment
 import dev.steelahhh.data.interactors.GetPhoto
 import dev.steelahhh.data.models.PhotoUi
@@ -27,14 +27,14 @@ data class PhotoDetailState(
   val isLoading: Boolean = true,
   val photo: PhotoUi? = null,
   val error: String? = null,
-) : MvRxState
+) : MavericksState
 
 class PhotoDetailViewModel @AssistedInject constructor(
   @Assisted initialState: PhotoDetailState,
   @Assisted private val photoId: String,
   private val dispatchers: AppCoroutineDispatchers,
   private val getPhoto: GetPhoto,
-) : MvRxViewModel<PhotoDetailState>(initialState) {
+) : MavericksViewModel<PhotoDetailState>(initialState) {
 
   init {
     loadPhoto()
@@ -68,7 +68,7 @@ class PhotoDetailViewModel @AssistedInject constructor(
     ): PhotoDetailViewModel
   }
 
-  companion object : MvRxViewModelFactory<PhotoDetailViewModel, PhotoDetailState> {
+  companion object : MavericksViewModelFactory<PhotoDetailViewModel, PhotoDetailState> {
     override fun initialState(viewModelContext: ViewModelContext): PhotoDetailState? {
       val args = viewModelContext.args<PhotoDetailFragment.Arguments>()
       return PhotoDetailState(placeholder = args.url)

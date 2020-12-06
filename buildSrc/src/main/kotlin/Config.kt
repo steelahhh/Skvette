@@ -21,6 +21,7 @@ object Dependencies {
   const val constraint = "androidx.constraintlayout:constraintlayout:_"
   const val refresher = "androidx.swiperefreshlayout:swiperefreshlayout:_"
   const val material = "com.google.android.material:material:_"
+  const val recycler = "androidx.recyclerview:recyclerview:_"
 
   object Compose {
     const val version = "1.0.0-alpha07"

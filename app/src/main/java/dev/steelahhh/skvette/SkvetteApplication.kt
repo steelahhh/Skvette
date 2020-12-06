@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_UNSPECIFIED
 import com.airbnb.mvrx.MavericksViewModelConfigFactory
-import com.airbnb.mvrx.MvRx
+import com.airbnb.mvrx.Mavericks
 import dev.steelahhh.core.di.AppComponent
 import dev.steelahhh.core.di.InjectorProvider
 import dev.steelahhh.skvette.di.DaggerApplicationComponent
@@ -31,15 +31,15 @@ class SkvetteApplication : Application(), InjectorProvider {
     super.onCreate()
     setupTheme()
     setupTimber()
-    setupMvRx()
+    setupMavericks()
   }
 
   private fun setupTimber() {
     if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
   }
 
-  private fun setupMvRx() {
-    MvRx.viewModelConfigFactory = MavericksViewModelConfigFactory(this, Dispatchers.IO)
+  private fun setupMavericks() {
+    Mavericks.viewModelConfigFactory = MavericksViewModelConfigFactory(this, Dispatchers.IO)
   }
 
   private fun setupTheme() {

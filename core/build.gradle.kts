@@ -31,6 +31,7 @@ dependencies {
         Dependencies.kotlin,
         Dependencies.Lifecycle.process,
         Dependencies.fragment,
+        Dependencies.recycler,
         Dependencies.Dagger.core,
         Dependencies.Airbnb.Epoxy.core,
         Dependencies.Airbnb.mvRx,

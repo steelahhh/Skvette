@@ -8,15 +8,15 @@
 
 package dev.steelahh.photos
 
-import com.airbnb.mvrx.MvRxState
-import com.airbnb.mvrx.MvRxViewModelFactory
+import com.airbnb.mvrx.MavericksState
+import com.airbnb.mvrx.MavericksViewModel
+import com.airbnb.mvrx.MavericksViewModelFactory
 import com.airbnb.mvrx.ViewModelContext
 import com.github.michaelbull.result.get
 import com.squareup.inject.assisted.Assisted
 import com.squareup.inject.assisted.AssistedInject
 import dev.steelahhh.core.AppCoroutineDispatchers
 import dev.steelahhh.core.Paginator
-import dev.steelahhh.core.mvrx.MvRxViewModel
 import dev.steelahhh.core.mvrx.fragment
 import dev.steelahhh.data.interactors.GetPhotosList
 import dev.steelahhh.data.models.Order
@@ -33,13 +33,13 @@ data class PhotoListState(
   val isLoading: Boolean = false,
   val isRefreshing: Boolean = false,
   val isLoadingMore: Boolean = false
-) : MvRxState
+) : MavericksState
 
 class PhotoListViewModel @AssistedInject constructor(
   @Assisted initialState: PhotoListState,
   private val getPhotosList: GetPhotosList,
   dispatchers: AppCoroutineDispatchers
-) : MvRxViewModel<PhotoListState>(initialState), Paginator.ViewController<PhotoPreviewUi> {
+) : MavericksViewModel<PhotoListState>(initialState), Paginator.ViewController<PhotoPreviewUi> {
 
   private val _order: MutableStateFlow<Order> = MutableStateFlow(Order.LATEST)
 
@@ -113,7 +113,7 @@ class PhotoListViewModel @AssistedInject constructor(
     fun create(initialState: PhotoListState): PhotoListViewModel
   }
 
-  companion object : MvRxViewModelFactory<PhotoListViewModel, PhotoListState> {
+  companion object : MavericksViewModelFactory<PhotoListViewModel, PhotoListState> {
     override fun create(
       viewModelContext: ViewModelContext,
       state: PhotoListState
